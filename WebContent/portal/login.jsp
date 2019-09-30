@@ -65,14 +65,14 @@
                             <span>用户名 ：</span>
                             <p class="clearFix">
                                 <i class="user"></i>
-                                <input id="userName" class="easyui-textbox" type="text"></input>
+                                <input id="userName" type="text"></input>
                             </p>
                         </div>
                         <div class="inputBox clearFix">
                             <span>密&nbsp&nbsp&nbsp码 ：</span>
                             <p class="clearFix">
                                 <i class="password"></i>
-                                <input id="password" class="easyui-textbox" type="password" name="password" ></input>
+                                <input id="password"  type="password" name="password" ></input>
                             </p>
                         </div>
                        

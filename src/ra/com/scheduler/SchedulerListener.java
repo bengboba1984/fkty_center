@@ -28,10 +28,10 @@ public class SchedulerListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent event)  { 
         timer=new Timer(true);
-        event.getServletContext().log("SchedulerListener: Create Timer!");
+//        event.getServletContext().log("SchedulerListener: Create Timer!");
         
-        timer.schedule(new CollectorLedJob(event.getServletContext()),0 ,3*60*1000);//姣�3鍒嗛挓sync涓�娆�
-        event.getServletContext().log("SchedulerListener: Add Schedule (CollectorLedJob)");
+//        timer.schedule(new CollectorLedJob(event.getServletContext()),0 ,3*60*1000);//姣�3鍒嗛挓sync涓�娆�
+//        event.getServletContext().log("SchedulerListener: Add Schedule (CollectorLedJob)");
    }  
 	/**
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
