@@ -6,7 +6,7 @@ public class Const {
 	public final static String COLLECTOR_CONFIG= "/remote_acquisition/config/";
 	public final static String CLIENT_COLLECTOR_CONFIG= "D:/RA/config/";
 	public final static String COLLECTOR_TYPE_ELOG="1";
-	public final static String COLLECTOR_TYPE_RTU="2";
+	public final static String COLLECTOR_TYPE_RTU="2";   
 	public final static String COLLECTOR_TYPE_CR1000="3";
 	public final static String COLLECTOR_TYPE_VIRTUAL="4";    
 	public final static String COLLECTOR_CONFIG_MASK_TYPE=",inst,ave,tot,min,max,";
