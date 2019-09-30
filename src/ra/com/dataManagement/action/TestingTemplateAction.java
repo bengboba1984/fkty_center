@@ -204,8 +204,7 @@ public class TestingTemplateAction  extends BaseAction {
 		
 		try{
 			TestingTemplate t = getTestingTemplate();
-			biz.updateTestingTemplate(t);
-			
+			temp = biz.updateTestingTemplate(t);
 			message=JSONObject.fromObject(temp);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
