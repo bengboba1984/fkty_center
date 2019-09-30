@@ -153,7 +153,7 @@
         </form>
     </div>
     <div id="dlg-warning-buttons">
-    	<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="settingTestTarget()" style="width:90px">测试目标</a>
+    	<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" data-options="disabled:true" id="targetButton" onclick="settingTestTarget()" style="width:90px">测试目标</a>
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveTestingTemplate()" style="width:90px">保存</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancelBasic()" style="width:90px">取消</a>
     </div>
@@ -263,6 +263,7 @@
         	});
 			}
     });
+	
 	$('#treeGroup').tree({
 		onClick: function(node){ 
 			if(node.id>0){
@@ -281,12 +282,21 @@
 					url='testing_template_arameter_web_show.action';
 				}
 				$("#iframe_test").attr('src',url);
+				distplayTargetButton();
 				$('#dlg-basic').dialog('open').dialog('center').dialog('setTitle','新建项 - 测试模板');
 				$('#dlg-function').dialog('close');
 			}
 						
 		}
 	});
+	function distplayTargetButton(){
+		if($('#testingTemplateId').val() == null || $('#testingTemplateId').val() == ''
+			|| $('#testingTemplateId').val() == 'null'){
+			$("#targetButton").linkbutton("disable");
+		}else{
+			$('#targetButton').linkbutton('enable');
+		}
+	}
 	function doSearch(){
 		$('#dg').datagrid('load',{
 			positionName: $('#positionName').val()
@@ -307,6 +317,7 @@
 		
 	}
 	function settingTestTarget(){
+		$('#targetGrid').datagrid('load');
 		$('#dlg-test-target').dialog('open').dialog('center').dialog('setTitle','测试目标管理');
 	}
 	function addTargetType() {
@@ -584,6 +595,7 @@
 				url='testing_template_arameter_web_edit_show.action?testingTemplateId='+row.testingTemplateId;
 			}
     		$("#iframe_test").attr('src',url);
+    		distplayTargetButton();
 			$('#dlg-basic').dialog('open').dialog('center').dialog('setTitle','编辑项 - 测试模板');
         }else{
        	 alert("请先选择测试模板！");
