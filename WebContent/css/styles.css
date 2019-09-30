@@ -1,0 +1,16 @@
+body {
+    
+    margin:0px;
+ 
+}
+body, html {
+    height: 100%;
+}
+
+#centered{
+    width:175px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:150px;
+    height:100%;
+}

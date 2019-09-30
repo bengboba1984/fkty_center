@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.i18n.reload" value="false"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<package name="portal" extends="struts-default">
+
+		<action name="login">
+			<result>/portal/login.jsp</result>
+		</action>
+
+		<action name="login_*" class="ra.com.portal.LoginAction"
+			method="{1}">
+			<result name="menu">/portal/main.jsp</result>
+		</action>
+		
+		<action name="logout" class="ra.com.portal.LoginAction"
+			method="logout">
+			<result name="loginPage">/portal/login.jsp</result>
+		</action>
+	</package>
+<include file="struts-config.xml"></include>
+<constant name="struts.custom.i18n.resources" value="message"></constant> 
+<constant name="struts.multipart.saveDir" value="/tmp"/>
+<constant name="struts.multipart.maxSize" value="100000000"/>
+</struts>

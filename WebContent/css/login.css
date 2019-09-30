@@ -1,0 +1,190 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html,body{
+    font-family: Microsoft YaHei,Hiragino Sans GB;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.clearFix:after{
+    display: block;
+    clear: both;
+    content: '';
+}
+.outer{
+    height: 100%;
+    padding: 0 0 100px;
+    box-sizing: border-box;
+    position: relative;
+}
+.content{
+    height: 100%;
+    background: #2e72b6;
+    position: relative;
+}
+.login_header {
+    position: absolute;
+    height: 60px;
+    width: 1100px;
+    top: 0;
+    left: 5%;
+    right: 0;
+    padding: 20px 0px;
+}
+.login_banner {
+    position: absolute;
+    height: 430px;
+    width: 1100px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+#logo{
+    width: 51px;
+    height: 48px;
+    float: left;
+    background: url(/images/logo-cmcc.png);
+    text-indent: -999px;
+    margin-right: 10px;
+}
+.text{
+    font-size: 32px;
+    color: #c2e1ff;
+    float: left;
+    font-weight: bold;
+}
+.loginBox{
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    width: 384px;
+    background: #f5f2f9;
+    box-shadow:0 0 10px 3px #326292;
+}
+.loginBox h4{
+    width: 100%;
+    background: #333333;
+    font-size: 20px;
+    line-height: 46px;
+    color: #ffffff;
+    text-align: center;
+}
+.formBox{
+    padding: 50px 35px 100px;
+}
+.inputBox{
+    margin-bottom: 13px;
+}
+.inputBox span{
+    font-size: 12px;
+    float: left;
+    line-height: 38px;
+    margin-right: 6px;
+}
+.inputBox p{
+    float: left;
+    width: 255px;
+    height: 37px;
+    box-sizing: border-box;
+    border: 1px solid #c8c8c8;
+    background: #ffffff;
+    position: relative;
+}
+.inputBox i{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    margin: 5px 13px 0 5px;
+}
+.inputBox .user{
+    background: url(/images/icon.png) 0 0;
+}
+.inputBox .password{
+    background: url(/images/icon.png) -24px 0;
+}
+.inputBox input{
+    float: left;
+    height: 35px;
+    width: 253px;
+    border: none;
+    text-indent: 40px;
+}
+.inputBoxCode input{
+    width: 162px;
+    border: 1px solid #c8c8c8;
+    text-indent: 10px;
+}
+.inputBoxCode img{
+    width: 77px;
+    height: 34px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+.inputBoxMes input{
+    width: 138px;
+    text-indent: 10px;
+}
+.inputBoxMes p input:nth-of-type(2){
+    width: 114px;
+    height: 33px;
+    line-height: 32px;
+    background: #4ca24e;
+    color: #ffffff;
+    margin-top: 1px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 1px;
+}
+.loginBox .btn{
+    width: 316px;
+    height: 42px;
+    background: #1b366d;
+    margin: 0 auto;
+    color: #ffffff;
+    border: 1px solid #1b366d;
+    display: block;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+}
+.loginBox .btn:hover{
+    background: #274d9b;
+}
+
+.tip{
+    height: 14px;
+    color: red;
+    font-size: 12px;
+    text-indent: 60px;
+}
+.left-image{width:100%}
+.banner_lf{position: absolute;left: 0; width: 500px;height: 385px;top: 50px;}
+.banner_rt{float: right; width: 400px;height: 400px;}
+.login_box{width:384px; height: 300px; background: #fff;}
+.module-wrap [data-topic] .gradient-mask{opacity:.5}[data-parallel]{position: absolute;transform-style:preserve-3d;transition:all .15s ease-out}[data-parallel] .layer{position:absolute}
+.foot{
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.foot div{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.foot p{
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+}

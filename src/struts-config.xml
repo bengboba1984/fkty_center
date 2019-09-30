@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="system_mgt_department" extends="json-default">
+
+		<action name="user_show" class="ra.com.system_mgt.action.UserAction"
+			method="show">
+			<result name="show">
+			/system_mgt/userList.jsp
+			</result>
+		</action>
+		<action name="user_list" class="ra.com.system_mgt.action.UserAction"
+			method="userListForDataGrid">
+			<result type="json">
+			<param name="root">userList</param>
+			</result>
+		</action>
+		<action name="user_positionList" class="ra.com.system_mgt.action.UserAction"
+			method="positionList">
+			<result type="json">
+			<param name="root">positionList</param>
+			</result>
+		</action>
+		<action name="user_singleDepartment" class="ra.com.system_mgt.action.UserAction"
+			method="singleDepartment">
+			<result type="json">
+			<param name="root">singleDepartment</param>
+			</result>
+		</action>
+		<action name="user_accept" class="ra.com.system_mgt.action.UserAction"
+			method="accept">
+			<result type="json">
+			<param name="root">result</param>
+			</result>
+		</action>
+		<action name="user_download" class="ra.com.system_mgt.action.UserAction"
+			method="download">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param> 
+				<param name="contentDisposition">
+					attachment;filename=${excelFileName} 
+				</param> 
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="user_upload" class="ra.com.system_mgt.action.UserAction"
+			method="upload">
+			<result type="json" name="success">
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="user_menu_list" class="ra.com.system_mgt.action.MenuAction"
+			method="menuList">
+			<result type="json">
+				<param name="root">menuList</param>
+			</result>
+		</action>
+		<action name="role_list" class="ra.com.system_mgt.action.RoleAction"
+			method="showRoleList">
+			<result type="json">
+			<param name="root">roleUserList</param>
+			</result>
+		</action>
+		<action name="role_show" class="ra.com.system_mgt.action.RoleAction"
+			method="show">
+			<result name="show">
+			/system_mgt/roleList.jsp
+			</result>
+		</action>
+		<action name="role_accept" class="ra.com.system_mgt.action.RoleAction"
+			method="accept">
+			<result type="json">
+			<param name="root">roleUserList</param>
+			</result>
+		</action>
+		<action name="position_module_show" method="show" class="ra.com.system_mgt.action.PositionModuleAction">
+			<result name="show"> /system_mgt/positionModuleList.jsp </result>
+		</action>
+		<action name="position_menu_list" class="ra.com.system_mgt.action.PositionModuleAction"
+			method="positionMenuList">
+			<result type="json">
+				<param name="root">treeList</param>
+			</result>
+		</action>
+		<action name="position_module_save" class="ra.com.system_mgt.action.PositionModuleAction"
+			method="positionModuleSave">
+			<result type="json">
+				<param name="root">message</param>
+			</result>
+		</action>
+		<action name="register_user" class="ra.com.system_mgt.action.UserAction"
+			method="registerUser">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="register_user_approve_show" class="ra.com.system_mgt.action.RegisterUserApproveAction"
+			method="show">
+			<result name="show">
+			/system_mgt/registerUserApprove.jsp
+			</result>
+		</action>
+		<action name="register_user_list" class="ra.com.system_mgt.action.RegisterUserApproveAction"
+			method="showRegisterUserList">
+			<result type="json">
+			<param name="root">userList</param>
+			</result>
+		</action>
+		<action name="register_status_list" class="ra.com.system_mgt.action.RegisterUserApproveAction"
+			method="getRegisterStatusList">
+			<result type="json">
+			<param name="root">positionList</param>
+			</result>
+		</action>
+		<action name="register_user_approve" class="ra.com.system_mgt.action.RegisterUserApproveAction"
+			method="registerUserApprove">
+			<result type="json">
+			<param name="root">result</param>
+			</result>
+		</action>
+		<action name="user_restore" class="ra.com.system_mgt.action.UserAction"
+			method="restoreUser">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="user_removeit" class="ra.com.system_mgt.action.UserAction"
+			method="removeitUser">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_show" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplate.jsp
+			</result>
+		</action>
+		<action name="testing_template_data_list" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="getTestingTemplateDataList">
+			<result type="json">
+			<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="action_button_flag" class="ra.com.system_mgt.action.UserAction"
+			method="actionButtonFlag">
+				<result type="json">
+					<param name="root">result</param>
+				</result>
+		</action>
+		<action name="testing_template_ping_show" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="showPing">
+			<result name="showPing">
+			/dataManagement/testingTemplateParameterPing.jsp
+			</result>
+		</action>
+		<action name="test_group_list" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="getTestGroup">
+				<result type="json">
+					<param name="root">selectList</param>
+				</result>
+		</action>
+		<action name="test_type_list" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="getTestTypeList">
+				<result type="json">
+					<param name="root">selectList</param>
+				</result>
+		</action>
+		<action name="tartget_type_list" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="getTargetTypeList">
+				<result type="json">
+					<param name="root">selectList</param>
+				</result>
+		</action>
+		<action name="protocol_type_list" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="getProtocolType">
+				<result type="json">
+					<param name="root">selectList</param>
+				</result>
+		</action>
+		
+		<action name="testing_template_show" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplate.jsp
+			</result>
+		</action>
+		<action name="testing_template_target_data_list" class="ra.com.dataManagement.action.TestingTemplateTargetAction"
+			method="getTestingTemplateTargetDataList">
+			<result type="json">
+			<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_template_target_show" class="ra.com.dataManagement.action.TestingTemplateTargetAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplateTarget.jsp
+			</result>
+		</action>
+		<action name="testing_template_parameter_ping_data_list" class="ra.com.dataManagement.action.TestingTemplateParameterPingAction"
+			method="getTestingTemplateParameterPingDataList">
+			<result type="json">
+			<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_template_arameter_ping_show" class="ra.com.dataManagement.action.TestingTemplateParameterPingAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplateParameterPing.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_dns_show" class="ra.com.dataManagement.action.TestingTemplateParameterDnsAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplateParameterDns.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_trace_show" class="ra.com.dataManagement.action.TestingTemplateParameterTraceAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplateParameterTrace.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_web_show" class="ra.com.dataManagement.action.TestingTemplateParameterWebAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplateParameterWeb.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_speed_show" class="ra.com.dataManagement.action.TestingTemplateParameterSpeedAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingTemplateParameterSpeed.jsp
+			</result>
+		</action>
+		<action name="password_show" class="ra.com.system_mgt.action.PasswordAction"
+			method="show">
+			<result name="show">
+			/system_mgt/passwordChange.jsp
+			</result>
+		</action>
+		<action name="passwor_change" class="ra.com.system_mgt.action.PasswordAction"
+			method="change">
+			<result type="json">
+			<param name="root">resultList</param>
+			<param name="contentType">text/html</param>
+			</result>
+		</action>
+		<action name="testing_template_insert" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="insertTestingTemplate">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_update" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="updateTestingTemplate">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		
+		<action name="testing_template_removeit" class="ra.com.dataManagement.action.TestingTemplateAction"
+			method="removeitTestingTemplate">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_ping_insert" class="ra.com.dataManagement.action.TestingTemplateParameterPingAction"
+			method="insertTestingTemplateParameterPing">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_ping_update" class="ra.com.dataManagement.action.TestingTemplateParameterPingAction"
+			method="updateTestingTemplateParameterPing">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		
+		<action name="testing_template_arameter_trace_insert" class="ra.com.dataManagement.action.TestingTemplateParameterTraceAction"
+			method="insertTestingTemplateParameterTrace">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_trace_update" class="ra.com.dataManagement.action.TestingTemplateParameterTraceAction"
+			method="updateTestingTemplateParameterTrace">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		
+		<action name="testing_template_arameter_dns_insert" class="ra.com.dataManagement.action.TestingTemplateParameterDnsAction"
+			method="insertTestingTemplateParameterDns">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_dns_update" class="ra.com.dataManagement.action.TestingTemplateParameterDnsAction"
+			method="updateTestingTemplateParameterDns">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		
+		<action name="testing_template_arameter_speed_insert" class="ra.com.dataManagement.action.TestingTemplateParameterSpeedAction"
+			method="insertTestingTemplateParameterSpeed">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_speed_update" class="ra.com.dataManagement.action.TestingTemplateParameterSpeedAction"
+			method="updateTestingTemplateParameterSpeed">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		
+		<action name="testing_template_arameter_web_insert" class="ra.com.dataManagement.action.TestingTemplateParameterWebAction"
+			method="insertTestingTemplateParameterWeb">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_web_update" class="ra.com.dataManagement.action.TestingTemplateParameterWebAction"
+			method="updateTestingTemplateParameterWeb">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_target_type_insert" class="ra.com.dataManagement.action.TestingTemplateTargetAction"
+			method="insertTargetType">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_target_insert" class="ra.com.dataManagement.action.TestingTemplateTargetAction"
+			method="insertTestingTarget">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_target_delete" class="ra.com.dataManagement.action.TestingTemplateTargetAction"
+			method="deleteTestingTarget">
+			<result type="json" name="success">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+            <result type="json" name="error">
+                <param name="root">
+                    message
+                </param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+		</action>
+		<action name="testing_template_arameter_ping_edit_show" class="ra.com.dataManagement.action.TestingTemplateParameterPingAction"
+			method="showEditData">
+			<result name="show">
+			/dataManagement/testingTemplateParameterPing.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_dns_edit_show" class="ra.com.dataManagement.action.TestingTemplateParameterDnsAction"
+			method="showEditData">
+			<result name="show">
+			/dataManagement/testingTemplateParameterDns.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_trace_edit_show" class="ra.com.dataManagement.action.TestingTemplateParameterTraceAction"
+			method="showEditData">
+			<result name="show">
+			/dataManagement/testingTemplateParameterTrace.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_web_edit_show" class="ra.com.dataManagement.action.TestingTemplateParameterWebAction"
+			method="showEditData">
+			<result name="show">
+			/dataManagement/testingTemplateParameterWeb.jsp
+			</result>
+		</action>
+		<action name="testing_template_arameter_speed_edit_show" class="ra.com.dataManagement.action.TestingTemplateParameterSpeedAction"
+			method="showEditData">
+			<result name="show">
+			/dataManagement/testingTemplateParameterSpeed.jsp
+			</result>
+		</action>
+	</package>
+
+</struts>
