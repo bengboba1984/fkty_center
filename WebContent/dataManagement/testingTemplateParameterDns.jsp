@@ -13,7 +13,7 @@
 
 <body>
 <table style="width: 100%">
-<input type="hidden" name="testingTemplateParameterId" id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
+<input type="hidden"  id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">查询次数（1~100）</font></td>
            <td style="width: 50%">
@@ -47,10 +47,13 @@
 		var packetCount = $('#packetCount').val();
 		var ignoreCount = $('#ignoreCount').val();
 		var roundItemCount = $('#roundItemCount').val();
-		
 		var packetTimeout = $('#packetTimeout').val();
 		var spacingTime = $('#spacingTime').val();
 		
+		var testingTemplateParameterId = $('#testingTemplateParameterId').val();
+		if (testingTemplateParameterId != null && testingTemplateParameterId != "") {
+			url = url + "testingTemplateParameterId=" + testingTemplateParameterId + "&";
+		}
 		if (packetCount != null && packetCount != "") {
 			url = url + "packetCount=" + packetCount + "&";
 		}

@@ -13,7 +13,7 @@
 
 <body>
 <table style="width: 100%">
-<input type="hidden" name="testingTemplateParameterId" id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
+<input type="hidden"  id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">发包数量(1~20000)</font></td>
            <td style="width: 50%">
@@ -95,6 +95,11 @@
 		
 		/* var testGroupId=$('#testGroupId').combobox('getValue');
 		var testType = $('#testType').combobox('getValue'); */
+
+		var testingTemplateParameterId = $('#testingTemplateParameterId').val();
+		if (testingTemplateParameterId != null && testingTemplateParameterId != "") {
+			url = url + "testingTemplateParameterId=" + testingTemplateParameterId + "&";
+		}
 		if (packetCount != null && packetCount != "") {
 			url = url + "packetCount=" + packetCount + "&";
 		}

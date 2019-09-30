@@ -13,7 +13,7 @@
 
 <body>
 <table style="width: 100%">
-<input type="hidden" name="testingTemplateParameterId" id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
+<input type="hidden" id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">数据长度（1~1400）</font></td>
            <td style="width: 50%">
@@ -65,7 +65,11 @@
 		
 		var packetCount = $('#packetCount').val();
 		var spacingTime = $('#spacingTime').val();
-		
+
+		var testingTemplateParameterId = $('#testingTemplateParameterId').val();
+		if (testingTemplateParameterId != null && testingTemplateParameterId != "") {
+			url = url + "testingTemplateParameterId=" + testingTemplateParameterId + "&";
+		}
 		if (payloadSize != null && payloadSize != "") {
 			url = url + "payloadSize=" + payloadSize + "&";
 		}

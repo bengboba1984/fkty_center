@@ -404,18 +404,20 @@
 }
 	function saveTestingTemplate(){
 		var url = "";
-		//var action =  "insert";
-		
+		var action =  $('#action').val();
+		var mess = "新增";
+		if (action == 'update') {
+			mess = "更新";
+		}
 		/*if ($('#testingTemplateId').val() == null || $('#testingTemplateId').val() == ''
 				|| $('#testingTemplateId').val() == 'null') {
 			action = "insert";
 		} else {
 			action = "update";
 		} */
-		url = encodeURI(makeUrl($('#action').val()));
+		url = encodeURI(makeUrl(action));
 		var effectRow = new Object();
-		$.post(encodeURI(url),
-				effectRow,function(response) {
+		$.post(encodeURI(url),function(response) {
 							if (response.success=='success') {
 								var table ='';
 								var subUrl = '';
@@ -442,15 +444,15 @@
 									url = "testing_template_arameter_"+table+"_insert.action?";
 								}
 								url = url + "testingTemplateId= "+response.templateId+"&";
-								url = url + subUrl;
+								url = url + subUrl;alert(url);
 								$.post(encodeURI(url),
 										effectRow,function(response2) {
 													if (response2.success=='success') {
-														alert('新增成功！');
+														alert(mess+'成功！');
 														$('#dg').datagrid('load');
 														$('#dlg-basic').dialog('close');
 													}else{
-														alert('新增失败！' + response2.error);
+														alert(mess+'失败！' + response2.error);
 													}
 												}, "JSON").error(function() {
 													 $.post('testing_template_removeit.action',{
@@ -458,14 +460,14 @@
 								                       		testType:response.testType},function(result){
 								                           //do nothing
 								                       },'json');
-											alert("保存失败！");
+											alert(mess+"失败！");
 
 										});
 							}else{
-								alert('新增失败！' + response.error);
+								alert(mess+'失败！' + response.error);
 							}
 						}, "JSON").error(function() {
-					alert("保存失败！");
+					alert(mess+"失败！");
 
 				});
 		
@@ -567,7 +569,7 @@
     		$('#testExecuteCount').numberspinner('setValue',row.testExecuteCount);
     		$('#rankClass').numberspinner('setValue',row.rankClass);
     		$('#testingDuration').val(row.testingDuration);
-    		
+    		$('#testingTemplateId').val(row.testingTemplateId);
     		$('#testGroupId').combobox('setValue',row.testingTemplateGroupId);
     		$('#testType').combobox('setValue',row.testType);
     		if(row.testType=='28'){

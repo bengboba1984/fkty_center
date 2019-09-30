@@ -13,7 +13,7 @@
 
 <body>
 <table style="width: 100%">
-<input type="hidden" name="testingTemplateParameterId" id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
+<input type="hidden"  id="testingTemplateParameterId" value="${testingTemplateParameterId}" />
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">最大下载（KB），1~1024000</font></td>
            <td style="width: 50%">
@@ -103,6 +103,10 @@
 		var maxPageDepth = $('#maxPageDepth').val();
 		var validResponseCodes = $('#validResponseCodes').val();
 
+		var testingTemplateParameterId = $('#testingTemplateParameterId').val();
+		if (testingTemplateParameterId != null && testingTemplateParameterId != "") {
+			url = url + "testingTemplateParameterId=" + testingTemplateParameterId + "&";
+		}
 		if (maxDownloadSize != null && maxDownloadSize != "") {
 			url = url + "maxDownloadSize=" + maxDownloadSize + "&";
 		}
