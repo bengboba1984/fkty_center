@@ -18,13 +18,13 @@
 <input type="hidden" id = "action" value=""/>
 	<div class="easyui-layout" style="height:750px;" data-options="border:false">
 			<table id="dg" class="easyui-datagrid" title="" style="width: 100%; height:99%" remoteSort="false"
-							data-options="iconCls: 'icon-edit',singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_template_data_list.action',method: 'post'">
+							data-options="fitColumns:'true',iconCls: 'icon-edit',singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_template_data_list.action',method: 'post'">
 		<thead>
 			<tr>
-				<th data-options="field:'testingTemplateId',sortable:'true'">编号</th>
+				<th data-options="field:'testingTemplateId',sortable:'true',hidden:'true'">编号</th>
 				<th data-options="field:'templateName',sortable:'true'">名称</th>
 				<th data-options="field:'testTypeValue',sortable:'true'">测试类型</th>
-				<th data-options="field:'testType',hidden:'true',width:10">User ID</th>
+				<th data-options="field:'testType',hidden:'true'">User ID</th>
 				<th data-options="field:'rankClass',sortable:'true'">排序级别</th>
 				<th data-options="field:'testTimeout',sortable:'true'">测试超时</th>
 				<th data-options="field:'testExecuteCount',sortable:'true'">执行次数</th>
@@ -160,8 +160,8 @@
 <div id="dlg-test-target" class="easyui-dialog" style="width:800px" 
             closed="true" buttons="#dlg-test-target-buttons">
             <div class="easyui-layout" data-options="fit:false" style="width:100%;height:600px;" >
-                <div data-options="region:'north',split:false" style="width:100%;height:515px;">
-                <table class="easyui-datagrid" title="" style="width:99%;height:500px;border:0px" id="targetGrid"
+                <div data-options="region:'north',split:false" style="width:100%;height:515px;" border="false" >
+                <table class="easyui-datagrid" title="" style="height:500px;border:1px" id="targetGrid"
             	data-options="
             	url:'testing_template_target_data_list.action',
                 singleSelect:true,
