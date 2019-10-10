@@ -100,4 +100,6 @@ public interface SystemMGTDAO {
 	public List getEmailForAdmin()throws GenericDAOException;
 	
 	public ListChunk getActionRole(String moduleId,String positionId)throws GenericDAOException;
+	
+	public ListChunk showDepartmentList()throws GenericDAOException;
 }

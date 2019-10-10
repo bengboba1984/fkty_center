@@ -275,39 +275,31 @@
 						editor:{type:'datebox',options:{editable:false,parser:myparser,formatter:myformatter}}">
 						<s:text name="system.user.hireDate" />
 				</th>
-				<!-- <th
-					data-options="field:'degree',sortable:'true',align:'center',
-						editor:{
-							type:'combobox',
-							options:{
-								panelHeight: 'auto',
-								editable:false,
-								data:[
-									{'key':'小学','value':'小学'},
-									{'key':'中学','value':'中学'},
-									{'key':'高中','value':'高中'},
-									{'key':'中专','value':'中专'},
-									{'key':'技校','value':'技校'},
-									{'key':'大专','value':'大专'},
-									{'key':'本科','value':'本科'},
-									{'key':'研究生','value':'研究生'},
-									{'key':'硕士','value':'硕士'},
-									{'key':'博士','value':'博士'},
-								],
-								valueField:'key',
-								textField:'value'
-							}
-						}"><s:text name="system.user.degree" />
-				</th>-->
 				
 				<th
 					data-options="field:'hiddenPositionID', hidden:'true'">
 					hidden</th>
-				<th data-options="field:'companyName',sortable:'true',align:'center',editor:'text'">单位全称</th>
+				<th data-options="field:'workId',sortable:'true',align:'center',width:'10%',editor:'text'">工号</th>	
+				<th
+					data-options="field:'departmentID',sortable:'true',align:'center',width:'20%',
+                         formatter:function(value,row){
+                            return row.departmentName;
+                        }, 
+                        editor:{
+                            type:'combobox',
+                            options:{
+                            	valueField:'key',
+                                textField:'value',
+                                method:'post',
+                                editable:false,
+                                url:'show_department_list.action',
+                                required:true                     
+                            }
+                        }">部门
+				</th>
 				<th data-options="field:'position',sortable:'true',align:'center',editor:'text'">职务</th>
 				<th data-options="field:'jobTitle',sortable:'true',align:'center',editor:'text'">职称</th>
 				<th data-options="field:'phoneNumber',sortable:'true',align:'center',editor:{type:'numberbox'}">手机</th>
-				<th data-options="field:'purposeData',sortable:'true',align:'center',editor:'text'">数据用途</th>
 				<th
 					data-options="field:'positionID',sortable:'true',align:'center',width:'20%',
                          formatter:function(value,row){

@@ -455,6 +455,11 @@ public class SystemMGTFacade {
 		
 		return lc.getCollection();
 	}
+	public Collection showDepartmentList() throws Exception {
+		ListChunk lc = dao.showDepartmentList();
+		
+		return lc.getCollection();
+	}
 	
 	public JSON createTree(String positionId,long pid)throws Exception{   
 		StringBuffer sb = new StringBuffer(" ");

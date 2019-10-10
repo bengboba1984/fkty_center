@@ -11,7 +11,7 @@ public class UserManagement implements java.io.Serializable{
 	private String degree;
 	private String positionID;
 	private String positionName;
-	private Long departmentID;
+	private Long departmentId;
 	private String departmentName;
 	private String telephoneNumber;
 	private String emergencyContact;
@@ -98,12 +98,14 @@ public class UserManagement implements java.io.Serializable{
 		this.positionName = positionName;
 	}
 
-	public Long getDepartmentID() {
-		return departmentID;
+	
+
+	public Long getDepartmentId() {
+		return departmentId;
 	}
 
-	public void setDepartmentID(Long departmentID) {
-		this.departmentID = departmentID;
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	public String getDepartmentName() {
@@ -185,7 +187,7 @@ public class UserManagement implements java.io.Serializable{
 				+ ", gender=" + gender + ", birthday=" + birthday
 				+ ", hireDate=" + hireDate + ", degree=" + degree
 				+ ", positionID=" + positionID + ", positionName="
-				+ positionName + ", departmentID=" + departmentID
+				+ positionName + ", departmentId=" + departmentId
 				+ ", departmentName=" + departmentName + ", telephoneNumber="
 				+ telephoneNumber + ", emergencyContact=" + emergencyContact
 				+ ", address=" + address + ", IDNumber=" + IDNumber + ", memo="

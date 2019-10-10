@@ -67,15 +67,6 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 	public boolean deleteDepartment(List paramList) throws GenericDAOException {
 		
 		
-		int[] result1 = simpleExecuteBatch(
-				"DELETE FROM jxc.bs_department WHERE department_id=? ",
-				paramList);
-		int[] result2 = simpleExecuteBatch(
-				"DELETE FROM jxc.bs_position WHERE department_id=? ",
-				paramList);
-		int[] result3 = simpleExecuteBatch(
-				"UPDATE jxc.bs_user SET position_id=null,department_id=null WHERE department_id=? ",
-				paramList);
 		return true;
 	}
 
@@ -165,14 +156,14 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 	@Override
 	public List getUserList(List param) throws GenericDAOException {
 		StringBuffer sql = new StringBuffer(
-				"SELECT a.user_id as userID,"
+				"SELECT a.user_id as userID,department_id,(SELECT value FROM wasu.bs_common_def d where d.def_id=a.department_id) departmentName,"
 						+ "a.user_name as userName,a.gender,date_format(a.birthday,'%Y-%m-%d') as birthday,"
 						+ "date_format(a.hire_date,'%Y-%m-%d') as hireDate,a.degree,"
 						+ "GROUP_CONCAT(a.position_id) positionID,"
 						+ "GROUP_CONCAT(b.position_name) positionName," 
 						+ "a.telephone_number as telephoneNumber,"
 						+ "a.emergency_contact as emergencyContact,a.address,"
-						+ "a.id_number as IDnumber,a.memo,a.email "
+						+ "a.memo,a.email,work_id "
 						//+ "(select e.user_name from ra.bs_department d,ra.bs_user e where a.department_id=d.department_id and d.department_manager=e.user_id) as manager "
 						+ " FROM wasu.bs_user a LEFT JOIN wasu.bs_position b ON a.position_id = b.id "
 						+ "		 WHERE 1=1");
@@ -202,14 +193,14 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 		StringBuffer sql = new StringBuffer(
 				"INSERT INTO `wasu`.`bs_user` ("
 						+ " `user_name`, `password`, `gender`, `birthday`, `hire_date`, "
-						+ "`degree`, `telephone_number`, `address`, "
-						+ "`ID_number`, `memo`,`email` ,`user_id`,`visible`,"
-						+ " `company_name`,`position`,`job_title`,`phone_number`,`purpose_data` )"
+						+ "`degree`, `telephone_number`, `address`,`work_id`, "
+						+ " `memo`,`email` ,`user_id`,`visible`,"
+						+ " `company_name`,`position`,`job_title`,`phone_number`,`purpose_data`,`department_id` )"
 						+ " SELECT distinct "
 						+ " ?, '0000', ?, if(?='',null,str_to_date(?,'%Y-%m-%d')), if(?='',null,str_to_date(?,'%Y-%m-%d')), "
 						+ "?, ?, ?, " 
 						+ " ?, ?, ?, ?,'Y' ,"
-						+ " ?, ?, ?,?, ? " 
+						+ " ?, ?, ?,?, ?, ? " 
 						+ "from wasu.bs_user;");
 		Connection cn = getConnection();
 		try {
@@ -232,7 +223,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 				paramList.add(d.getDegree());
 				paramList.add(d.getTelephoneNumber());
 				paramList.add(d.getAddress());
-				paramList.add(d.getIDNumber());
+				paramList.add(d.getWorkId());
 				paramList.add(d.getMemo());
 				paramList.add(d.getEmail());
 				Long id = (Long) queryOne("select IFNULL(MAX(user_id),0)+1  from wasu.bs_user", null);
@@ -242,6 +233,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 				paramList.add(d.getJobTitle());
 				paramList.add(d.getPhoneNumber());
 				paramList.add(d.getPurposeData());
+				paramList.add(d.getDepartmentID().toString());
 				simpleExecute(cn,
 						sql.toString(), paramList);//insert user
 				
@@ -319,7 +311,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 				paramList.add(d.getDegree());
 				paramList.add(d.getTelephoneNumber());
 				paramList.add(d.getAddress());
-				paramList.add(d.getIDNumber());
+				paramList.add(d.getWorkId());
 				paramList.add(d.getMemo());
 				paramList.add(d.getEmail());
 				paramList.add(d.getCompanyName());
@@ -327,12 +319,13 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 				paramList.add(d.getJobTitle());
 				paramList.add(d.getPhoneNumber());
 				paramList.add(d.getPurposeData());
+				paramList.add(d.getDepartmentID().toString());
 				paramList.add(d.getUserID());
 				simpleExecute(cn,
 						"UPDATE wasu.bs_user SET "
 						+ "user_name=? , gender=?,birthday=if(?='',null,str_to_date(?,'%Y-%m-%d')), hire_date=if(?='',null,str_to_date(?,'%Y-%m-%d')),"
-						+ "degree=?,telephone_number=?,address=?,id_number=?,memo=?,"
-						+ "email=?,company_name=?,position=?,job_title=?,phone_number=?,purpose_data=?  "
+						+ "degree=?,telephone_number=?,address=?,work_id=?, memo=?,"
+						+ "email=?,company_name=?,position=?,job_title=?,phone_number=?,purpose_data=?,department_id =?  "
 						+ " WHERE user_id=? ",
 						paramList);//update user
 				//delete position
@@ -497,14 +490,14 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 		StringBuffer sql = new StringBuffer(
 				"SELECT a.user_id as userID,"
 						+ "a.user_name as userName,a.gender,date_format(a.birthday,'%Y-%m-%d') as birthday,"
-						+ "date_format(a.hire_date,'%Y-%m-%d') as hireDate,a.degree,"
-						+ "GROUP_CONCAT(p.role_id) positionID,"
+						+ "date_format(a.hire_date,'%Y-%m-%d') as hireDate,a.degree,department_id,(SELECT value FROM wasu.bs_common_def d where d.def_id=a.department_id) departmentName,"
+						+ "GROUP_CONCAT(p.role_id) positionID,work_id,"
 						+ "GROUP_CONCAT(p.role_id) hiddenPositionID,"
 						+ " (select GROUP_CONCAT(b.position_name) from wasu.bs_position b where b.id in (GROUP_CONCAT(p.role_id) ) and b.status = 'Y')  positionName, "
 						+ "a.telephone_number as telephoneNumber,"
 						+ "a.emergency_contact as emergencyContact,a.address,"
 						+ "a.visible,a.company_name,a.position,a.job_title,a.phone_number,a.purpose_data, a.email,"
-						+ "a.id_number as IDNumber,a.memo"
+						+ "a.memo"
 						+ " FROM   wasu.bs_user a left join  wasu.account_position   p  on a.user_id = p.user_id "
 						+ "	 WHERE 1=1  ");
 		if (userIDSearch != null && !"".equals(userIDSearch)) {
@@ -538,10 +531,8 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 
 	@Override
 	public boolean checkDepartment(String departmentName,Long departmentID) throws GenericDAOException {
-		StringBuffer sql = new StringBuffer(
-				""
-						+ "SELECT department_name "
-						+ "FROM jxc.bs_department  ");
+		StringBuffer sql = new StringBuffer("SELECT department_name "
+						+ "FROM wasu.bs_department  ");
 		
 		sql.append(" WHERE department_name=?");
 		sql.append(" AND department_id<>?");
@@ -567,6 +558,14 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 			sql.append(" AND a.id not in (8) "); 
 		}
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,
+				true, "ra.com.system_mgt.model.Position");
+	}
+	
+	public ListChunk showDepartmentList()throws GenericDAOException {
+		StringBuffer sql = new StringBuffer(
+				"SELECT def_id positionID,value position_name FROM wasu.bs_common_def where type='department' ");
+		
+		return getListChunkByProperty(sql.toString(), null,1,1000,
 				true, "ra.com.system_mgt.model.Position");
 	}
 	
@@ -701,9 +700,9 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 	public void registerUser(User u)throws GenericDAOException {
 		Long id = (Long) queryOne("select IFNULL(MAX(user_id),0)+1  from wasu.bs_user", null);
 		StringBuffer sql = new StringBuffer("INSERT INTO  wasu.bs_user (user_id,user_name,password,telephone_number,email,"
-				+ "company_name,position,job_title,phone_number,purpose_data,visible ) "
+				+ "company_name,position,job_title,phone_number,purpose_data,visible,work_id ) "
 				+ " VALUES (? ,? ,? ,? ,? ,"
-				+ "	? ,? ,? ,? ,? ,'T')");
+				+ "	? ,? ,? ,? ,? ,'T', ?)");
 		List<String> para = new ArrayList<String>();
 		para.add(id+"");
 		para.add(u.getUserName());
@@ -715,6 +714,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 		para.add(u.getJobTitle());
 		para.add(u.getPhoneNumber());
 		para.add(u.getPurposeData());
+		para.add(u.getWorkId());
 		simpleExecute(sql.toString(),para);
 	}
 

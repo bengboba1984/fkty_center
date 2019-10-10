@@ -34,7 +34,7 @@ public class PortalDAOImpl extends GenericDAO implements PortalDAO {
 	public ListChunk getUserListByProperty(User u) throws GenericDAOException {
 		StringBuffer sql=new StringBuffer("SELECT a.user_ID,user_name,password,gender,birthday,"
 				+ "hire_date,degree,min(p.role_id) department_ID,telephone_number,"
-				+ "emergency_contact,address,ID_number,memo,GROUP_CONCAT(p.role_id) positionID "
+				+ "emergency_contact,address,work_id,memo,GROUP_CONCAT(p.role_id) positionID "
 				+ " FROM wasu.bs_user a left join wasu.account_position p ON a.user_id = p.user_id "
 				+ " WHERE 1=1");
 		ArrayList pl=new ArrayList();

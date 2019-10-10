@@ -23,6 +23,7 @@
 			<tr>
 				<th data-options="field:'testingTemplateId',sortable:'true',hidden:'true'">编号</th>
 				<th data-options="field:'templateName',sortable:'true'">名称</th>
+				<th data-options="field:'testingTemplateGroupValue',sortable:'true'">组</th>
 				<th data-options="field:'testTypeValue',sortable:'true'">测试类型</th>
 				<th data-options="field:'testType',hidden:'true'">User ID</th>
 				<th data-options="field:'rankClass',sortable:'true'">排序级别</th>
@@ -32,6 +33,7 @@
 				<th data-options="field:'testInterval',sortable:'true'">测试时长</th>
 				<th data-options="field:'testInterval',sortable:'true'">链接功能</th>
 				<th data-options="field:'description',sortable:'true'">描述</th>
+				<th data-options="field:'nodeIp',sortable:'true'" formatter="natureshortVallue" >目标</th>
 				<th data-options="field:'testingTemplateGroupId',hidden:'true',width:10">testingTemplateGroupId</th>
 			</tr>
 		</thead>
@@ -194,7 +196,7 @@
     </div>
     <div id="dlg-test-target-buttons">
     	<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="showAddTargetDiv()" style="width:90px">增加</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="cancelTarget('dlg-test-target')" style="width:90px">确定</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="cancelTarget('dlg-test-target')" style="width:90px">保存</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancelTarget('dlg-test-target')" style="width:90px">取消</a>
     </div>
 	<div id="dlg-tartget-type" class="easyui-dialog"  closed="true"  style="width:500px">
@@ -304,6 +306,8 @@
 	 }
 	function append() {
 		$('#action').val("insert");
+		$('#fm-warning').form('clear');
+		initTemplateValue();
 		$('#dlg-function').dialog('open').dialog('center').dialog('setTitle','选择测试模板');
 	}
 	
@@ -571,6 +575,7 @@
     }
 	function edit(){
 		var row = $('#dg').datagrid('getSelected');
+		$('#fm-warning').form('clear');
         if (row){
         	$('#action').val("update");
         	$('#templateName').textbox('setValue',row.templateName);
@@ -601,6 +606,20 @@
        	 alert("请先选择测试模板！");
        	 return false;
         }
+	}
+	function initTemplateValue(){
+		$('#testTimeout').numberspinner('setValue','20');
+		$('#testInterval').numberspinner('setValue','1');
+		$('#testExecuteCount').numberspinner('setValue','1');
+		$('#rankClass').numberspinner('setValue','1000');
+		$('#testingDuration').val('无限制');
+	}
+	function natureshortVallue(value, row, index){
+		if(value.length>30){
+			return "<span title='"+value+"'>"+value.substring(0,30)+"..."+"</span>";
+		}else{
+			return "<span title='"+value+"'>"+value.substring(0,value.length)+"</span>";
+		}
 	}
 	</script>
 

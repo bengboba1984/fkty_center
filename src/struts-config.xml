@@ -25,6 +25,12 @@
 			<param name="root">positionList</param>
 			</result>
 		</action>
+		<action name="show_department_list" class="ra.com.system_mgt.action.UserAction"
+			method="showDepartmentList">
+			<result type="json">
+			<param name="root">positionList</param>
+			</result>
+		</action>
 		<action name="user_singleDepartment" class="ra.com.system_mgt.action.UserAction"
 			method="singleDepartment">
 			<result type="json">

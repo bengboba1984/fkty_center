@@ -25,10 +25,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	}
 	public ListChunk getTestingTemplateDataList(String roleId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
-				"SELECT  testing_template_id,testing_template_group_id,template_name,test_type,sort_level,description,test_timeout,test_interval,test_execute_count,rank_class,testing_duration,")
-		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.test_type ) testTypeValue FROM wasu.testing_template t where 1 = 1 ");
+				"SELECT  t.testing_template_id,testing_template_group_id,template_name,test_type,t.sort_level,description,test_timeout,test_interval,test_execute_count,rank_class,testing_duration,")
+		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.testing_template_group_id ) testingTemplateGroupValue ,GROUP_CONCAT(tt.node_ip) node_ip,")
+		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.test_type ) testTypeValue FROM wasu.testing_template t left join wasu.testing_template_target  tt on t.testing_template_id = tt.testing_template_id where 1 = 1 ");
 		
-		
+		sql.append(" group by t.testing_template_id ");
 		return getListChunkByProperty(sql.toString(), null,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingTemplate");
 	}
 	

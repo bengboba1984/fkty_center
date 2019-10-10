@@ -54,7 +54,8 @@ public class UserAction extends ActionSupport implements
 	private String phoneNumber;
 	private String email;
 	private String purposeData;
-	
+	private String workId;
+	private String departmentId;
 	
 	
 	public HttpServletRequest getRequest() {
@@ -335,6 +336,31 @@ public class UserAction extends ActionSupport implements
 
 		return SUCCESS;
 	}
+	
+	public String showDepartmentList() throws IOException {
+		biz = SystemMGTFacade.getInstance();
+
+		try {
+			ra.com.system_mgt.model.User user=(ra.com.system_mgt.model.User)request.getSession().getAttribute("loginUser");
+			
+			Collection lc = biz.showDepartmentList();
+			ArrayList al = new ArrayList();
+			Iterator it = lc.iterator();
+			while (it.hasNext()) {
+				Position d = (Position) it.next();
+				Map m = new HashMap();
+				m.put("key", d.getPositionID());
+				m.put("value", d.getPositionName());
+				al.add(m);
+			}
+			positionList = JSONArray.fromObject(al);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return SUCCESS;
+	}
 
 	
 	public String singleDepartment() throws Exception {
@@ -467,6 +493,8 @@ public class UserAction extends ActionSupport implements
 		u.setTelephoneNumber(telephoneNumber);
 		u.setPhoneNumber(phoneNumber);
 		u.setEmail(U.decode(email));
+		u.setWorkId(U.decode(workId));
+		u.setDepartmentID(new Long(departmentId));
 		u.setPurposeData(U.decode(purposeData));
 		return u;
 	}

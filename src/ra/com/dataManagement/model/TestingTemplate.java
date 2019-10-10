@@ -13,6 +13,8 @@ public class TestingTemplate {
 	private String rankClass;
 	private String testingDuration;
 	private String testTypeValue;
+	private String testingTemplateGroupValue;
+	private String nodeIp;
 	public String getTestingTemplateId() {
 		return testingTemplateId;
 	}
@@ -84,6 +86,18 @@ public class TestingTemplate {
 	}
 	public void setTestTypeValue(String testTypeValue) {
 		this.testTypeValue = testTypeValue;
+	}
+	public String getTestingTemplateGroupValue() {
+		return testingTemplateGroupValue;
+	}
+	public void setTestingTemplateGroupValue(String testingTemplateGroupValue) {
+		this.testingTemplateGroupValue = testingTemplateGroupValue;
+	}
+	public String getNodeIp() {
+		return nodeIp;
+	}
+	public void setNodeIp(String nodeIp) {
+		this.nodeIp = nodeIp;
 	}
 	
 	

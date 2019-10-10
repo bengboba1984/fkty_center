@@ -16,7 +16,6 @@ public class User implements java.io.Serializable {
 	private String telephoneNumber;
 	private String emergencyContact;
 	private String address;
-	private String IDNumber;
 	private String memo;
 	private String password;
 	private String email;
@@ -30,6 +29,7 @@ public class User implements java.io.Serializable {
 	private String jobTitle;
 	private String phoneNumber;
 	private String purposeData;
+	
 	public HashMap getModuleList() {
 		return moduleList;
 	}
@@ -142,14 +142,7 @@ public class User implements java.io.Serializable {
 		this.address = address;
 	}
 
-	public String getIDNumber() {
-		return IDNumber;
-	}
-
-	public void setIDNumber(String iDNumber) {
-		IDNumber = iDNumber;
-	}
-
+	
 	public String getMemo() {
 		return memo;
 	}
@@ -192,7 +185,7 @@ public class User implements java.io.Serializable {
 				+ positionName + ", departmentID=" + departmentID
 				+ ", departmentName=" + departmentName + ", telephoneNumber="
 				+ telephoneNumber + ", emergencyContact=" + emergencyContact
-				+ ", address=" + address + ", IDNumber=" + IDNumber + ", memo="
+				+ ", address=" + address + ", memo="
 				+ memo + ", password=" + password + "]";
 	}
 
