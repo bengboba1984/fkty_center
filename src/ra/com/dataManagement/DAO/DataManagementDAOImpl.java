@@ -380,4 +380,17 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		
 		simpleExecute(sql.toString(), param);
 	}
+	
+	public void updateTestingTarget(TestingTemplateTarget item) throws GenericDAOException{
+		ArrayList<String> param = new ArrayList<String>();
+		
+		param.add(item.getName());
+		param.add(item.getNodeIp());
+		param.add(item.getSortLevel());
+		param.add(item.getActive());
+		param.add(item.getTargetType());
+		param.add(item.getTestingTemplateId());
+		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_target set name =?,node_ip=?,sort_level= ?,active = ?,target_type = ? WHERE testing_template_id = ?");
+		simpleExecute(sql.toString(), param);
+	}
 }

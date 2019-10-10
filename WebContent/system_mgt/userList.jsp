@@ -59,6 +59,13 @@
 				});
 				var positionName = $(ed.target).combobox('getText');
 				$('#dg').datagrid('getRows')[editIndex]['positionName'] = positionName;
+				
+				var ed1 = $('#dg').datagrid('getEditor', {
+					index : editIndex,
+					field : 'departmentId'
+				});
+				var departmentName = $(ed1.target).combobox('getText');
+				$('#dg').datagrid('getRows')[editIndex]['departmentName'] = departmentName;
 				$('#dg').datagrid('endEdit', editIndex);
 				editIndex = undefined;
 				return true;
@@ -213,9 +220,9 @@
 			</tr>
 			<tr><td colspan="4"></td></tr>
 			<tr>
-				<td class="panel-header" style="width:25%" align="center"><s:text name="system.user.userID" /></td>
+				<td class="panel-header" style="width:25%" align="center">工号</td>
 				<td style="width:25%"><input id="userIDSearch" class="easyui-textbox" style="width:90%"></td>
-				<td class="panel-header" style="width:25%" align="center"><s:text name="system.user.userName" /></td>
+				<td class="panel-header" style="width:25%" align="center">帐号</td>
 				<td style="width:25%"><input id="userNameSearch" class="easyui-textbox" style="width:90%"></td>
 			</tr>
 			<tr>
@@ -246,7 +253,10 @@
 				<th data-options="field:'userID',hidden:'true',width:10">User ID</th>
 				<th
 					data-options="field:'userName',sortable:'true',align:'center',
-						editor:{type:'validatebox',options:{required:true}}"><s:text name="system.user.userName" /></th>
+						editor:{type:'validatebox',options:{required:true}}">帐号</th>
+				<th
+					data-options="field:'fullName',sortable:'true',align:'center',
+						editor:{type:'validatebox'}">姓名</th>		
 				<th
 					data-options="field:'gender',sortable:'true',align:'center',
 						editor:{
@@ -281,7 +291,7 @@
 					hidden</th>
 				<th data-options="field:'workId',sortable:'true',align:'center',width:'10%',editor:'text'">工号</th>	
 				<th
-					data-options="field:'departmentID',sortable:'true',align:'center',width:'20%',
+					data-options="field:'departmentId',sortable:'true',align:'center',width:'20%',
                          formatter:function(value,row){
                             return row.departmentName;
                         }, 

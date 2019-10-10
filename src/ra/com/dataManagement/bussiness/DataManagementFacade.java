@@ -223,4 +223,13 @@ public class DataManagementFacade {
 		temp.put("success","success");
 		return temp;
 	}
+	
+	public Map updateTestingTarget(TestingTemplateTarget item) throws Exception {
+		Map temp=new HashMap();
+		
+		dao.updateTestingTarget(item);
+		temp.put("templateId",item.getTestingTemplateId());
+		temp.put("success","success");
+		return temp;
+	}
 }

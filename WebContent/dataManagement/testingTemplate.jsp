@@ -171,6 +171,7 @@
                 rownumbers:false,
                 fitColumns:true,
                 view:groupview,
+                onDblClickRow:targetClick,
                 groupField:'targetTypeValue',
                 groupFormatter:function(value,rows){
                     return value + '  (' + rows.length + '项)';
@@ -211,7 +212,8 @@
        </table>
     </div>
     <div id="dlg-testing-target-add" class="easyui-dialog"  buttons="#dlg-testing-target-add-buttons" closed="true"  style="width:500px">
-       <form id="fm-target" method="post" novalidate style="margin:0;padding:20px 50px"> 
+       <form id="fm-target" method="post" novalidate style="margin:0;padding:20px 50px">
+       <input type="hidden" name="testingTemplateTargetId" id="testingTemplateTargetId" value="" /> 
        <table style="width: 100%">
        <tr>
 			<td class="panel-header" style="width: 30%" align="center">类别</td>
@@ -323,7 +325,9 @@
 		
 	}
 	function settingTestTarget(){
-		$('#targetGrid').datagrid('load');
+		$('#targetGrid').datagrid('load',{
+			testingTemplateId: $('#testingTemplateId').val()
+	    	});
 		$('#dlg-test-target').dialog('open').dialog('center').dialog('setTitle','测试目标管理');
 	}
 	function addTargetType() {
@@ -346,6 +350,11 @@
 		
 		//var item =  {"targetTypeValue":targetType,"targetType":targetType,"name":name,"nodeIp":nodeIp,"sortLevel":sortLevel,"active":active};alert(3);
 		 var url ='testing_target_insert.action?targetType='+targetType+'&';
+		 if($('#testingTemplateTargetId').val() == null || $('#testingTemplateTargetId').val() == ''
+				|| $('#testingTemplateTargetId').val() == 'null'){
+		 }else{
+			 url = 'testing_target_update.action?targetType='+targetType+'&testingTemplateTargetId='+$('#testingTemplateTargetId').val()+'&';
+		 }
 		 if($('#testingTemplateId').val() == null || $('#testingTemplateId').val() == ''
 				|| $('#testingTemplateId').val() == 'null'){
 		 }else{
@@ -362,13 +371,13 @@
 		}
 		if (active != null && active != "") {
 			url = url + "active=" + active + "&";
-		}alert(url);
+		}
 		url = encodeURI(url);
 		var effectRow = new Object();
 		$.post(encodeURI(url),
 				effectRow,function(response) {
 			if (response.success=='success') {
-				alert('新增测试目标成功！');
+				alert('保存目标成功！');
 				$('#testingTemplateId').val(response.templateId);
 				$('#targetGrid').datagrid('load',{
 					testingTemplateId: response.templateId
@@ -469,7 +478,7 @@
 									url = "testing_template_arameter_"+table+"_insert.action?";
 								}
 								url = url + "testingTemplateId= "+response.templateId+"&";
-								url = url + subUrl;alert(url);
+								url = url + subUrl;
 								$.post(encodeURI(url),
 										effectRow,function(response2) {
 													if (response2.success=='success') {
@@ -630,6 +639,19 @@
 		}else{
 			return "<span title='"+value+"'>"+value.substring(0,value.length)+"</span>";
 		}
+	}
+	function targetClick(index,row){
+		var row = $('#targetGrid').datagrid('getSelected');
+		$('#fm-target').form('clear');
+        if (row){
+        	$('#name').textbox('setValue',row.name);
+    		$('#nodeIp').textbox('setValue',row.nodeIp);
+    		$('#sortLevel').textbox('setValue',row.sortLevel);
+    		$('#testingTemplateTargetId').val(row.testingTemplateTargetId);
+    		$('#targetType').combobox('setValue',row.targetType);
+    		$('#active').combobox('setValue',row.active);
+    		$('#dlg-testing-target-add').dialog('open').dialog('center').dialog('setTitle','增加测试目标');
+        }
 	}
 	</script>
 

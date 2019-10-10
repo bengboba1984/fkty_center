@@ -28,7 +28,8 @@ public class User implements java.io.Serializable {
 	private String position;
 	private String jobTitle;
 	private String phoneNumber;
-	private String purposeData;
+	private String fullName;
+	
 	
 	public HashMap getModuleList() {
 		return moduleList;
@@ -245,12 +246,13 @@ public class User implements java.io.Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getPurposeData() {
-		return purposeData;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setPurposeData(String purposeData) {
-		this.purposeData = purposeData;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
+	
 }

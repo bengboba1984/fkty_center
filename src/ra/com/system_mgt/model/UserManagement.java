@@ -33,6 +33,7 @@ public class UserManagement implements java.io.Serializable{
 	private String purposeData;
 	private String registerStatusKey;
 	private String registerStatusValue;
+	private String fullName;
 	
 	public Long getUserID() {
 		return userID;
@@ -281,6 +282,14 @@ public class UserManagement implements java.io.Serializable{
 
 	public void setRegisterStatusValue(String registerStatusValue) {
 		this.registerStatusValue = registerStatusValue;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	

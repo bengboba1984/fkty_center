@@ -69,4 +69,6 @@ public interface DataManagementDAO {
 	public void updateTestingTemplateParameterWeb(String templateId,TestingTemplateParameterWeb item) throws GenericDAOException;
 	
 	public void updateTestingTemplateParameterDns(String templateId,TestingTemplateParameterDns item) throws GenericDAOException;
+	
+	public void updateTestingTarget(TestingTemplateTarget item) throws GenericDAOException;
 }

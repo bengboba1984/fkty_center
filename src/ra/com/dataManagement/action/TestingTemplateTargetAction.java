@@ -100,6 +100,24 @@ public class TestingTemplateTargetAction extends BaseAction {
 		return SUCCESS;
 		
 	}
+	
+	public String updateTestingTarget()throws Exception {
+		biz = DataManagementFacade.getInstance();
+		request.setCharacterEncoding("UTF-8");
+		Map temp=new HashMap();
+		
+		try{
+			TestingTemplateTarget t = getTestingTarget();
+			temp = biz.updateTestingTarget(t);
+			message=JSONObject.fromObject(temp);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new Exception("JSON parseArray error",e);
+		}
+		return SUCCESS;
+		
+	}
 	public TestingTemplateTarget  getTestingTarget(){
 		TestingTemplateTarget t = new TestingTemplateTarget();
 		t.setActive(active);

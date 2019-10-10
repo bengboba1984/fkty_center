@@ -53,7 +53,7 @@ public class UserAction extends ActionSupport implements
 	private String telephoneNumber;
 	private String phoneNumber;
 	private String email;
-	private String purposeData;
+	private String fullName;
 	private String workId;
 	private String departmentId;
 	
@@ -138,13 +138,36 @@ public class UserAction extends ActionSupport implements
 	}
 
 
-	public String getPurposeData() {
-		return purposeData;
+	
+
+
+	public String getFullName() {
+		return fullName;
 	}
 
 
-	public void setPurposeData(String purposeData) {
-		this.purposeData = purposeData;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+
+	public String getWorkId() {
+		return workId;
+	}
+
+
+	public void setWorkId(String workId) {
+		this.workId = workId;
+	}
+
+
+	public String getDepartmentId() {
+		return departmentId;
+	}
+
+
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 
 
@@ -495,7 +518,7 @@ public class UserAction extends ActionSupport implements
 		u.setEmail(U.decode(email));
 		u.setWorkId(U.decode(workId));
 		u.setDepartmentID(new Long(departmentId));
-		u.setPurposeData(U.decode(purposeData));
+		u.setFullName(U.decode(fullName));
 		return u;
 	}
 	
