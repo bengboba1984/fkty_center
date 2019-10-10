@@ -211,6 +211,7 @@
        </table>
     </div>
     <div id="dlg-testing-target-add" class="easyui-dialog"  buttons="#dlg-testing-target-add-buttons" closed="true"  style="width:500px">
+       <form id="fm-target" method="post" novalidate style="margin:0;padding:20px 50px"> 
        <table style="width: 100%">
        <tr>
 			<td class="panel-header" style="width: 30%" align="center">类别</td>
@@ -247,6 +248,7 @@
                     						  	data:[{'key':'1','value':'是'},{'key':'0','value':'否'}]" ></td>
        	</tr>
        </table>
+       </form>
     </div>
     <div id="dlg-testing-target-add-buttons">
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="addTargetData()" style="width:90px">保存</a>
@@ -328,6 +330,8 @@
 		$('#dlg-tartget-type').dialog('open').dialog('center').dialog('setTitle','添加类别');
 	}
 	function showAddTargetDiv() {
+		$('#fm-target').form('clear');
+		$('#active').combobox('setValue','1');
 		$('#dlg-testing-target-add').dialog('open').dialog('center').dialog('setTitle','增加测试目标');
 	}
 	function cancelTargetType(){
@@ -339,8 +343,14 @@
 		var nodeIp = $('#nodeIp').val();
 		var  sortLevel = $('#sortLevel').val();
 		var active=$('#active').combobox('getValue');
+		
 		//var item =  {"targetTypeValue":targetType,"targetType":targetType,"name":name,"nodeIp":nodeIp,"sortLevel":sortLevel,"active":active};alert(3);
 		 var url ='testing_target_insert.action?targetType='+targetType+'&';
+		 if($('#testingTemplateId').val() == null || $('#testingTemplateId').val() == ''
+				|| $('#testingTemplateId').val() == 'null'){
+		 }else{
+			 url += 'testingTemplateId='+$('#testingTemplateId').val()+'&';
+		 }
 		if (name != null && name != "") {
 			url = url + "name=" + name + "&";
 		}
@@ -352,7 +362,7 @@
 		}
 		if (active != null && active != "") {
 			url = url + "active=" + active + "&";
-		}
+		}alert(url);
 		url = encodeURI(url);
 		var effectRow = new Object();
 		$.post(encodeURI(url),
