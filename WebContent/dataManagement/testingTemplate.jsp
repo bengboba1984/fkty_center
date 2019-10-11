@@ -377,17 +377,17 @@
 		$.post(encodeURI(url),
 				effectRow,function(response) {
 			if (response.success=='success') {
-				alert('保存目标成功！');
+				$.messager.alert('保存目标成功','保存目标成功！');
 				$('#testingTemplateId').val(response.templateId);
 				$('#targetGrid').datagrid('load',{
 					testingTemplateId: response.templateId
 			    	});
 				cancelTarget('dlg-testing-target-add');
 			} else{
-			alert('新增测试目标失败！' + response.error);
+			$.messager.alert('新增测试目标失败','新增测试目标失败！' + response.error);
 		}
 	}, "JSON").error(function() {
-		alert("新增测试目标失败！");
+		$.messager.alert("新增测试目标失败","新增测试目标失败！");
 	}); 
 		
 		//data.push(item);alert(4);
@@ -404,18 +404,18 @@
      		$.post(encodeURI(url),
      				effectRow,function(response) {
      			if (response.success=='success') {
-     				alert('删除测试目标成功！');
+     				$.messager.alert('删除测试目标成功','删除测试目标成功！');
      				$('#targetGrid').datagrid('load',{
      					testingTemplateId:$('#testingTemplateId').val()
      			    	});
      			} else{
-     			alert('删除测试目标失败！' + response.error);
+     			$.messager.alert('删除测试目标失败','删除测试目标失败！' + response.error);
      		}
      	}, "JSON").error(function() {
-     		alert("删除测试目标失败！");
+     		$.messager.alert('删除测试目标失败',"删除测试目标失败！");
      	}); 
          }else{
-        	 alert("请先选择测试目标！");
+        	 $.messager.alert("请先选择测试目标","请先选择测试目标！");
         	 return false;
          }
 	}
@@ -427,13 +427,13 @@
 				effectRow,function(response) {
 			if (response.success=='success') {
 				$("#targetType").combobox('reload');
-				alert('新增类别成功！');
+				$.messager.alert('新增类别成功','新增类别成功！');
 				cancelTargetType();
 			} else{
-			alert('新增类别失败！' + response.error);
+			$.messager.alert('新增类别失败','新增类别失败！' + response.error);
 		}
 	}, "JSON").error(function() {
-	alert("保存类别失败！");
+	$.messager.alert("保存类别失败","保存类别失败！");
 	});
 }
 	function saveTestingTemplate(){
@@ -482,11 +482,11 @@
 								$.post(encodeURI(url),
 										effectRow,function(response2) {
 													if (response2.success=='success') {
-														alert(mess+'成功！');
+														$.messager.alert(mess+'成功',mess+'成功！');
 														$('#dg').datagrid('load');
 														$('#dlg-basic').dialog('close');
 													}else{
-														alert(mess+'失败！' + response2.error);
+														$.messager.alert(mess+'失败',mess+'失败！' + response2.error);
 													}
 												}, "JSON").error(function() {
 													 $.post('testing_template_removeit.action',{
@@ -494,14 +494,14 @@
 								                       		testType:response.testType},function(result){
 								                           //do nothing
 								                       },'json');
-											alert(mess+"失败！");
+											$.messager.alert(mess+"失败",mess+"失败！");
 
 										});
 							}else{
-								alert(mess+'失败！' + response.error);
+								$.messager.alert(mess+'失败',mess+'失败！' + response.error);
 							}
 						}, "JSON").error(function() {
-					alert(mess+"失败！");
+					$.messager.alert(mess+"失败",mess+"失败！");
 
 				});
 		
@@ -572,7 +572,7 @@
 	                    	   testingTemplateId:row.testingTemplateId,
 	                       		testType:row.testType},function(result){
 	                           if (result.success=='success'){
-	                           		alert("删除成功");
+	                           		$.messager.alert("删除成功","删除成功");
 	                               $('#dg').datagrid('reload');    // reload 
 	                           } else {
 	                               $.messager.show({    // show error message
@@ -622,7 +622,7 @@
     		distplayTargetButton();
 			$('#dlg-basic').dialog('open').dialog('center').dialog('setTitle','编辑项 - 测试模板');
         }else{
-       	 alert("请先选择测试模板！");
+       	 $.messager.alert("请先选择测试模板","请先选择测试模板！");
        	 return false;
         }
 	}
