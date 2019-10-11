@@ -316,8 +316,10 @@
 	}
 	
 	function cancelBasic(){
+		refresh();
 		$('#dlg-basic').dialog('close');
 		$('#treeGroup').dialog('close');
+		
 	}
 	function cancelTarget(divName){
 		//$('#dlg-test-target').dialog('close');

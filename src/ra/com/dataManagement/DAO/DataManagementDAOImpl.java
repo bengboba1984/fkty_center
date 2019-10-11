@@ -389,8 +389,14 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getSortLevel());
 		param.add(item.getActive());
 		param.add(item.getTargetType());
-		param.add(item.getTestingTemplateId());
-		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_target set name =?,node_ip=?,sort_level= ?,active = ?,target_type = ? WHERE testing_template_id = ?");
+		param.add(item.getTestingTemplateTargetId());
+		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_target set name =?,node_ip=?,sort_level= ?,active = ?,target_type = ? WHERE testing_template_target_id = ?");
 		simpleExecute(sql.toString(), param);
+	}
+	
+	public ListChunk getTestingTemplateDataList() throws GenericDAOException{
+		StringBuffer sql = new StringBuffer("SELECT testing_template_id,testing_template_group_id,template_name,test_type,description,test_timeout,test_interval,test_execute_count,rank_class,testing_duration FROM wasu.testing_template ")
+		.append(" order by rank_class desc");
+		return getListChunkByProperty(sql.toString(), null,1,1000,true, "ra.com.dataManagement.model.TestingTemplate");
 	}
 }

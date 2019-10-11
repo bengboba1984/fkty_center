@@ -38,6 +38,6 @@
 	</servlet>
 	<servlet-mapping>
         <servlet-name>testingTemplateServlet</servlet-name>
-        <url-pattern>/testingTemplate</url-pattern>
+        <url-pattern>/getItestorTemplateList</url-pattern>
     </servlet-mapping>
 </web-app>

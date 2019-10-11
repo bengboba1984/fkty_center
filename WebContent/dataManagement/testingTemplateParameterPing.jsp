@@ -77,7 +77,7 @@
 								data-options="valueField:'key',
 												textField:'value',
                     						  	panelHeight:'auto',
-                    						  	data:[{'key':'Y','value':'是'}]" >
+                    						  	data:[{'key':'Y','value':'是'},{'key':'N','value':'否'}]" >
 	       </td>
        </tr>
        </table>
