@@ -148,7 +148,7 @@
     </table>
         </div>
         <div title="测试参数" style="padding:0px;width:700px;height:500px">
-            <iframe id="iframe_test" scrolling="auto" frameborder="0"  style="width:100%;height:90%"></iframe>
+            <iframe id="iframe_test" name="iframe_test" scrolling="auto" frameborder="0"  style="width:100%;height:90%"></iframe>
         </div>
     </div>     
         
@@ -479,6 +479,7 @@
 								}
 								url = url + "testingTemplateId= "+response.templateId+"&";
 								url = url + subUrl;
+								
 								$.post(encodeURI(url),
 										effectRow,function(response2) {
 													if (response2.success=='success') {
@@ -496,7 +497,8 @@
 								                       },'json');
 											$.messager.alert(mess+"失败",mess+"失败！");
 
-										});
+										}); 
+										
 							}else{
 								$.messager.alert(mess+'失败',mess+'失败！' + response.error);
 							}
