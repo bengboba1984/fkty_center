@@ -73,4 +73,16 @@ public interface DataManagementDAO {
 	public void updateTestingTarget(TestingTemplateTarget item) throws GenericDAOException;
 	
 	public ListChunk getTestingTemplateDataList() throws GenericDAOException;
+	
+	public ListChunk getTestingTemplateParameterDnsDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public ListChunk getTestingTemplateTargetDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public ListChunk getTestingTemplateParameterSpeedDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public ListChunk getTestingTemplateParameterWebDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public ListChunk getTestingTemplateParameterTraceDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public ListChunk getTestingTemplateParameterPingDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
 }
