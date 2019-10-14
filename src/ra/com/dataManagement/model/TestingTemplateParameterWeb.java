@@ -12,6 +12,12 @@ public class TestingTemplateParameterWeb {
 	private String userAgent;
 	private String maxPageDepth;
 	private String validResponseCodes;
+	private String tos;
+	private String analysisHtml;
+	private String primaryResultIndex;
+	private String minLoadPercent;
+	private String maxLoadTime;
+	
 	public String getTestingTemplateParameterId() {
 		return testingTemplateParameterId;
 	}
@@ -77,6 +83,36 @@ public class TestingTemplateParameterWeb {
 	}
 	public void setValidResponseCodes(String validResponseCodes) {
 		this.validResponseCodes = validResponseCodes;
+	}
+	public String getTos() {
+		return tos;
+	}
+	public void setTos(String tos) {
+		this.tos = tos;
+	}
+	public String getAnalysisHtml() {
+		return analysisHtml;
+	}
+	public void setAnalysisHtml(String analysisHtml) {
+		this.analysisHtml = analysisHtml;
+	}
+	public String getPrimaryResultIndex() {
+		return primaryResultIndex;
+	}
+	public void setPrimaryResultIndex(String primaryResultIndex) {
+		this.primaryResultIndex = primaryResultIndex;
+	}
+	public String getMinLoadPercent() {
+		return minLoadPercent;
+	}
+	public void setMinLoadPercent(String minLoadPercent) {
+		this.minLoadPercent = minLoadPercent;
+	}
+	public String getMaxLoadTime() {
+		return maxLoadTime;
+	}
+	public void setMaxLoadTime(String maxLoadTime) {
+		this.maxLoadTime = maxLoadTime;
 	}
 	
 

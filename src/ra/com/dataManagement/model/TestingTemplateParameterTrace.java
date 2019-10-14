@@ -9,6 +9,8 @@ public class TestingTemplateParameterTrace {
 	private String replyTimeout;
 	private String packetCount;
 	private String spacingTime;
+	private String tos;
+	
 	public String getTestingTemplateParameterId() {
 		return testingTemplateParameterId;
 	}
@@ -56,6 +58,12 @@ public class TestingTemplateParameterTrace {
 	}
 	public void setSpacingTime(String spacingTime) {
 		this.spacingTime = spacingTime;
+	}
+	public String getTos() {
+		return tos;
+	}
+	public void setTos(String tos) {
+		this.tos = tos;
 	}
 	
 

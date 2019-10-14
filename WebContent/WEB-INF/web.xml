@@ -36,8 +36,16 @@
 		<servlet-name>testingTemplateServlet</servlet-name>
 		<servlet-class>ra.com.scheduler.TestingTemplateServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>testingTemplateResultServlet</servlet-name>
+		<servlet-class>ra.com.scheduler.TestingTemplateResultServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
         <servlet-name>testingTemplateServlet</servlet-name>
         <url-pattern>/getItestorTemplateList</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>testingTemplateResultServlet</servlet-name>
+        <url-pattern>/reportWebTestResult2</url-pattern>
     </servlet-mapping>
 </web-app>

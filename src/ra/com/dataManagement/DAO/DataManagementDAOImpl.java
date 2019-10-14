@@ -9,6 +9,13 @@ import ra.com.common.Const;
 import ra.com.common.dao.GenericDAO;
 import ra.com.common.dao.GenericDAOException;
 import ra.com.common.model.ListChunk;
+import ra.com.dataManagement.model.TestingResult;
+import ra.com.dataManagement.model.TestingResultDns;
+import ra.com.dataManagement.model.TestingResultPing;
+import ra.com.dataManagement.model.TestingResultSpeed;
+import ra.com.dataManagement.model.TestingResultTrace;
+import ra.com.dataManagement.model.TestingResultTraceSub;
+import ra.com.dataManagement.model.TestingResultWeb;
 import ra.com.dataManagement.model.TestingTemplate;
 import ra.com.dataManagement.model.TestingTemplateParameterDns;
 import ra.com.dataManagement.model.TestingTemplateParameterPing;
@@ -62,7 +69,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateParameterPingDataList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
-		StringBuffer sql = new StringBuffer("SELECT  testing_template_parameter_id,testing_template_id,packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos")
+		StringBuffer sql = new StringBuffer("SELECT  testing_template_parameter_id,testing_template_id,packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos,save_Ip_Result,all_Loss_As_Fail,round_Trip ")
 		.append(" FROM wasu.testing_template_parameter_ping where testing_template_id = ? ");
 		
 		
@@ -91,7 +98,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateParameterTraceDataList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
-		StringBuffer sql = new StringBuffer("SELECT testing_template_parameter_id,testing_template_id,payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time ")
+		StringBuffer sql = new StringBuffer("SELECT testing_template_parameter_id,testing_template_id,payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time,tos ")
 		.append(" FROM wasu.testing_template_parameter_trace where testing_template_id = ? ");
 		
 		
@@ -101,7 +108,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateParameterWebDataList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
-		StringBuffer sql = new StringBuffer("SELECT testing_template_parameter_id,testing_template_id,max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout,use_dns_cache,user_agent,max_page_depth,valid_response_codes ")
+		StringBuffer sql = new StringBuffer("SELECT testing_template_parameter_id,testing_template_id,max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout,use_dns_cache,user_agent,max_page_depth,valid_response_codes,tos,analysis_Html,primary_Result_Index,min_Load_Percent,max_Load_Time ")
 		.append(" FROM wasu.testing_template_parameter_web where testing_template_id = ? ");
 		
 		
@@ -118,8 +125,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getPayloadData());
 		param.add(item.getMaxTtl());
 		param.add(item.getTos());
-		StringBuffer sql = new StringBuffer("insert into wasu.testing_template_parameter_ping (testing_template_id,packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos ) ")
-											.append(" values( ?, ?, ?, ?, ?, ?, ?, ?)  ");
+		param.add(item.getSaveIpResult());
+		param.add(item.getAllLossAsFail());
+		param.add(item.getRoundTrip());
+		StringBuffer sql = new StringBuffer("insert into wasu.testing_template_parameter_ping (testing_template_id,packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos,save_Ip_Result,all_Loss_As_Fail,round_Trip ) ")
+											.append(" values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  ");
 		
 		
 		simpleExecute(sql.toString(), param);
@@ -167,8 +177,9 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getReplyTimeout());
 		param.add(item.getPacketCount());
 		param.add(item.getSpacingTime());
-		StringBuffer sql = new StringBuffer("insert into  wasu.testing_template_parameter_trace (testing_template_id,payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time) ")
-		.append(" values( ?, ?, ?, ?, ?, ?, ?)  ");
+		param.add(item.getTos());
+		StringBuffer sql = new StringBuffer("insert into  wasu.testing_template_parameter_trace (testing_template_id,payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time,tos) ")
+		.append(" values( ?, ?, ?, ?, ?, ?, ?, ?)  ");
 		
 		
 		simpleExecute(sql.toString(), param);
@@ -186,8 +197,13 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getUserAgent());
 		param.add(item.getMaxPageDepth());
 		param.add(item.getValidResponseCodes());
-		StringBuffer sql = new StringBuffer("insert into  wasu.testing_template_parameter_web (testing_template_id,max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout,use_dns_cache,user_agent,max_page_depth,valid_response_codes) ")
-		.append(" values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  ");
+		param.add(item.getTos());
+		param.add(item.getAnalysisHtml());
+		param.add(item.getPrimaryResultIndex());
+		param.add(item.getMinLoadPercent());
+		param.add(item.getMaxLoadTime());
+		StringBuffer sql = new StringBuffer("insert into  wasu.testing_template_parameter_web (testing_template_id,max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout,use_dns_cache,user_agent,max_page_depth,valid_response_codes,tos,analysis_Html,primary_Result_Index,min_Load_Percent,max_Load_Time) ")
+		.append(" values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  ");
 		
 		
 		simpleExecute(sql.toString(), param);
@@ -305,8 +321,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getPayloadData());
 		param.add(item.getMaxTtl());
 		param.add(item.getTos());
+		param.add(item.getSaveIpResult());
+		param.add(item.getAllLossAsFail());
+		param.add(item.getRoundTrip());
 		param.add(item.getTestingTemplateParameterId());
-		StringBuffer sql = new StringBuffer("UPDATE wasu.testing_template_parameter_ping set packet_count = ?,spaceing_time = ?,packet_timeout = ?,payload_size = ?,payload_data = ?,max_ttl = ?,tos  = ? ")
+		StringBuffer sql = new StringBuffer("UPDATE wasu.testing_template_parameter_ping set packet_count = ?,spaceing_time = ?,packet_timeout = ?,payload_size = ?,payload_data = ?,max_ttl = ?,tos  = ?,save_Ip_Result = ?,all_Loss_As_Fail = ?,round_Trip = ?")
 		.append(" where testing_template_parameter_id = ? ");
 		
 		
@@ -340,8 +359,9 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getReplyTimeout());
 		param.add(item.getPacketCount());
 		param.add(item.getSpacingTime());
+		param.add(item.getTos());
 		param.add(item.getTestingTemplateParameterId());
-		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_parameter_trace SET payload_size= ?,protocol_type= ?,max_hops= ?,reply_timeout= ?,packet_count= ?,spacing_time= ? ")
+		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_parameter_trace SET payload_size= ?,protocol_type= ?,max_hops= ?,reply_timeout= ?,packet_count= ?,spacing_time= ?,tos = ? ")
 		.append(" where testing_template_parameter_id = ?  ");
 		
 		
@@ -359,8 +379,13 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getUserAgent());
 		param.add(item.getMaxPageDepth());
 		param.add(item.getValidResponseCodes());
+		param.add(item.getTos());
+		param.add(item.getAnalysisHtml());
+		param.add(item.getPrimaryResultIndex());
+		param.add(item.getMinLoadPercent());
+		param.add(item.getMaxLoadTime());
 		param.add(item.getTestingTemplateParameterId());
-		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_parameter_web SET max_download_size= ?,max_thread_count= ?,max_sub_count= ?,max_sub_save_count= ?,item_timeout= ?,use_dns_cache= ?,user_agent,max_page_depth= ?,valid_response_codes= ? ")
+		StringBuffer sql = new StringBuffer("UPDATE  wasu.testing_template_parameter_web SET max_download_size= ?,max_thread_count= ?,max_sub_count= ?,max_sub_save_count= ?,item_timeout= ?,use_dns_cache= ?,user_agent = ?,max_page_depth= ?,valid_response_codes= ?,tos = ?,analysis_Html = ?,primary_Result_Index = ?,min_Load_Percent = ?,max_Load_Time = ? ")
 		.append(" where testing_template_parameter_id = ?  ");
 		
 		
@@ -431,7 +456,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateParameterWebDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
-		StringBuffer sql = new StringBuffer("SELECT max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout itemTimeoutTime,use_dns_cache,user_agent,max_page_depth,valid_response_codes ")
+		StringBuffer sql = new StringBuffer("SELECT max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout itemTimeoutTime,use_dns_cache,user_agent,max_page_depth,valid_response_codes,tos,analysis_Html,primary_Result_Index,min_Load_Percent,max_Load_Time ")
 		.append(" FROM wasu.testing_template_parameter_web where testing_template_id = ? ");
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.WebJsonItem");
 	}
@@ -439,7 +464,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateParameterPingDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
-		StringBuffer sql = new StringBuffer("SELECT packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos")
+		StringBuffer sql = new StringBuffer("SELECT packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos,save_Ip_Result,all_Loss_As_Fail,round_Trip")
 		.append(" FROM wasu.testing_template_parameter_ping where testing_template_id = ? ");
 		
 		
@@ -449,10 +474,107 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateParameterTraceDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
-		StringBuffer sql = new StringBuffer("SELECT payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time ")
+		StringBuffer sql = new StringBuffer("SELECT payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time,tos ")
 		.append(" FROM wasu.testing_template_parameter_trace where testing_template_id = ? ");
 				
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TraceJsonItem");
 	}
 	
+	public void insertTestingResult(TestingResult item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result (testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id) "
+					+ " values (?,?, ?,?, ?,?, ?,?, ?,?, ?,?) ";
+		ArrayList<String> param = new ArrayList<String>();
+		//result_trace_id,result_web_id
+		param.add(item.getTestingResultId());
+		param.add(item.getResultSeq());
+		param.add(item.getTestingDate());
+		param.add(item.getTester());
+		param.add(item.getAccount());
+		param.add(item.getStbId());
+		param.add(item.getTestingTemplateGroupId());
+		param.add(item.getResultDnsId());
+		param.add(item.getResultPingId());
+		param.add(item.getResultSpeedId());
+		param.add(item.getResultTraceId());
+		param.add(item.getResultWebId());
+		simpleExecute(sql, param);
+	}
+	
+	public void insertTestingResultDns(TestingResultDns item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result_dns (result_dns_id,number_of_answers,resolve_time,success_percent ) "
+				+ " values (?,?, ?,?) ";
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(item.getResultDnsId());
+		param.add(item.getNumberOfAnswers());
+		param.add(item.getResolveTime());
+		param.add(item.getSuccessPercent());
+		simpleExecute(sql, param);
+	}
+	
+	public void insertTestingResultPing(TestingResultPing item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result_ping (result_ping_id,avg_delay,avg_jitter,host_ip,loss_percent ) "
+				+ " values (?,?, ?,?, ?) ";
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(item.getResultPingId());
+		param.add(item.getAvgDelay());
+		param.add(item.getAvgJitter());
+		param.add(item.getHostIp());
+		param.add(item.getLossPercent());
+		simpleExecute(sql, param);
+	}
+	
+	public void insertTestingResultSpeed(TestingResultSpeed item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result_speed (result_speed_id,download_max_throughput,download_throughput,upload_max_throughput,upload_throughput ) "
+				+ " values (?,?, ?,?, ?) ";
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(item.getResultSpeedId());
+		param.add(item.getDownloadMaxThroughput());
+		param.add(item.getDownloadThroughput());
+		param.add(item.getUploadMaxThroughput());
+		param.add(item.getUploadThroughput());
+		simpleExecute(sql, param);
+	}
+	
+	public void insertTestingResultWeb(TestingResultWeb item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result_web (result_web_id,host_ip,request_url,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time ) "
+				+ " values (?,?, ?,?,?,?, ?,?,?,?, ?) ";
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(item.getResultWebId());
+		param.add(item.getHostIp());
+		param.add(item.getRequestUrl());
+		param.add(item.getResolveTime());
+		param.add(item.getConnectTime());
+		param.add(item.getFirstByteTime());
+		param.add(item.getFirstPageTime());
+		param.add(item.getMeanQuality());
+		param.add(item.getResponseCode());
+		param.add(item.getThroughput());
+		param.add(item.getTotalTime());
+		simpleExecute(sql, param);
+	}
+	
+	public void insertTestingResultTrace(TestingResultTrace item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result_trace (result_trace_id,avg_delay,avg_jitter,hop_count,host_ip,loss_percent) "
+				+ " values (?,?, ?,?, ?,?) ";
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(item.getResultTraceId());
+		param.add(item.getAvgDelay());
+		param.add(item.getAvgJitter());
+		param.add(item.getHopCount());
+		param.add(item.getHostIp());
+		param.add(item.getLossPercent());
+		simpleExecute(sql, param);
+	}
+	public void insertTestingResultTraceSub(TestingResultTraceSub item)throws GenericDAOException{
+		String sql = "insert into wasu.testing_result_trace_sub (result_trace_sub_id,result_trace_id,load_index,host_ip,avg_delay,loss_percent) "
+				+ " values (?,?, ?,?, ?,?) ";
+	ArrayList<String> param = new ArrayList<String>();
+	param.add(item.getResultTraceSubId());
+	param.add(item.getResultTraceId());
+	param.add(item.getLoadIndex());
+	param.add(item.getHostIp());
+	param.add(item.getAvgDelay());
+	param.add(item.getLossPercent());
+	simpleExecute(sql, param);
+	}
 }

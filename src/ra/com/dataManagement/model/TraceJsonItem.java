@@ -7,6 +7,7 @@ public class TraceJsonItem {
 	private String replyTimeout;
 	private String packetCount;
 	private String spacingTime;
+	private String tos;
 	private String optimizations = "{\"indexNameList\":[],\"conditionList\":[]}";
 	public String getPayloadSize() {
 		return payloadSize;
@@ -49,6 +50,12 @@ public class TraceJsonItem {
 	}
 	public void setOptimizations(String optimizations) {
 		this.optimizations = optimizations;
+	}
+	public String getTos() {
+		return tos;
+	}
+	public void setTos(String tos) {
+		this.tos = tos;
 	}
 	
 	

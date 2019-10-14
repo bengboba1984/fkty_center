@@ -27,6 +27,7 @@ public class TestingTemplateParameterTraceAction extends BaseAction {
 	private String replyTimeout;
 	private String packetCount;
 	private String spacingTime;
+	private String tos;
 	private JSONObject message;
 	public String show() {
 		init();
@@ -53,6 +54,7 @@ public class TestingTemplateParameterTraceAction extends BaseAction {
 		replyTimeout = "20000";
 		packetCount = "3";
 		spacingTime = "100";
+		tos = "121";
 	}
 	public String getTestingTemplateParameterPingDataList() throws IOException {
 		biz = DataManagementFacade.getInstance();
@@ -121,7 +123,7 @@ public class TestingTemplateParameterTraceAction extends BaseAction {
 		c.setSpacingTime(spacingTime);
 		c.setTestingTemplateId(testingTemplateId);
 		c.setTestingTemplateParameterId(testingTemplateParameterId);
-		
+		c.setTos(tos);
 		return c;
 	}
 	private void setTestingTemplateParameterTrace(TestingTemplateParameterTrace c){
@@ -134,6 +136,7 @@ public class TestingTemplateParameterTraceAction extends BaseAction {
 			spacingTime = c.getSpacingTime();
 			testingTemplateId = c.getTestingTemplateId();
 			testingTemplateParameterId = c.getTestingTemplateParameterId();
+			tos = c.getTos();
 		}
 	}
 
@@ -223,6 +226,12 @@ public class TestingTemplateParameterTraceAction extends BaseAction {
 
 	public void setMessage(JSONObject message) {
 		this.message = message;
+	}
+	public String getTos() {
+		return tos;
+	}
+	public void setTos(String tos) {
+		this.tos = tos;
 	}
 
 }

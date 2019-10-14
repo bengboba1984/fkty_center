@@ -42,7 +42,7 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">TOS（0~255）</font></td>
            <td style="width: 50%">
-           <input id="warningValue5" class="easyui-textbox" type="text" value="0"  style="width:40%;"/> </td>
+           <input id="tos" class="easyui-textbox" type="text" value="${tos}"  style="width:40%;"/> </td>
        </tr>
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">启用DNS缓存</font></td>
@@ -56,7 +56,7 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">分析HTML内容</font></td>
            <td style="width: 50%">
-           <input id="taskInterval" class="easyui-textbox" type="text" value="是" style="width:40%;"/></td>
+           <input id="analysisHtml" class="easyui-textbox" type="text" value="${analysisHtml}" style="width:40%;"/></td>
        </tr>
         <tr>
 			<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">用户浏览器</font></td>
@@ -71,7 +71,7 @@
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">主测试结果</font></td>
            <td style="width: 50%">
-           		<input id="taskInterval2" class="easyui-textbox" type="text" value="第一个非跳转页面" style="width:40%;"/></td>
+           		<input id="primaryResultIndex" class="easyui-textbox" type="text" value="${primaryResultIndex}" style="width:40%;"/></td>
        </tr>
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">有效返回码（,分割多个）</font></td>
@@ -81,12 +81,12 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">	元素加载门限（%）,1~100</font></td>
            <td style="width: 50%">
-           <input id="taskInterval1" class="easyui-textbox" type="text" value="80%" style="width:40%;"/></td>
+           <input id="minLoadPercent" class="easyui-textbox" type="text" value="${minLoadPercent}" style="width:40%;"/></td>
        </tr>
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">页面打开时限（s）,1~10000</font></td>
            <td style="width: 50%">
-           <input id="taskInterval" class="easyui-textbox" type="text" value="30" style="width:40%;"/></td>
+           <input id="maxLoadTime" class="easyui-textbox" type="text" value="${maxLoadTime}" style="width:40%;"/></td>
        </tr>
        </table>
     <script type="text/javascript">
@@ -101,8 +101,12 @@
 		var useDnsCache = $('#useDnsCache').combobox('getValue');
 		var userAgent = $('#userAgent').val();
 		var maxPageDepth = $('#maxPageDepth').val();
-		var validResponseCodes = $('#validResponseCodes').val();
-
+		var validResponseCodes = $('#validResponseCodes').val();		
+		var tos = $('#tos').val();
+		var analysisHtml = $('#analysisHtml').val();
+		var primaryResultIndex = $('#primaryResultIndex').val();
+		var minLoadPercent = $('#minLoadPercent').val();
+		var maxLoadTime = $('#maxLoadTime').val();
 		var testingTemplateParameterId = $('#testingTemplateParameterId').val();
 		if (testingTemplateParameterId != null && testingTemplateParameterId != "") {
 			url = url + "testingTemplateParameterId=" + testingTemplateParameterId + "&";
@@ -134,6 +138,22 @@
 		}
 		if (validResponseCodes != null && validResponseCodes != "") {
 			url = url + "validResponseCodes=" + validResponseCodes + "&";
+		}
+		
+		if (tos != null && tos != "") {
+			url = url + "tos=" + tos + "&";
+		}
+		if (analysisHtml != null && analysisHtml != "") {
+			url = url + "analysisHtml=" + analysisHtml + "&";
+		}
+		if (primaryResultIndex != null && primaryResultIndex != "") {
+			url = url + "primaryResultIndex=" + primaryResultIndex + "&";
+		}
+		if (minLoadPercent != null && minLoadPercent != "") {
+			url = url + "minLoadPercent=" + minLoadPercent + "&";
+		}
+		if (maxLoadTime != null && maxLoadTime != "") {
+			url = url + "maxLoadTime=" + maxLoadTime + "&";
 		}
 		url = url.substr(0, url.length - 1);
 		

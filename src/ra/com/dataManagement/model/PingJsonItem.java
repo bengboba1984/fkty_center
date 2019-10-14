@@ -8,6 +8,10 @@ public class PingJsonItem {
 	private String payloadData;
 	private String maxTtl;
 	private String tos;
+	private String saveIpResult;
+	private String allLossAsFail;
+	private String roundTrip;
+	
 	private String optimizations = "{\"indexNameList\":[],\"conditionList\":[]}";
 	public String getPacketCount() {
 		return packetCount;
@@ -56,6 +60,24 @@ public class PingJsonItem {
 	}
 	public void setOptimizations(String optimizations) {
 		this.optimizations = optimizations;
+	}
+	public String getSaveIpResult() {
+		return saveIpResult;
+	}
+	public void setSaveIpResult(String saveIpResult) {
+		this.saveIpResult = saveIpResult;
+	}
+	public String getAllLossAsFail() {
+		return allLossAsFail;
+	}
+	public void setAllLossAsFail(String allLossAsFail) {
+		this.allLossAsFail = allLossAsFail;
+	}
+	public String getRoundTrip() {
+		return roundTrip;
+	}
+	public void setRoundTrip(String roundTrip) {
+		this.roundTrip = roundTrip;
 	}
 	
 	

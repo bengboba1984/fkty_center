@@ -52,32 +52,32 @@
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">保存IP结果</font></td>
            <td style="width: 50%">
-           		<input id="telephoneNumberType" class="easyui-combobox" value="Y" name="telephoneNumberType" style="width:40%;"
+           		<input id="saveIpResult" class="easyui-combobox" value="${saveIpResult}" name="saveIpResult" style="width:40%;"
 								data-options="valueField:'key',
 												textField:'value',
                     						  	panelHeight:'auto',
-                    						  	data:[{'key':'Y','value':'是'},{'key':'N','value':'否'}]" >
+                    						  	data:[{'key':'true','value':'是'},{'key':'false','value':'否'}]" >
 	           
            </td>
        </tr>
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">100%丢包视为失败</font></td>
            <td style="width: 50%">
-           		<input id="telephoneNumberType3" class="easyui-combobox" value="N" name="telephoneNumberType" style="width:40%;"
+           		<input id="allLossAsFail" class="easyui-combobox" value="${allLossAsFail}" name="allLossAsFail" style="width:40%;"
 								data-options="valueField:'key',
 												textField:'value',
                     						  	panelHeight:'auto',
-                    						  	data:[{'key':'Y','value':'是'},{'key':'N','value':'否'}]" >
+                    						  	data:[{'key':'true','value':'是'},{'key':'false','value':'否'}]" >
 	       </td>
        </tr>
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">双向时延</font></td>
            <td style="width: 50%">
-           <input id="telephoneNumberType2" class="easyui-combobox" value="Y" name="telephoneNumberType" style="width:40%;"
+           <input id="roundTrip" class="easyui-combobox"  name="roundTrip" value="${roundTrip}" style="width:40%;"
 								data-options="valueField:'key',
 												textField:'value',
                     						  	panelHeight:'auto',
-                    						  	data:[{'key':'Y','value':'是'},{'key':'N','value':'否'}]" >
+                    						  	data:[{'key':'true','value':'是'},{'key':'false','value':'否'}]" >
 	       </td>
        </tr>
        </table>
@@ -92,6 +92,9 @@
 		var payloadData = $('#payloadData').val();
 		var maxTtl = $('#maxTtl').val();
 		var tos = $('#tos').val();
+		var saveIpResult=$('#saveIpResult').combobox('getValue');
+		var allLossAsFail=$('#allLossAsFail').combobox('getValue');
+		var roundTrip=$('#roundTrip').combobox('getValue');
 		
 		/* var testGroupId=$('#testGroupId').combobox('getValue');
 		var testType = $('#testType').combobox('getValue'); */
@@ -122,7 +125,15 @@
 		if (tos != null && tos != "") {
 			url = url + "tos=" + tos + "&";
 		}
-		
+		if (saveIpResult != null && saveIpResult != "") {
+			url = url + "saveIpResult=" + saveIpResult + "&";
+		}
+		if (allLossAsFail != null && allLossAsFail != "") {
+			url = url + "allLossAsFail=" + allLossAsFail + "&";
+		}
+		if (roundTrip != null && roundTrip != "") {
+			url = url + "roundTrip=" + roundTrip + "&";
+		}
 		url = url.substr(0, url.length - 1);
 		
 		return url;

@@ -140,11 +140,11 @@
            <td style="width: 50%">
            <input id="testExecuteCount" class="easyui-numberspinner" data-options="labelPosition:'top',increment:1" type="text" value="1" />次</td>
        </tr>
-        <tr>
+        <!-- <tr>
 				<td class="panel-header" style="width: 30%" align="center">测试时长</td>
            <td style="width: 50%">
            <input id="testingDuration" class="easyui-textbox" type="text" value="无限制" /></td>
-       </tr>
+       </tr> -->
     </table>
         </div>
         <div title="测试参数" style="padding:0px;width:700px;height:500px">

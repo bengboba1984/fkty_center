@@ -27,6 +27,9 @@ public class TestingTemplateParameterPingAction extends BaseAction {
 	private String payloadData;
 	private String maxTtl;
 	private String tos;
+	private String saveIpResult;
+	private String allLossAsFail;
+	private String roundTrip;
 	private JSONObject message;
 	public String show() {
 		init();
@@ -56,6 +59,9 @@ public class TestingTemplateParameterPingAction extends BaseAction {
 		payloadSize = "64";
 		spaceingTime = "100";
 		tos = "0";
+		saveIpResult = "true";
+		allLossAsFail = "true";
+		roundTrip = "false";
 	}
 	public String getTestingTemplateParameterPingDataList() throws IOException {
 		biz = DataManagementFacade.getInstance();
@@ -126,7 +132,9 @@ public class TestingTemplateParameterPingAction extends BaseAction {
 		c.setTestingTemplateId(testingTemplateId);
 		c.setTestingTemplateParameterId(testingTemplateParameterId);
 		c.setTos(tos);
-		
+		c.setSaveIpResult(saveIpResult);
+		c.setAllLossAsFail(allLossAsFail);
+		c.setRoundTrip(roundTrip);
 		return c;
 	}
 	private void setTestingTemplateParameterPing(TestingTemplateParameterPing c){
@@ -140,6 +148,9 @@ public class TestingTemplateParameterPingAction extends BaseAction {
 			testingTemplateId = c.getTestingTemplateId();
 			testingTemplateParameterId = c.getTestingTemplateParameterId();
 			tos = c.getTos();
+			saveIpResult = c.getSaveIpResult();
+			allLossAsFail = c.getAllLossAsFail();
+			roundTrip = c.getRoundTrip();
 		}
 	}
 	public JSONObject getDataList() {
@@ -236,6 +247,30 @@ public class TestingTemplateParameterPingAction extends BaseAction {
 
 	public void setMessage(JSONObject message) {
 		this.message = message;
+	}
+
+	public String getSaveIpResult() {
+		return saveIpResult;
+	}
+
+	public void setSaveIpResult(String saveIpResult) {
+		this.saveIpResult = saveIpResult;
+	}
+
+	public String getAllLossAsFail() {
+		return allLossAsFail;
+	}
+
+	public void setAllLossAsFail(String allLossAsFail) {
+		this.allLossAsFail = allLossAsFail;
+	}
+
+	public String getRoundTrip() {
+		return roundTrip;
+	}
+
+	public void setRoundTrip(String roundTrip) {
+		this.roundTrip = roundTrip;
 	}
 
 }

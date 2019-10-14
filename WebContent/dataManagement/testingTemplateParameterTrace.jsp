@@ -42,7 +42,7 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">TOS(0~255)</font></td>
            <td style="width: 50%">
-           <input id="warningValue5" class="easyui-textbox" type="text" value="0"  style="width:40%;"/> </td>
+           <input id="tos" class="easyui-textbox" type="text" value="${tos}"  style="width:40%;"/> </td>
        </tr>
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">单跳发包个数（1~255）</font></td>
@@ -65,6 +65,7 @@
 		
 		var packetCount = $('#packetCount').val();
 		var spacingTime = $('#spacingTime').val();
+		var tos = $('#tos').val();
 
 		var testingTemplateParameterId = $('#testingTemplateParameterId').val();
 		if (testingTemplateParameterId != null && testingTemplateParameterId != "") {
@@ -89,7 +90,9 @@
 		if (spacingTime != null && spacingTime != "") {
 			url = url + "spacingTime=" + spacingTime + "&";
 		}
-		
+		if (tos != null && tos != "") {
+			url = url + "tos=" + tos + "&";
+		}
 		url = url.substr(0, url.length - 1);
 		
 		return url;

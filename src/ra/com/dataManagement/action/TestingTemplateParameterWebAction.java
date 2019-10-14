@@ -30,6 +30,11 @@ public class TestingTemplateParameterWebAction extends BaseAction {
 	private String userAgent;
 	private String maxPageDepth;
 	private String validResponseCodes;
+	private String tos;
+	private String analysisHtml;
+	private String primaryResultIndex;
+	private String minLoadPercent;
+	private String maxLoadTime;
 	private JSONObject message;
 	public String show() {
 		init();
@@ -60,6 +65,11 @@ public class TestingTemplateParameterWebAction extends BaseAction {
 		userAgent = "Google Chrome (Windows)";
 		maxPageDepth = "4";
 		validResponseCodes = "200,201,202,203,204,205,206,300,301,302,303,304,305,306,307";	
+		tos = "0";
+		analysisHtml = "true";
+		primaryResultIndex = "1";
+		minLoadPercent = "90";
+		maxLoadTime = "30000000";
 	}
 	public String getTestingTemplateParameterPingDataList() throws IOException {
 		biz = DataManagementFacade.getInstance();
@@ -133,6 +143,11 @@ public class TestingTemplateParameterWebAction extends BaseAction {
 		c.setUseDnsCache(useDnsCache);
 		c.setUserAgent(userAgent);
 		c.setValidResponseCodes(validResponseCodes);
+		c.setTos(tos);
+		c.setAnalysisHtml(analysisHtml);
+		c.setPrimaryResultIndex(primaryResultIndex);
+		c.setMinLoadPercent(minLoadPercent);
+		c.setMaxLoadTime(maxLoadTime);
 		
 		return c;
 	}
@@ -149,6 +164,11 @@ public class TestingTemplateParameterWebAction extends BaseAction {
 			useDnsCache = c.getUseDnsCache();
 			userAgent = c.getUserAgent();
 			validResponseCodes = c.getValidResponseCodes();
+			tos = c.getTos();
+			analysisHtml = c.getAnalysisHtml();
+			primaryResultIndex = c.getPrimaryResultIndex();
+			minLoadPercent = c.getMinLoadPercent();
+			maxLoadTime = c.getMaxLoadTime();
 		}
 	}
 	
@@ -262,6 +282,36 @@ public class TestingTemplateParameterWebAction extends BaseAction {
 
 	public void setValidResponseCodes(String validResponseCodes) {
 		this.validResponseCodes = validResponseCodes;
+	}
+	public String getTos() {
+		return tos;
+	}
+	public void setTos(String tos) {
+		this.tos = tos;
+	}
+	public String getAnalysisHtml() {
+		return analysisHtml;
+	}
+	public void setAnalysisHtml(String analysisHtml) {
+		this.analysisHtml = analysisHtml;
+	}
+	public String getPrimaryResultIndex() {
+		return primaryResultIndex;
+	}
+	public void setPrimaryResultIndex(String primaryResultIndex) {
+		this.primaryResultIndex = primaryResultIndex;
+	}
+	public String getMinLoadPercent() {
+		return minLoadPercent;
+	}
+	public void setMinLoadPercent(String minLoadPercent) {
+		this.minLoadPercent = minLoadPercent;
+	}
+	public String getMaxLoadTime() {
+		return maxLoadTime;
+	}
+	public void setMaxLoadTime(String maxLoadTime) {
+		this.maxLoadTime = maxLoadTime;
 	}
 
 }

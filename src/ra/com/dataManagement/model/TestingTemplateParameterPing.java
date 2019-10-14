@@ -10,6 +10,10 @@ public class TestingTemplateParameterPing {
 	private String payloadData;
 	private String maxTtl;
 	private String tos;
+	private String saveIpResult;
+	private String allLossAsFail;
+	private String roundTrip;
+	
 	public String getTestingTemplateParameterId() {
 		return testingTemplateParameterId;
 	}
@@ -63,6 +67,24 @@ public class TestingTemplateParameterPing {
 	}
 	public void setTos(String tos) {
 		this.tos = tos;
+	}
+	public String getSaveIpResult() {
+		return saveIpResult;
+	}
+	public void setSaveIpResult(String saveIpResult) {
+		this.saveIpResult = saveIpResult;
+	}
+	public String getAllLossAsFail() {
+		return allLossAsFail;
+	}
+	public void setAllLossAsFail(String allLossAsFail) {
+		this.allLossAsFail = allLossAsFail;
+	}
+	public String getRoundTrip() {
+		return roundTrip;
+	}
+	public void setRoundTrip(String roundTrip) {
+		this.roundTrip = roundTrip;
 	}
 	
 	
