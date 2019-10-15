@@ -59,13 +59,13 @@
                     <li data-options="state:'closed'">
                         <span id="-1">网络层</span>
                         <ul>
-                            <li id="28" >
+                            <li id="1" >
                                 <span>PING测试-基于ICMP协议的网络基础性能测试</span>
                             </li>
-                            <li id="29">
+                            <li id="2">
                                 <span>Traceroute测试-测试路由解析路径和相关网络性能</span>
                             </li>
-                            <li id="30">
+                            <li id="1000">
                                 <span>网速测试-测试网络上下行带宽</span>
                             </li>
                         </ul>
@@ -73,8 +73,8 @@
                     <li data-options="state:'closed'">
                         <span id="-1">业务层</span>
                         <ul>
-                            <li id="31">DNS解析测试-测试DNS服务器解析相关性能</li>
-                            <li id="32">Web浏览测试-测试网页访问质量和相关性能</li>
+                            <li id="5">DNS解析测试-测试DNS服务器解析相关性能</li>
+                            <li id="11">Web浏览测试-测试网页访问质量和相关性能</li>
                         </ul>
                     </li>
                 </ul>
@@ -276,15 +276,15 @@
 				$('#testType').combobox('setValue', node.id);
 				$("#testType").combobox('readonly',true);
 				var url ='';
-				if(node.id=='28'){
+				if(node.id=='1'){
 					url='testing_template_arameter_ping_show.action';
-				}else if(node.id=='29'){
+				}else if(node.id=='2'){
 					url='testing_template_arameter_trace_show.action';
-				}else if(node.id=='30'){
+				}else if(node.id=='1000'){
 					url='testing_template_arameter_speed_show.action';
-				}else if(node.id=='31'){
+				}else if(node.id=='5'){
 					url='testing_template_arameter_dns_show.action';
-				}else if(node.id=='32'){
+				}else if(node.id=='11'){
 					url='testing_template_arameter_web_show.action';
 				}
 				$("#iframe_test").attr('src',url);
@@ -457,19 +457,19 @@
 							if (response.success=='success') {
 								var table ='';
 								var subUrl = '';
-								if(response.testType=='28'){
+								if(response.testType=='1'){
 									table='ping';
 									subUrl = window.frames["iframe_test"].window.makePingUrl('');
-								}else if(response.testType=='29'){
+								}else if(response.testType=='2'){
 									table='trace';
 									subUrl = window.frames["iframe_test"].window.makeTraceUrl('');
-								}else if(response.testType=='30'){
+								}else if(response.testType=='1000'){
 									table='speed';
 									subUrl = window.frames["iframe_test"].window.makeSpeedUrl('');
-								}else if(response.testType=='31'){
+								}else if(response.testType=='5'){
 									table='dns';
 									subUrl = window.frames["iframe_test"].window.makeDnsUrl('');
-								}else if(response.testType=='32'){
+								}else if(response.testType=='11'){
 									table='web';
 									subUrl = window.frames["iframe_test"].window.makeWebUrl('');
 								}
@@ -611,15 +611,15 @@
     		$('#testingTemplateId').val(row.testingTemplateId);
     		$('#testGroupId').combobox('setValue',row.testingTemplateGroupId);
     		$('#testType').combobox('setValue',row.testType);
-    		if(row.testType=='28'){
+    		if(row.testType=='1'){
 				url='testing_template_arameter_ping_edit_show.action?testingTemplateId='+row.testingTemplateId;
-			}else if(row.testType=='29'){
+			}else if(row.testType=='2'){
 				url='testing_template_arameter_trace_edit_show.action?testingTemplateId='+row.testingTemplateId;
-			}else if(row.testType=='30'){
+			}else if(row.testType=='1000'){
 				url='testing_template_arameter_speed_edit_show.action?testingTemplateId='+row.testingTemplateId;
-			}else if(row.testType=='31'){
+			}else if(row.testType=='5'){
 				url='testing_template_arameter_dns_edit_show.action?testingTemplateId='+row.testingTemplateId;
-			}else if(row.testType=='32'){
+			}else if(row.testType=='11'){
 				url='testing_template_arameter_web_edit_show.action?testingTemplateId='+row.testingTemplateId;
 			}
     		$("#iframe_test").attr('src',url);

@@ -156,7 +156,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 	@Override
 	public List getUserList(List param) throws GenericDAOException {
 		StringBuffer sql = new StringBuffer(
-				"SELECT a.user_id as userID,department_id,(SELECT value FROM wasu.bs_common_def d where d.def_id=a.department_id) departmentName,"
+				"SELECT a.user_id as userID,department_id,(SELECT value FROM wasu.bs_common_def d where d.def_id=a.department_id and d.type='department') departmentName,"
 						+ "a.user_name as userName,a.gender,date_format(a.birthday,'%Y-%m-%d') as birthday,"
 						+ "date_format(a.hire_date,'%Y-%m-%d') as hireDate,a.degree,"
 						+ "GROUP_CONCAT(a.position_id) positionID,"
@@ -490,7 +490,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 		StringBuffer sql = new StringBuffer(
 				"SELECT a.user_id as userID,"
 						+ "a.user_name as userName,a.gender,date_format(a.birthday,'%Y-%m-%d') as birthday,"
-						+ "date_format(a.hire_date,'%Y-%m-%d') as hireDate,a.degree,department_id,(SELECT value FROM wasu.bs_common_def d where d.def_id=a.department_id) departmentName,"
+						+ "date_format(a.hire_date,'%Y-%m-%d') as hireDate,a.degree,department_id,(SELECT value FROM wasu.bs_common_def d where d.def_id=a.department_id and d.type='department') departmentName,"
 						+ "GROUP_CONCAT(p.role_id) positionID,work_id,"
 						+ "GROUP_CONCAT(p.role_id) hiddenPositionID,"
 						+ " (select GROUP_CONCAT(b.position_name) from wasu.bs_position b where b.id in (GROUP_CONCAT(p.role_id) ) and b.status = 'Y')  positionName, "

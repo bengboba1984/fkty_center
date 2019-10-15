@@ -34,8 +34,8 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public ListChunk getTestingTemplateDataList(String roleId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT  t.testing_template_id,testing_template_group_id,template_name,test_type,t.sort_level,description,test_timeout,test_interval,test_execute_count,rank_class,testing_duration,")
-		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.testing_template_group_id ) testingTemplateGroupValue ,GROUP_CONCAT(tt.node_ip) node_ip,")
-		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.test_type ) testTypeValue FROM wasu.testing_template t left join wasu.testing_template_target  tt on t.testing_template_id = tt.testing_template_id where 1 = 1 ");
+		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.testing_template_group_id and d.type='template_type') testingTemplateGroupValue ,GROUP_CONCAT(tt.node_ip) node_ip,")
+		.append(" (select value  FROM wasu.bs_common_def d where d.def_id = t.test_type and type='test_type') testTypeValue FROM wasu.testing_template t left join wasu.testing_template_target  tt on t.testing_template_id = tt.testing_template_id where 1 = 1 ");
 		
 		sql.append(" group by t.testing_template_id ");
 		return getListChunkByProperty(sql.toString(), null,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingTemplate");
@@ -59,7 +59,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(templateId);
 		StringBuffer sql = new StringBuffer("SELECT    testing_template_target_id,  testing_template_id, name, node_ip, sort_level, active, target_type, ")
-		.append(" (select value from wasu.bs_common_def f where f.def_id = t.target_type) targetTypeValue")
+		.append(" (select value from wasu.bs_common_def f where f.def_id = t.target_type and f.type='targetType') targetTypeValue")
 		.append(" FROM wasu.testing_template_target t where testing_template_id = ? ");
 		
 		
