@@ -47,7 +47,7 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">启用DNS缓存</font></td>
            <td style="width: 50%">
-           <input id="useDnsCache" class="easyui-combobox" value="${useDnsCache}" style="width:40%;"
+           <input id="useDnsCache" class="easyui-combobox" value="${useDnsCache}" style="width:20%;"
 								data-options="valueField:'key',
 												textField:'value',
                     						  	panelHeight:'auto',
@@ -56,17 +56,21 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">分析HTML内容</font></td>
            <td style="width: 50%">
-           <input id="analysisHtml" class="easyui-textbox" type="text" value="${analysisHtml}" style="width:40%;"/></td>
+           <input id="analysisHtml" class="easyui-combobox" value="${analysisHtml}" style="width:20%;"
+								data-options="valueField:'key',
+												textField:'value',
+                    						  	panelHeight:'auto',
+                    						  	data:[{'key':'true','value':'true'},{'key':'false','value':'false'}]" /></td>
        </tr>
         <tr>
 			<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">用户浏览器</font></td>
            <td style="width: 50%">
-	           <input id="userAgent" class="easyui-textbox" type="text" value="${userAgent}" style="width:40%;"/></td>
+	           <input id="userAgent" class="easyui-textbox" type="text" value="${userAgent}" multiline="true" style="width:95%;;height:80px"/></td>
        </tr>
         <tr>
 			<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">页面资料加载深度</font></td>
            <td style="width: 50%">
-	           <input id="maxPageDepth" class="easyui-textbox" type="text" value="${maxPageDepth}" style="width:40%;"/>层深度</td>
+	           <input id="maxPageDepth" class="easyui-textbox" type="text" value="${maxPageDepth}" style="width:40%;"/><font color="#ffffff">层深度</font></td>
        </tr>
         <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">主测试结果</font></td>
@@ -76,7 +80,7 @@
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">有效返回码（,分割多个）</font></td>
            <td style="width: 50%">
-           <input id="validResponseCodes" class="easyui-textbox" type="text" value="${validResponseCodes}" style="width:40%;"/></td>
+           <input id="validResponseCodes" class="easyui-textbox" type="text" value="${validResponseCodes}" style="width:95%;"/></td>
        </tr>
        <tr>
 				<td class="panel-header" style="width: 30%" align="center"><font color="#ffffff">	元素加载门限（%）,1~100</font></td>

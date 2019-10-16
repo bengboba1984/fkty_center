@@ -22,16 +22,14 @@
 		<thead>
 			<tr>
 				<th data-options="field:'testingTemplateId',sortable:'true',hidden:'true'">编号</th>
-				<th data-options="field:'templateName',sortable:'true'">名称</th>
 				<th data-options="field:'testingTemplateGroupValue',sortable:'true'">组</th>
+				<th data-options="field:'templateName',sortable:'true'">名称</th>
 				<th data-options="field:'testTypeValue',sortable:'true'">测试类型</th>
 				<th data-options="field:'testType',hidden:'true'">User ID</th>
 				<th data-options="field:'rankClass',sortable:'true'">排序级别</th>
 				<th data-options="field:'testTimeout',sortable:'true'">测试超时</th>
 				<th data-options="field:'testExecuteCount',sortable:'true'">执行次数</th>
 				<th data-options="field:'testInterval',sortable:'true'">测试周期</th>
-				<th data-options="field:'testInterval',sortable:'true'">测试时长</th>
-				<th data-options="field:'testInterval',sortable:'true'">链接功能</th>
 				<th data-options="field:'description',sortable:'true'">描述</th>
 				<th data-options="field:'nodeIp',sortable:'true'" formatter="natureshortVallue" >目标</th>
 				<th data-options="field:'testingTemplateGroupId',hidden:'true',width:10">testingTemplateGroupId</th>
