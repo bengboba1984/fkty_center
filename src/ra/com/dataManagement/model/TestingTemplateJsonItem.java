@@ -1,14 +1,15 @@
 package ra.com.dataManagement.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class TestingTemplateJsonItem {
-	private List destinations;
+	private List destinations = new ArrayList();
 	private String groupId;
 	private String id;
 	private String name;
-	private List paremeters;
+	private Object paremeters;
 	private String rankClass;
 	private String taskExecuteCount;
 	private String taskInterval;
@@ -39,10 +40,10 @@ public class TestingTemplateJsonItem {
 		this.name = name;
 	}
 	
-	public List getParemeters() {
+	public Object getParemeters() {
 		return paremeters;
 	}
-	public void setParemeters(List paremeters) {
+	public void setParemeters(Object paremeters) {
 		this.paremeters = paremeters;
 	}
 	public String getRankClass() {

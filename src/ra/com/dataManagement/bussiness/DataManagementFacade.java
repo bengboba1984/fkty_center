@@ -260,31 +260,31 @@ public class DataManagementFacade {
 					ListChunk l = dao.getTestingTemplateParameterPingDataJsonList(t.getId(), 1, 100);
 					if(l!=null&&l.getTotalCount()>0){
 						Collection<PingJsonItem> iList = l.getCollection();
-						t.setParemeters((ArrayList)iList);
+						t.setParemeters(((ArrayList)iList).get(0));
 					}
 				}else if(Const.TEMPLATE_ARAMETER_TRACE.equals(t.getTestType())){
 					ListChunk l = dao.getTestingTemplateParameterTraceDataJsonList(t.getId(), 1, 100);
 					if(l!=null&&l.getTotalCount()>0){
 						Collection<TraceJsonItem> iList = l.getCollection();
-						t.setParemeters((ArrayList)iList);
+						t.setParemeters(((ArrayList)iList).get(0));
 					}
 				}else if(Const.TEMPLATE_ARAMETER_SPEED.equals(t.getTestType())){
 					ListChunk l = dao.getTestingTemplateParameterSpeedDataJsonList(t.getId(), 1, 100);
 					if(l!=null&&l.getTotalCount()>0){
 						Collection<SpeedJsonItem> iList = l.getCollection();
-						t.setParemeters((ArrayList)iList);
+						t.setParemeters(((ArrayList)iList).get(0));
 					}
 				}else if(Const.TEMPLATE_ARAMETER_DNS.equals(t.getTestType())){
 					ListChunk l = dao.getTestingTemplateParameterDnsDataJsonList(t.getId(), 1, 100);
 					if(l!=null&&l.getTotalCount()>0){
 						Collection<DnsJsonItem> iList = l.getCollection();
-						t.setParemeters((ArrayList)iList);
+						t.setParemeters(((ArrayList)iList).get(0));
 					}
 				}else if(Const.TEMPLATE_ARAMETER_WEB.equals(t.getTestType())){
 					ListChunk l = dao.getTestingTemplateParameterWebDataJsonList(t.getId(), 1, 100);
 					if(l!=null&&l.getTotalCount()>0){
 						Collection<WebJsonItem> iList = l.getCollection();
-						t.setParemeters((ArrayList)iList);
+						t.setParemeters(((ArrayList)iList).get(0));
 					}
 				}
 				list.add(t);

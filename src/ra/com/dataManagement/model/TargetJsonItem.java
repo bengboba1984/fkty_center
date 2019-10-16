@@ -6,7 +6,7 @@ public class TargetJsonItem {
 	private String group = "";
 	private String id;
 	private String linkAttributes="{}";
-	private String links="{}";
+	private Object links = new Object();
 	private String name;
 	private String nodeIp;
 	private String rank;
@@ -41,10 +41,10 @@ public class TargetJsonItem {
 	public void setLinkAttributes(String linkAttributes) {
 		this.linkAttributes = linkAttributes;
 	}
-	public String getLinks() {
+	public Object getLinks() {
 		return links;
 	}
-	public void setLinks(String links) {
+	public void setLinks(Object links) {
 		this.links = links;
 	}
 	public String getName() {
