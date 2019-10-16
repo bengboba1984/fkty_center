@@ -6,32 +6,20 @@ import java.util.Map;
 
 public class TestingTemplateJsonItem {
 	private List destinations = new ArrayList();
-	private String groupId;
-	private String id;
+	private int groupId;
+	private int id;
 	private String name;
 	private Object parameters;
-	private String rankClass;
-	private String taskExecuteCount;
-	private String taskInterval;
-	private String testTimeout;
-	private String testType;
+	private int rankClass;
+	private int taskExecuteCount;
+	private int taskInterval;
+	private int testTimeout;
+	private int testType;
 	public List getDestinations() {
 		return destinations;
 	}
 	public void setDestinations(List destinations) {
 		this.destinations = destinations;
-	}
-	public String getGroupId() {
-		return groupId;
-	}
-	public void setGroupId(String groupId) {
-		this.groupId = groupId;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -45,36 +33,47 @@ public class TestingTemplateJsonItem {
 	public void setParameters(Object parameters) {
 		this.parameters = parameters;
 	}
-	public String getRankClass() {
+	public int getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getRankClass() {
 		return rankClass;
 	}
-	public void setRankClass(String rankClass) {
+	public void setRankClass(int rankClass) {
 		this.rankClass = rankClass;
 	}
-	public String getTaskExecuteCount() {
+	public int getTaskExecuteCount() {
 		return taskExecuteCount;
 	}
-	public void setTaskExecuteCount(String taskExecuteCount) {
+	public void setTaskExecuteCount(int taskExecuteCount) {
 		this.taskExecuteCount = taskExecuteCount;
 	}
-	public String getTaskInterval() {
+	public int getTaskInterval() {
 		return taskInterval;
 	}
-	public void setTaskInterval(String taskInterval) {
+	public void setTaskInterval(int taskInterval) {
 		this.taskInterval = taskInterval;
 	}
-	public String getTestTimeout() {
+	public int getTestTimeout() {
 		return testTimeout;
 	}
-	public void setTestTimeout(String testTimeout) {
+	public void setTestTimeout(int testTimeout) {
 		this.testTimeout = testTimeout;
 	}
-	public String getTestType() {
+	public int getTestType() {
 		return testType;
 	}
-	public void setTestType(String testType) {
+	public void setTestType(int testType) {
 		this.testType = testType;
 	}
-	
 	
 }

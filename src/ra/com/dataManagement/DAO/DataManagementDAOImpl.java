@@ -215,7 +215,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getTestingTemplateId());
 		param.add(item.getTestingTemplateGroupId());
 		param.add(item.getTemplateName());
-		param.add(item.getTestType());
+		param.add(String.valueOf(item.getTestType()));
 		param.add(item.getSortLevel());
 		param.add(item.getDescription());
 		param.add(item.getTestTimeout());
@@ -242,15 +242,15 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		System.out.println("============item.getTestType():"+item.getTestType());
 		sql = new StringBuffer(" DELETE FROM   wasu.testing_template_target  WHERE testing_template_id = ? ");
 		simpleExecute(sql.toString(),param);
-		if(Const.TEMPLATE_ARAMETER_PING.equals(item.getTestType())){
+		if(Const.TEMPLATE_ARAMETER_PING == item.getTestType()){
 			tempTable = " wasu.testing_template_parameter_ping ";
-		}else if(Const.TEMPLATE_ARAMETER_TRACE.equals(item.getTestType())){
+		}else if(Const.TEMPLATE_ARAMETER_TRACE == item.getTestType()){
 			tempTable = " wasu.testing_template_parameter_trace ";
-		}else if(Const.TEMPLATE_ARAMETER_DNS.equals(item.getTestType())){
+		}else if(Const.TEMPLATE_ARAMETER_DNS == item.getTestType()){
 			tempTable = " wasu.testing_template_parameter_dns ";
-		}else if(Const.TEMPLATE_ARAMETER_SPEED.equals(item.getTestType())){
+		}else if(Const.TEMPLATE_ARAMETER_SPEED == item.getTestType()){
 			tempTable = " wasu.testing_template_parameter_speed ";
-		}else if(Const.TEMPLATE_ARAMETER_WEB.equals(item.getTestType())){
+		}else if(Const.TEMPLATE_ARAMETER_WEB == item.getTestType()){
 			tempTable = " wasu.testing_template_parameter_web ";
 		}
 		if(tempTable.length()>0){
@@ -426,9 +426,9 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		return getListChunkByProperty(sql.toString(), null,1,1000,true, "ra.com.dataManagement.model.TestingTemplateJsonItem");
 	}
 	
-	public ListChunk getTestingTemplateParameterDnsDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingTemplateParameterDnsDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
-		param.add(templateId);
+		param.add(String.valueOf(templateId));
 		StringBuffer sql = new StringBuffer("SELECT packet_count,ignore_count,round_item_count,packet_timeout,spacing_time ")
 		.append(" FROM wasu.testing_template_parameter_dns where testing_template_id = ? ");
 		
@@ -436,34 +436,34 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.DnsJsonItem");
 	}
 	
-	public ListChunk getTestingTemplateParameterSpeedDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingTemplateParameterSpeedDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
-		param.add(templateId);
+		param.add(String.valueOf(templateId));
 		StringBuffer sql = new StringBuffer("SELECT host_Ips,max_test_time,min_test_time,continue_times,jitter_throughput,request_timeout,request_piece_size,payload_size,download_size ")
 		.append(" FROM wasu.testing_template_parameter_speed where testing_template_id = ? ");
 		
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.SpeedJsonItem");
 	}
 	
-	public ListChunk getTestingTemplateTargetDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingTemplateTargetDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
-		param.add(templateId);
+		param.add(String.valueOf(templateId));
 		StringBuffer sql = new StringBuffer("SELECT testing_template_target_id id,name, node_ip, sort_level rank ")
 		.append(" FROM wasu.testing_template_target t where testing_template_id = ? and active ='1' order by sort_level ");
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TargetJsonItem");
 	}
 	
-	public ListChunk getTestingTemplateParameterWebDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingTemplateParameterWebDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
-		param.add(templateId);
+		param.add(String.valueOf(templateId));
 		StringBuffer sql = new StringBuffer("SELECT max_download_size,max_thread_count,max_sub_count,max_sub_save_count,item_timeout itemTimeoutTime,use_dns_cache,user_agent,max_page_depth,valid_response_codes,tos,analysis_Html,primary_Result_Index,min_Load_Percent,max_Load_Time ")
 		.append(" FROM wasu.testing_template_parameter_web where testing_template_id = ? ");
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.WebJsonItem");
 	}
 	
-	public ListChunk getTestingTemplateParameterPingDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingTemplateParameterPingDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
-		param.add(templateId);
+		param.add(String.valueOf(templateId));
 		StringBuffer sql = new StringBuffer("SELECT packet_count,spaceing_time,packet_timeout,payload_size,payload_data,max_ttl,tos,save_Ip_Result,all_Loss_As_Fail,round_Trip")
 		.append(" FROM wasu.testing_template_parameter_ping where testing_template_id = ? ");
 		
@@ -471,9 +471,9 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.PingJsonItem");
 	}
 	
-	public ListChunk getTestingTemplateParameterTraceDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingTemplateParameterTraceDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException{
 		ArrayList<String> param = new ArrayList<String>();
-		param.add(templateId);
+		param.add(String.valueOf(templateId));
 		StringBuffer sql = new StringBuffer("SELECT payload_size,protocol_type,max_hops,reply_timeout,packet_count,spacing_time,tos ")
 		.append(" FROM wasu.testing_template_parameter_trace where testing_template_id = ? ");
 				

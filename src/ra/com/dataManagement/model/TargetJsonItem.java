@@ -4,12 +4,12 @@ public class TargetJsonItem {
 	private String defaultCheck = "on";
 	private String deviceIp = "";
 	private String group = "";
-	private String id;
+	private int id;
 	private String linkAttributes="{}";
 	private Object links = new Object();
 	private String name;
 	private String nodeIp;
-	private String rank;
+	private int rank;
 	private String attributes="{}";
 	public String getDefaultCheck() {
 		return defaultCheck;
@@ -29,12 +29,7 @@ public class TargetJsonItem {
 	public void setGroup(String group) {
 		this.group = group;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+
 	public String getLinkAttributes() {
 		return linkAttributes;
 	}
@@ -59,10 +54,16 @@ public class TargetJsonItem {
 	public void setNodeIp(String nodeIp) {
 		this.nodeIp = nodeIp;
 	}
-	public String getRank() {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getRank() {
 		return rank;
 	}
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 	public String getAttributes() {
