@@ -9,7 +9,7 @@ public class TestingTemplateJsonItem {
 	private String groupId;
 	private String id;
 	private String name;
-	private Object paremeters;
+	private Object parameters;
 	private String rankClass;
 	private String taskExecuteCount;
 	private String taskInterval;
@@ -39,12 +39,11 @@ public class TestingTemplateJsonItem {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Object getParemeters() {
-		return paremeters;
+	public Object getParameters() {
+		return parameters;
 	}
-	public void setParemeters(Object paremeters) {
-		this.paremeters = paremeters;
+	public void setParameters(Object parameters) {
+		this.parameters = parameters;
 	}
 	public String getRankClass() {
 		return rankClass;
