@@ -1,7 +1,6 @@
 package ra.com.dataManagement.DAO;
 
 import java.util.Collection;
-import java.util.List;
 
 import ra.com.common.dao.GenericDAOException;
 import ra.com.common.model.ListChunk;
@@ -20,7 +19,7 @@ public interface DataManagementDAO {
 	
 	public Collection getTestType()throws GenericDAOException;
 	
-	public Collection getTargetType()throws GenericDAOException;
+	public Collection getTargetType() throws GenericDAOException;
 	
 	public ListChunk getTestingTemplateTargetDataList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
@@ -74,15 +73,15 @@ public interface DataManagementDAO {
 	
 	public ListChunk getTestingTemplateDataList() throws GenericDAOException;
 	
-	public ListChunk getTestingTemplateParameterDnsDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingTemplateParameterDnsDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
-	public ListChunk getTestingTemplateTargetDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingTemplateTargetDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
-	public ListChunk getTestingTemplateParameterSpeedDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingTemplateParameterSpeedDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
-	public ListChunk getTestingTemplateParameterWebDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingTemplateParameterWebDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
-	public ListChunk getTestingTemplateParameterTraceDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingTemplateParameterTraceDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
-	public ListChunk getTestingTemplateParameterPingDataJsonList(String templateId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingTemplateParameterPingDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 }
