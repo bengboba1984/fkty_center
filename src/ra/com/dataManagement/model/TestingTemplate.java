@@ -4,7 +4,7 @@ public class TestingTemplate {
 	private String testingTemplateId;
 	private String testingTemplateGroupId;
 	private String templateName;
-	private String testType;
+	private int testType;
 	private String sortLevel;
 	private String description;
 	private String testTimeout;
@@ -33,10 +33,10 @@ public class TestingTemplate {
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
 	}
-	public String getTestType() {
+	public int getTestType() {
 		return testType;
 	}
-	public void setTestType(String testType) {
+	public void setTestType(int testType) {
 		this.testType = testType;
 	}
 	public String getSortLevel() {

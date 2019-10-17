@@ -3,82 +3,86 @@ package ra.com.dataManagement.model;
 import java.util.Map;
 
 public class DnsJsonItem {
-	private String additionalAdvPing = "0";
-	private String additionalPing = "0";
-	private String additionalTrace = "0";
+	private int additionalAdvPing = 0;
+	private int additionalPing = 0;
+	private int additionalTrace = 0;
 	private boolean excludeFailed = false;
-	private String ignoreCount = "0";
+	private int ignoreCount = 0;
 	private boolean onlyTestingAndSummary = true;
-	private String packetCount;
-	private String packetTimeout;
-	private String roundItemCount;
+	private int packetCount;
+	private int packetTimeout;
+	private int roundItemCount;
 	private boolean saveSubResult = true;
-	private String spacingTime;
+	private int spacingTime;
 	private String optimizations = "{\"indexNameList\":[],\"conditionList\":[]}";
-	public String getAdditionalAdvPing() {
-		return additionalAdvPing;
-	}
-	public void setAdditionalAdvPing(String additionalAdvPing) {
-		this.additionalAdvPing = additionalAdvPing;
-	}
-	public String getAdditionalPing() {
-		return additionalPing;
-	}
-	public void setAdditionalPing(String additionalPing) {
-		this.additionalPing = additionalPing;
-	}
-	public String getAdditionalTrace() {
-		return additionalTrace;
-	}
-	public void setAdditionalTrace(String additionalTrace) {
-		this.additionalTrace = additionalTrace;
-	}
+	
 	public boolean isExcludeFailed() {
 		return excludeFailed;
 	}
 	public void setExcludeFailed(boolean excludeFailed) {
 		this.excludeFailed = excludeFailed;
 	}
-	public String getIgnoreCount() {
-		return ignoreCount;
-	}
-	public void setIgnoreCount(String ignoreCount) {
-		this.ignoreCount = ignoreCount;
-	}
+	
 	public boolean isOnlyTestingAndSummary() {
 		return onlyTestingAndSummary;
 	}
 	public void setOnlyTestingAndSummary(boolean onlyTestingAndSummary) {
 		this.onlyTestingAndSummary = onlyTestingAndSummary;
 	}
-	public String getPacketCount() {
-		return packetCount;
-	}
-	public void setPacketCount(String packetCount) {
-		this.packetCount = packetCount;
-	}
-	public String getPacketTimeout() {
-		return packetTimeout;
-	}
-	public void setPacketTimeout(String packetTimeout) {
-		this.packetTimeout = packetTimeout;
-	}
-	public String getRoundItemCount() {
-		return roundItemCount;
-	}
-	public void setRoundItemCount(String roundItemCount) {
-		this.roundItemCount = roundItemCount;
-	}
+	
 	public boolean isSaveSubResult() {
 		return saveSubResult;
 	}
 	public void setSaveSubResult(boolean saveSubResult) {
 		this.saveSubResult = saveSubResult;
 	}
-	public String getSpacingTime() {
+
+	public int getAdditionalAdvPing() {
+		return additionalAdvPing;
+	}
+	public void setAdditionalAdvPing(int additionalAdvPing) {
+		this.additionalAdvPing = additionalAdvPing;
+	}
+	public int getAdditionalPing() {
+		return additionalPing;
+	}
+	public void setAdditionalPing(int additionalPing) {
+		this.additionalPing = additionalPing;
+	}
+	public int getAdditionalTrace() {
+		return additionalTrace;
+	}
+	public void setAdditionalTrace(int additionalTrace) {
+		this.additionalTrace = additionalTrace;
+	}
+	public int getIgnoreCount() {
+		return ignoreCount;
+	}
+	public void setIgnoreCount(int ignoreCount) {
+		this.ignoreCount = ignoreCount;
+	}
+	public int getPacketCount() {
+		return packetCount;
+	}
+	public void setPacketCount(int packetCount) {
+		this.packetCount = packetCount;
+	}
+	public int getPacketTimeout() {
+		return packetTimeout;
+	}
+	public void setPacketTimeout(int packetTimeout) {
+		this.packetTimeout = packetTimeout;
+	}
+	public int getRoundItemCount() {
+		return roundItemCount;
+	}
+	public void setRoundItemCount(int roundItemCount) {
+		this.roundItemCount = roundItemCount;
+	}
+	public int getSpacingTime() {
 		return spacingTime;
 	}
-	public void setSpacingTime(String spacingTime) {
+	public void setSpacingTime(int spacingTime) {
 		this.spacingTime = spacingTime;
 	}
 	public String getOptimizations() {

@@ -22,7 +22,7 @@ public class TestingTemplateAction  extends BaseAction {
 	private String moduleId;
 	private JSONArray selectList;
 	private String showAllFlag;
-	private String testType;
+	private int testType;
 	private String testGroupId;
 	private String templateName;
 	private String sortLevel;
@@ -311,11 +311,10 @@ public class TestingTemplateAction  extends BaseAction {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public String getTestType() {
+	public int getTestType() {
 		return testType;
 	}
-	public void setTestType(String testType) {
+	public void setTestType(int testType) {
 		this.testType = testType;
 	}
 	public String getTestingTemplateId() {
