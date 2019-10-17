@@ -10,7 +10,7 @@ public class TargetJsonItem {
 	private String name;
 	private String nodeIp;
 	private int rank;
-	private String attributes="{}";
+	private String attributes="{ }";
 	public String getDefaultCheck() {
 		return defaultCheck;
 	}
