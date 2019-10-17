@@ -2,7 +2,6 @@ package ra.com.dataManagement.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TestingTemplateJsonItem {
 	private List destinations = new ArrayList();
