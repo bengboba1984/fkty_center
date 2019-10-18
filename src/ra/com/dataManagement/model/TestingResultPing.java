@@ -1,27 +1,31 @@
 package ra.com.dataManagement.model;
 
+import java.util.List;
+
 public class TestingResultPing {
 	private String resultPingId;
-	private String avgDelay;
-	private String avgJitter;
+	private int avgDelay;
+	private int avgJitter;
 	private String hostIp;
-	private String lossPercent;
+	private int lossPercent;
+	private List<TestingResultTraceSub> resultSubData;
+	
 	public String getResultPingId() {
 		return resultPingId;
 	}
 	public void setResultPingId(String resultPingId) {
 		this.resultPingId = resultPingId;
 	}
-	public String getAvgDelay() {
+	public int getAvgDelay() {
 		return avgDelay;
 	}
-	public void setAvgDelay(String avgDelay) {
+	public void setAvgDelay(int avgDelay) {
 		this.avgDelay = avgDelay;
 	}
-	public String getAvgJitter() {
+	public int getAvgJitter() {
 		return avgJitter;
 	}
-	public void setAvgJitter(String avgJitter) {
+	public void setAvgJitter(int avgJitter) {
 		this.avgJitter = avgJitter;
 	}
 	public String getHostIp() {
@@ -30,12 +34,18 @@ public class TestingResultPing {
 	public void setHostIp(String hostIp) {
 		this.hostIp = hostIp;
 	}
-	public String getLossPercent() {
+	public int getLossPercent() {
 		return lossPercent;
 	}
-	public void setLossPercent(String lossPercent) {
+	public void setLossPercent(int lossPercent) {
 		this.lossPercent = lossPercent;
 	}
-
+	public List<TestingResultTraceSub> getResultSubData() {
+		return resultSubData;
+	}
+	public void setResultSubData(List<TestingResultTraceSub> resultSubData) {
+		this.resultSubData = resultSubData;
+	}
+	
 	
 }

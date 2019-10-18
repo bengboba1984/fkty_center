@@ -9,12 +9,21 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 
 import ra.com.common.Const;
+import ra.com.common.dao.GenericDAOException;
 import ra.com.common.model.ListChunk;
 import ra.com.dataManagement.DAO.DataManagementDAO;
 import ra.com.dataManagement.model.DnsJsonItem;
 import ra.com.dataManagement.model.PingJsonItem;
+import ra.com.dataManagement.model.ResultTemplateJsonItem;
 import ra.com.dataManagement.model.SpeedJsonItem;
 import ra.com.dataManagement.model.TargetJsonItem;
+import ra.com.dataManagement.model.TestingResult;
+import ra.com.dataManagement.model.TestingResultDns;
+import ra.com.dataManagement.model.TestingResultPing;
+import ra.com.dataManagement.model.TestingResultSpeed;
+import ra.com.dataManagement.model.TestingResultTrace;
+import ra.com.dataManagement.model.TestingResultTraceSub;
+import ra.com.dataManagement.model.TestingResultWeb;
 import ra.com.dataManagement.model.TestingTemplate;
 import ra.com.dataManagement.model.TestingTemplateJsonItem;
 import ra.com.dataManagement.model.TestingTemplateParameterDns;
@@ -293,5 +302,61 @@ public class DataManagementFacade {
 		String json = JSON.toJSONString(list);
 		sb.append(json).append("}");
 		return sb.toString();
+	}
+	
+	public String insertTestingResult(ResultTemplateJsonItem item)throws Exception{
+		TestingResult res = new TestingResult();
+		Long templateId = dao.getResultTestTemplateTableId("testing_result_id","testing_result");
+		res.setTestingResultId(templateId.toString());
+		res.setTestingTemplateGroupId(item.getApplicationType()+"");
+		res.setAccount(item.getAccount());
+		dao.insertTestingResult(res);
+		return templateId.toString();
+	}
+	
+	public String insertTestingResultDns(TestingResultDns item)throws Exception{
+		Long templateId = dao.getResultTestTemplateTableId("result_dns_id","testing_result_dns");
+		item.setResultDnsId(templateId.toString());
+		dao.insertTestingResultDns(item);
+		return templateId.toString();
+	}
+	
+	public String insertTestingResultPing(TestingResultPing item)throws Exception{
+		Long templateId = dao.getResultTestTemplateTableId("result_ping_id","testing_result_ping");
+		item.setResultPingId(templateId.toString());
+		dao.insertTestingResultPing(item);
+		return templateId.toString();
+	}
+	
+	public String insertTestingResultSpeed(TestingResultSpeed item)throws Exception{
+		Long templateId = dao.getResultTestTemplateTableId("result_speed_id","testing_result_speed");
+		item.setResultSpeedId(templateId.toString());
+		dao.insertTestingResultSpeed(item);
+		return templateId.toString();
+	}
+	
+	public String insertTestingResultWeb(TestingResultWeb item)throws Exception{
+		Long templateId = dao.getResultTestTemplateTableId("result_web_id","testing_result_web");
+		item.setResultWebId(templateId.toString());
+		dao.insertTestingResultWeb(item);
+		return templateId.toString();
+	}
+	
+	public String insertTestingResultTrace(TestingResultTrace item)throws Exception{
+		Long templateId = dao.getResultTestTemplateTableId("result_trace_id","testing_result_trace");
+		item.setResultTraceId(templateId.toString());
+		dao.insertTestingResultTrace(item);
+		return templateId.toString();
+	}
+	
+	public String insertTestingResultTraceSub(TestingResultTraceSub item)throws Exception{
+		Long templateId = dao.getResultTestTemplateTableId("result_trace_sub_id","testing_result_trace_sub");
+		item.setResultTraceSubId(templateId.toString());
+		dao.insertTestingResultTraceSub(item);
+		return templateId.toString();
+	}
+	
+	public void updateResultTestTypeId(String column,String typeId,String templateId)throws Exception{
+		dao.updateResultTestTypeId(column,typeId,templateId);
 	}
 }

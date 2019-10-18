@@ -1,41 +1,51 @@
 package ra.com.dataManagement.model;
 
+import java.util.List;
+
 public class TestingResultSpeed {
 	private String resultSpeedId;
-	private String downloadMaxThroughput;
-	private String downloadThroughput;
-	private String uploadMaxThroughput;
-	private String uploadThroughput;
+	private int downloadMaxThroughput;
+	private int downloadThroughput;
+	private int uploadMaxThroughput;
+	private int uploadThroughput;
+	private List<TestingResultTraceSub> resultSubData;
+	
 	public String getResultSpeedId() {
 		return resultSpeedId;
 	}
 	public void setResultSpeedId(String resultSpeedId) {
 		this.resultSpeedId = resultSpeedId;
 	}
-	public String getDownloadMaxThroughput() {
+	public int getDownloadMaxThroughput() {
 		return downloadMaxThroughput;
 	}
-	public void setDownloadMaxThroughput(String downloadMaxThroughput) {
+	public void setDownloadMaxThroughput(int downloadMaxThroughput) {
 		this.downloadMaxThroughput = downloadMaxThroughput;
 	}
-	public String getDownloadThroughput() {
+	public int getDownloadThroughput() {
 		return downloadThroughput;
 	}
-	public void setDownloadThroughput(String downloadThroughput) {
+	public void setDownloadThroughput(int downloadThroughput) {
 		this.downloadThroughput = downloadThroughput;
 	}
-	public String getUploadMaxThroughput() {
+	public int getUploadMaxThroughput() {
 		return uploadMaxThroughput;
 	}
-	public void setUploadMaxThroughput(String uploadMaxThroughput) {
+	public void setUploadMaxThroughput(int uploadMaxThroughput) {
 		this.uploadMaxThroughput = uploadMaxThroughput;
 	}
-	public String getUploadThroughput() {
+	public int getUploadThroughput() {
 		return uploadThroughput;
 	}
-	public void setUploadThroughput(String uploadThroughput) {
+	public void setUploadThroughput(int uploadThroughput) {
 		this.uploadThroughput = uploadThroughput;
 	}
-
+	public List<TestingResultTraceSub> getResultSubData() {
+		return resultSubData;
+	}
+	public void setResultSubData(List<TestingResultTraceSub> resultSubData) {
+		this.resultSubData = resultSubData;
+	}
+	
 	
 }

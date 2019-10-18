@@ -4,6 +4,13 @@ import java.util.Collection;
 
 import ra.com.common.dao.GenericDAOException;
 import ra.com.common.model.ListChunk;
+import ra.com.dataManagement.model.TestingResult;
+import ra.com.dataManagement.model.TestingResultDns;
+import ra.com.dataManagement.model.TestingResultPing;
+import ra.com.dataManagement.model.TestingResultSpeed;
+import ra.com.dataManagement.model.TestingResultTrace;
+import ra.com.dataManagement.model.TestingResultTraceSub;
+import ra.com.dataManagement.model.TestingResultWeb;
 import ra.com.dataManagement.model.TestingTemplate;
 import ra.com.dataManagement.model.TestingTemplateParameterDns;
 import ra.com.dataManagement.model.TestingTemplateParameterPing;
@@ -84,4 +91,23 @@ public interface DataManagementDAO {
 	public ListChunk getTestingTemplateParameterTraceDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
 	
 	public ListChunk getTestingTemplateParameterPingDataJsonList(int templateId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public void insertTestingResult(TestingResult item)throws GenericDAOException;
+	
+	public void insertTestingResultDns(TestingResultDns item)throws GenericDAOException;
+	
+	public void insertTestingResultPing(TestingResultPing item)throws GenericDAOException;
+	
+	public void insertTestingResultSpeed(TestingResultSpeed item)throws GenericDAOException;
+	
+	public void insertTestingResultWeb(TestingResultWeb item)throws GenericDAOException;
+	
+	public void insertTestingResultTrace(TestingResultTrace item)throws GenericDAOException;
+	
+	public void insertTestingResultTraceSub(TestingResultTraceSub item)throws GenericDAOException;
+	
+	public Long getResultTestTemplateTableId(String column,String table) throws GenericDAOException;
+	
+	public void updateResultTestTypeId(String column,String typeId,String templateId)throws GenericDAOException;
+	
 }

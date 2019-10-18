@@ -506,8 +506,8 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(item.getResultDnsId());
 		param.add(item.getNumberOfAnswers());
-		param.add(item.getResolveTime());
-		param.add(item.getSuccessPercent());
+		param.add(item.getResolveTime()+"");
+		param.add(item.getSuccessPercent()+"");
 		simpleExecute(sql, param);
 	}
 	
@@ -516,10 +516,10 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 				+ " values (?,?, ?,?, ?) ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(item.getResultPingId());
-		param.add(item.getAvgDelay());
-		param.add(item.getAvgJitter());
+		param.add(item.getAvgDelay()+"");
+		param.add(item.getAvgJitter()+"");
 		param.add(item.getHostIp());
-		param.add(item.getLossPercent());
+		param.add(item.getLossPercent()+"");
 		simpleExecute(sql, param);
 	}
 	
@@ -528,10 +528,10 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 				+ " values (?,?, ?,?, ?) ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(item.getResultSpeedId());
-		param.add(item.getDownloadMaxThroughput());
-		param.add(item.getDownloadThroughput());
-		param.add(item.getUploadMaxThroughput());
-		param.add(item.getUploadThroughput());
+		param.add(item.getDownloadMaxThroughput()+"");
+		param.add(item.getDownloadThroughput()+"");
+		param.add(item.getUploadMaxThroughput()+"");
+		param.add(item.getUploadThroughput()+"");
 		simpleExecute(sql, param);
 	}
 	
@@ -542,14 +542,14 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getResultWebId());
 		param.add(item.getHostIp());
 		param.add(item.getRequestUrl());
-		param.add(item.getResolveTime());
-		param.add(item.getConnectTime());
-		param.add(item.getFirstByteTime());
-		param.add(item.getFirstPageTime());
-		param.add(item.getMeanQuality());
-		param.add(item.getResponseCode());
-		param.add(item.getThroughput());
-		param.add(item.getTotalTime());
+		param.add(item.getResolveTime()+"");
+		param.add(item.getConnectTime()+"");
+		param.add(item.getFirstByteTime()+"");
+		param.add(item.getFirstPageTime()+"");
+		param.add(item.getMeanQuality()+"");
+		param.add(item.getResponseCode()+"");
+		param.add(item.getThroughput()+"");
+		param.add(item.getTotalTime()+"");
 		simpleExecute(sql, param);
 	}
 	
@@ -577,4 +577,18 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	param.add(item.getLossPercent());
 	simpleExecute(sql, param);
 	}
+	
+	public Long getResultTestTemplateTableId(String column,String table) throws GenericDAOException {
+		 return (Long) queryOne("select IFNULL(MAX("+column+"),0)+1  from wasu."+table, null);
+	}
+	
+	public void updateResultTestTypeId(String column,String typeId,String templateId)throws GenericDAOException {
+		StringBuffer sql = new StringBuffer("update wasu.testing_result set ");
+		sql.append(column).append(" = ? where testing_result_id = ? ");
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(typeId);
+		param.add(templateId);
+		simpleExecute(sql.toString(), param);
+	}
+	
 }
