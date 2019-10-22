@@ -664,6 +664,14 @@
                 </param>
             </result>
 		</action>
+		
+		<action name="testing_result_template_show" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="show">
+			<result name="show">
+			/dataManagement/testingResultTemplate.jsp
+			</result>
+		</action>
+		
 	</package>
 
 </struts>
