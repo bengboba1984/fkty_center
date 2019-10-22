@@ -58,8 +58,10 @@ public class TestingTemplateResultServlet  extends HttpServlet {
 		try {
 			json = biz.getItestorTemplateList();
 			String strURL = req.getParameter("url");
-			String params = req.getParameter("params");
+//			String params = req.getParameter("params");
+			String params = reqJson(req);
 			LOGGER.debug("==========TestingTemplateResultServlet doPost");
+			System.out.println("====params="+params);
 			/*URL url = new URL(strURL);// 创建连接
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
@@ -75,7 +77,7 @@ public class TestingTemplateResultServlet  extends HttpServlet {
             out.append(params);
             out.flush();
             out.close();*/
-			params = "{\"items\":[{\"testType\":2,\"applicationType\":1,\"destName\":\"http://www.baidu.com\",\"destIp\":\"61.135.169.125\",\"errorCode\":0,\"account\":\"\",\"result\":{\"provinceCode\":\"SH\",\"cityCode\":\"\",\"resultSubData\":[{\"applicationType\":1,\"cacheMaxAge\":0,\"connectBeginTime\":1517301997847591,\"connectTime\":57054,\"contentEncoding\":\"\",\"contentLength\":225,\"contentType\":\"text/html\",\"dnsResponseCode\":0,\"downloadLength\":953,\"downloadTime\":158992,\"firstByteTime\":158093,\"hostIp\":\"61.135.169.125\",\"hostIpv4\":2108262205,\"isLocal\":true,\"loadDepth\":0,\"loadIndex\":1,\"meanQuality\":60.97533333,\"requestUrl\":\"http://www.baidu.com\",\"resolveBeginTime\":1517301997826691,\"resolveTime\":20820,\"responseCode\":302,\"throughput\":5994,\"totalTime\":236866,\"transferBeginTime\":1517301997904678}],\"cacheMaxAge\":0,\"connectBeginTime\":1517301997847591,\"connectEndTime\":1517301997904645,\"connectTime\":57054,\"connectedPercent\":100,\"contentEncoding\":\"\",\"contentLength\":81068,\"contentType\":\"text/html\",\"dnsResponseCode\":0,\"downloadLength\":133449,\"downloadTime\":2080542,\"elementCount\":10,\"failedElementCount\":0,\"firstByteTime\":158093,\"firstPagePercent\":100,\"firstPageTime\":1942033,\"fistByteReceived\":1,\"hostIp\":\"61.135.169.125\",\"hostIpv4\":2108262205,\"isLocal\":true,\"loadDepth\":0,\"loadIndex\":1,\"loadThroughput\":45263,\"loadedPercent\":100,\"maxDownloadSpeed\":0,\"meanQuality\":64.02266667,\"normalDownloadSpeed\":0,\"pageLoadTime\":2153385,\"requestUrl\":\"http://www.baidu.com\",\"resolveBeginTime\":1517301997826691,\"resolveEndTime\":1517301997847511,\"resolveTime\":20820,\"resolvedPercent\":100,\"responseCode\":302,\"statOperatorId\":0,\"successPercent\":100,\"testStartTime\":1517301997826691,\"throughput\":64141,\"totalTime\":2158529,\"transferBeginTime\":1517301997904678,\"transferCompletely\":1,\"transferEndTime\":1517301999985220,\"subItemCount\":10}}]}";
+//			params = "{\"items\":[{\"testType\":2,\"applicationType\":1,\"destName\":\"http://www.baidu.com\",\"destIp\":\"61.135.169.125\",\"errorCode\":0,\"account\":\"\",\"result\":{\"provinceCode\":\"SH\",\"cityCode\":\"\",\"resultSubData\":[{\"applicationType\":1,\"cacheMaxAge\":0,\"connectBeginTime\":1517301997847591,\"connectTime\":57054,\"contentEncoding\":\"\",\"contentLength\":225,\"contentType\":\"text/html\",\"dnsResponseCode\":0,\"downloadLength\":953,\"downloadTime\":158992,\"firstByteTime\":158093,\"hostIp\":\"61.135.169.125\",\"hostIpv4\":2108262205,\"isLocal\":true,\"loadDepth\":0,\"loadIndex\":1,\"meanQuality\":60.97533333,\"requestUrl\":\"http://www.baidu.com\",\"resolveBeginTime\":1517301997826691,\"resolveTime\":20820,\"responseCode\":302,\"throughput\":5994,\"totalTime\":236866,\"transferBeginTime\":1517301997904678}],\"cacheMaxAge\":0,\"connectBeginTime\":1517301997847591,\"connectEndTime\":1517301997904645,\"connectTime\":57054,\"connectedPercent\":100,\"contentEncoding\":\"\",\"contentLength\":81068,\"contentType\":\"text/html\",\"dnsResponseCode\":0,\"downloadLength\":133449,\"downloadTime\":2080542,\"elementCount\":10,\"failedElementCount\":0,\"firstByteTime\":158093,\"firstPagePercent\":100,\"firstPageTime\":1942033,\"fistByteReceived\":1,\"hostIp\":\"61.135.169.125\",\"hostIpv4\":2108262205,\"isLocal\":true,\"loadDepth\":0,\"loadIndex\":1,\"loadThroughput\":45263,\"loadedPercent\":100,\"maxDownloadSpeed\":0,\"meanQuality\":64.02266667,\"normalDownloadSpeed\":0,\"pageLoadTime\":2153385,\"requestUrl\":\"http://www.baidu.com\",\"resolveBeginTime\":1517301997826691,\"resolveEndTime\":1517301997847511,\"resolveTime\":20820,\"resolvedPercent\":100,\"responseCode\":302,\"statOperatorId\":0,\"successPercent\":100,\"testStartTime\":1517301997826691,\"throughput\":64141,\"totalTime\":2158529,\"transferBeginTime\":1517301997904678,\"transferCompletely\":1,\"transferEndTime\":1517301999985220,\"subItemCount\":10}}]}";
            JSONObject jsonStu = JSONObject.parseObject(params); 
             ResultJsonItem item = (ResultJsonItem) JSONObject.toJavaObject(jsonStu,ResultJsonItem.class);
             if(item!=null&&item.getItems()!=null){
@@ -186,8 +188,8 @@ public class TestingTemplateResultServlet  extends HttpServlet {
             			             int firstPageTime  = obj.getIntValue("firstPageTime");
             			             int meanQuality  = obj.getIntValue("meanQuality");
             			             int responseCode  = obj.getIntValue("responseCode");
-            			             int throughput  = obj.getIntValue("throughput");
-            			             int totalTime  = obj.getIntValue("totalTime");
+            			             String throughput  = obj.getString("throughput");
+            			             String totalTime  = obj.getString("totalTime");
             			             String hostIp  = obj.getString("hostIp");
             			             String requestUrl  = obj.getString("requestUrl");
             			             d.setConnectTime(connectTime);
@@ -216,5 +218,17 @@ public class TestingTemplateResultServlet  extends HttpServlet {
 		res.getOutputStream().write(result.getBytes());
 
 	}
-
+	private String reqJson(HttpServletRequest request) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = request.getReader()) {
+            char[] buff = new char[1024];
+            int len;
+            while ((len = reader.read(buff)) != -1) {
+                sb.append(buff, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
 }

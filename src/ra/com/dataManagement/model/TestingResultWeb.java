@@ -12,8 +12,8 @@ public class TestingResultWeb {
 	private int firstPageTime;
 	private int meanQuality;
 	private int responseCode;
-	private int throughput;
-	private int totalTime;
+	private String throughput;
+	private String totalTime;
 	//private List<TestingResultTraceSub> resultSubData;
 	public String getResultWebId() {
 		return resultWebId;
@@ -69,18 +69,20 @@ public class TestingResultWeb {
 	public void setResponseCode(int responseCode) {
 		this.responseCode = responseCode;
 	}
-	public int getThroughput() {
+
+	public String getThroughput() {
 		return throughput;
 	}
-	public void setThroughput(int throughput) {
+	public void setThroughput(String throughput) {
 		this.throughput = throughput;
 	}
-	public int getTotalTime() {
+	public String getTotalTime() {
 		return totalTime;
 	}
-	public void setTotalTime(int totalTime) {
+	public void setTotalTime(String totalTime) {
 		this.totalTime = totalTime;
 	}
+
 	/*public List<TestingResultTraceSub> getResultSubData() {
 		return resultSubData;
 	}
