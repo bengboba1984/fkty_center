@@ -114,8 +114,8 @@
 	</table>
 	</div>
 </div>
-<div id="dlg-ping" class="easyui-dialog" style="width:800px" closed="true" >
-   <div style="width:500px;height:500px" fit="true">
+<div id="dlg-ping" class="easyui-dialog" style="width:600px" closed="true" >
+   <div style="width:500px" fit="true">
         <table style="width: 100%">
 	       <tr>
 				<td class="panel-header" style="width: 30%" align="center">平均时延</td>
@@ -136,8 +136,8 @@
     	</table>
      </div>
 </div>
-<div id="dlg-trace" class="easyui-dialog" style="width:800px" closed="true" >
-   <div style="width:700px;height:500px" fit="true">
+<div id="dlg-trace" class="easyui-dialog" style="width:600px" closed="true" >
+   <div style="width:500px" fit="true">
         <table style="width: 100%">
 	       <tr>
 				<td class="panel-header" style="width: 30%" align="center">平均时延</td>
@@ -167,8 +167,8 @@
     	</table>
      </div>
 </div>
-<div id="dlg-speed" class="easyui-dialog" style="width:800px" closed="true" >
-   <div style="width:700px;height:500px" fit="true">
+<div id="dlg-speed" class="easyui-dialog" style="width:600px" closed="true" >
+   <div style="width:500px" fit="true">
         <table style="width: 100%">
 	       <tr>
 				<td class="panel-header" style="width: 30%" align="center">下载峰值速率</td>
@@ -189,8 +189,8 @@
     	</table>
      </div>
 </div>
-<div id="dlg-dns" class="easyui-dialog" style="width:800px" closed="true" >
-   <div style="width:700px;height:500px" fit="true">
+<div id="dlg-dns" class="easyui-dialog" style="width:600px" closed="true" >
+   <div style="width:500px" fit="true">
         <table style="width: 100%">
 	      <tr>
 				<td class="panel-header" style="width: 30%" align="center">记录数</td>
@@ -207,8 +207,8 @@
     	</table>
      </div>
 </div>
-<div id="dlg-web" class="easyui-dialog" style="width:800px" closed="true" >
-   <div style="width:700px;height:500px" fit="true">
+<div id="dlg-web" class="easyui-dialog" style="width:600px" closed="true" >
+   <div style="width:500px" fit="true">
         <table style="width: 100%">
 	       <tr>
 				<td class="panel-header" style="width: 30%" align="center">目标IP</td>
@@ -370,7 +370,7 @@
 	function openWebDiv(id){
 		$.ajax({
 	        url: 'testing_result_template_web_list.action',
-	        type: 'post',
+	        type: 'get',
 	        data:{
 	        	targetId: id
 	 },
