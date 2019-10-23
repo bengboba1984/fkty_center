@@ -90,9 +90,9 @@ public class TestingTemplateResultServlet  extends HttpServlet {
             			      JSONObject jsonObject1 = (JSONObject) iterator.next();
             			             //将数组转换成字符串
             			             JSONObject obj = jsonObject1.getJSONObject("result");
-            			             int avgDelay  = obj.getIntValue("avgDelay");
-            			             int avgJitter  = obj.getIntValue("avgJitter");
-            			             int lossPercent  = obj.getIntValue("lossPercent");
+            			             String avgDelay  = obj.getString("avgDelay");
+            			             String avgJitter  = obj.getString("avgJitter");
+            			             String lossPercent  = obj.getString("lossPercent");
             			             String hostIp  = obj.getString("hostIp"); 
             			             d.setAvgDelay(avgDelay);
             			             d.setAvgJitter(avgJitter);
@@ -189,7 +189,7 @@ public class TestingTemplateResultServlet  extends HttpServlet {
             			             String throughput  = obj.getString("throughput");
             			             String totalTime  = obj.getString("totalTime");
             			             String hostIp  = obj.getString("hostIp");
-            			             String requestUrl  = obj.getString("requestUrl");
+            			             String nodeIp  = obj.getString("nodeIp");
             			             d.setConnectTime(connectTime);
             			             d.setResolveTime(resolveTime);
             			             d.setFirstByteTime(firstByteTime);
@@ -199,7 +199,7 @@ public class TestingTemplateResultServlet  extends HttpServlet {
             			             d.setThroughput(throughput);
             			             d.setTotalTime(totalTime);
             			             d.setHostIp(hostIp);
-            			             d.setRequestUrl(requestUrl);
+            			             d.setNodeIp(nodeIp);
             			             String typeId = biz.insertTestingResultWeb(d);
             			             biz.updateResultTestTypeId("result_web_id",typeId,id);
             			 }   

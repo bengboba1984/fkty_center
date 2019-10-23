@@ -3,27 +3,27 @@ package ra.com.dataManagement.model;
 import java.util.Map;
 
 public class SpeedJsonItem {
-	private String continueTimes = "";
-	private String downloadSize = "";
+	private int continueTimes ;
+	private int downloadSize ;
 	private String hostIps = "";
-	private String jitterThroughput = "";
-	private String maxTestTime = "";
-	private String minTestTime = "";
+	private int jitterThroughput ;
+	private int maxTestTime ;
+	private int minTestTime ;
 	private boolean onlyTestingAndSummary = true;
-	private String payloadSize = "";
-	private String requestPieceSize = "";
-	private String requestTimeout = "";
-	private String optimizations = "{}";
-	public String getContinueTimes() {
+	private int payloadSize ;
+	private int requestPieceSize ;
+	private int requestTimeout ;
+	private String optimizations = "{\"indexNameList\":[],\"conditionList\":[]}";
+	public int getContinueTimes() {
 		return continueTimes;
 	}
-	public void setContinueTimes(String continueTimes) {
+	public void setContinueTimes(int continueTimes) {
 		this.continueTimes = continueTimes;
 	}
-	public String getDownloadSize() {
+	public int getDownloadSize() {
 		return downloadSize;
 	}
-	public void setDownloadSize(String downloadSize) {
+	public void setDownloadSize(int downloadSize) {
 		this.downloadSize = downloadSize;
 	}
 	public String getHostIps() {
@@ -32,22 +32,22 @@ public class SpeedJsonItem {
 	public void setHostIps(String hostIps) {
 		this.hostIps = hostIps;
 	}
-	public String getJitterThroughput() {
+	public int getJitterThroughput() {
 		return jitterThroughput;
 	}
-	public void setJitterThroughput(String jitterThroughput) {
+	public void setJitterThroughput(int jitterThroughput) {
 		this.jitterThroughput = jitterThroughput;
 	}
-	public String getMaxTestTime() {
+	public int getMaxTestTime() {
 		return maxTestTime;
 	}
-	public void setMaxTestTime(String maxTestTime) {
+	public void setMaxTestTime(int maxTestTime) {
 		this.maxTestTime = maxTestTime;
 	}
-	public String getMinTestTime() {
+	public int getMinTestTime() {
 		return minTestTime;
 	}
-	public void setMinTestTime(String minTestTime) {
+	public void setMinTestTime(int minTestTime) {
 		this.minTestTime = minTestTime;
 	}
 	public boolean isOnlyTestingAndSummary() {
@@ -56,22 +56,22 @@ public class SpeedJsonItem {
 	public void setOnlyTestingAndSummary(boolean onlyTestingAndSummary) {
 		this.onlyTestingAndSummary = onlyTestingAndSummary;
 	}
-	public String getPayloadSize() {
+	public int getPayloadSize() {
 		return payloadSize;
 	}
-	public void setPayloadSize(String payloadSize) {
+	public void setPayloadSize(int payloadSize) {
 		this.payloadSize = payloadSize;
 	}
-	public String getRequestPieceSize() {
+	public int getRequestPieceSize() {
 		return requestPieceSize;
 	}
-	public void setRequestPieceSize(String requestPieceSize) {
+	public void setRequestPieceSize(int requestPieceSize) {
 		this.requestPieceSize = requestPieceSize;
 	}
-	public String getRequestTimeout() {
+	public int getRequestTimeout() {
 		return requestTimeout;
 	}
-	public void setRequestTimeout(String requestTimeout) {
+	public void setRequestTimeout(int requestTimeout) {
 		this.requestTimeout = requestTimeout;
 	}
 	public String getOptimizations() {
@@ -80,5 +80,5 @@ public class SpeedJsonItem {
 	public void setOptimizations(String optimizations) {
 		this.optimizations = optimizations;
 	}
-		
+	
 }

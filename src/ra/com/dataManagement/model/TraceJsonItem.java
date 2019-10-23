@@ -1,103 +1,103 @@
 package ra.com.dataManagement.model;
 
 public class TraceJsonItem {
-	private String payloadSize;
-	private String protocolType;
-	private String maxHops;
-	private String replyTimeout;
-	private String packetCount;
-	private String spacingTime;
-	private String tos;
-	private String hopTrimMaxCount = "0";
-	private String hopTrimMinCount = "0";
-	private String onlyTestingAndSummary = "true";
-	private String simplePath  ="true";
-	private String testMiddleRouter = "false";
-	private String whetherStatistical = "true";
+	private int payloadSize;
+	private int protocolType;
+	private int maxHops;
+	private int replyTimeout;
+	private int packetCount;
+	private int spacingTime;
+	private int tos;
+	private int hopTrimMaxCount = 0;
+	private int hopTrimMinCount = 0;
+	private boolean onlyTestingAndSummary = true;
+	private boolean simplePath  =true;
+	private boolean testMiddleRouter = false;
+	private boolean whetherStatistical = true;
 	private String optimizations = "{\"indexNameList\":[],\"conditionList\":[]}";
-	public String getPayloadSize() {
+	public int getPayloadSize() {
 		return payloadSize;
 	}
-	public void setPayloadSize(String payloadSize) {
+	public void setPayloadSize(int payloadSize) {
 		this.payloadSize = payloadSize;
 	}
-	public String getProtocolType() {
+	public int getProtocolType() {
 		return protocolType;
 	}
-	public void setProtocolType(String protocolType) {
+	public void setProtocolType(int protocolType) {
 		this.protocolType = protocolType;
 	}
-	public String getMaxHops() {
+	public int getMaxHops() {
 		return maxHops;
 	}
-	public void setMaxHops(String maxHops) {
+	public void setMaxHops(int maxHops) {
 		this.maxHops = maxHops;
 	}
-	public String getReplyTimeout() {
+	public int getReplyTimeout() {
 		return replyTimeout;
 	}
-	public void setReplyTimeout(String replyTimeout) {
+	public void setReplyTimeout(int replyTimeout) {
 		this.replyTimeout = replyTimeout;
 	}
-	public String getPacketCount() {
+	public int getPacketCount() {
 		return packetCount;
 	}
-	public void setPacketCount(String packetCount) {
+	public void setPacketCount(int packetCount) {
 		this.packetCount = packetCount;
 	}
-	public String getSpacingTime() {
+	public int getSpacingTime() {
 		return spacingTime;
 	}
-	public void setSpacingTime(String spacingTime) {
+	public void setSpacingTime(int spacingTime) {
 		this.spacingTime = spacingTime;
+	}
+	public int getTos() {
+		return tos;
+	}
+	public void setTos(int tos) {
+		this.tos = tos;
+	}
+	public int getHopTrimMaxCount() {
+		return hopTrimMaxCount;
+	}
+	public void setHopTrimMaxCount(int hopTrimMaxCount) {
+		this.hopTrimMaxCount = hopTrimMaxCount;
+	}
+	public int getHopTrimMinCount() {
+		return hopTrimMinCount;
+	}
+	public void setHopTrimMinCount(int hopTrimMinCount) {
+		this.hopTrimMinCount = hopTrimMinCount;
+	}
+	public boolean isOnlyTestingAndSummary() {
+		return onlyTestingAndSummary;
+	}
+	public void setOnlyTestingAndSummary(boolean onlyTestingAndSummary) {
+		this.onlyTestingAndSummary = onlyTestingAndSummary;
+	}
+	public boolean isSimplePath() {
+		return simplePath;
+	}
+	public void setSimplePath(boolean simplePath) {
+		this.simplePath = simplePath;
+	}
+	public boolean isTestMiddleRouter() {
+		return testMiddleRouter;
+	}
+	public void setTestMiddleRouter(boolean testMiddleRouter) {
+		this.testMiddleRouter = testMiddleRouter;
+	}
+	public boolean isWhetherStatistical() {
+		return whetherStatistical;
+	}
+	public void setWhetherStatistical(boolean whetherStatistical) {
+		this.whetherStatistical = whetherStatistical;
 	}
 	public String getOptimizations() {
 		return optimizations;
 	}
 	public void setOptimizations(String optimizations) {
 		this.optimizations = optimizations;
-	}
-	public String getTos() {
-		return tos;
-	}
-	public void setTos(String tos) {
-		this.tos = tos;
-	}
-	public String getHopTrimMaxCount() {
-		return hopTrimMaxCount;
-	}
-	public void setHopTrimMaxCount(String hopTrimMaxCount) {
-		this.hopTrimMaxCount = hopTrimMaxCount;
-	}
-	public String getHopTrimMinCount() {
-		return hopTrimMinCount;
-	}
-	public void setHopTrimMinCount(String hopTrimMinCount) {
-		this.hopTrimMinCount = hopTrimMinCount;
-	}
-	public String getOnlyTestingAndSummary() {
-		return onlyTestingAndSummary;
-	}
-	public void setOnlyTestingAndSummary(String onlyTestingAndSummary) {
-		this.onlyTestingAndSummary = onlyTestingAndSummary;
-	}
-	public String getSimplePath() {
-		return simplePath;
-	}
-	public void setSimplePath(String simplePath) {
-		this.simplePath = simplePath;
-	}
-	public String getTestMiddleRouter() {
-		return testMiddleRouter;
-	}
-	public void setTestMiddleRouter(String testMiddleRouter) {
-		this.testMiddleRouter = testMiddleRouter;
-	}
-	public String getWhetherStatistical() {
-		return whetherStatistical;
-	}
-	public void setWhetherStatistical(String whetherStatistical) {
-		this.whetherStatistical = whetherStatistical;
 	}
 	
 	

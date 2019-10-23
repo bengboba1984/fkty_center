@@ -4,10 +4,10 @@ import java.util.List;
 
 public class TestingResultPing {
 	private String resultPingId;
-	private int avgDelay;
-	private int avgJitter;
+	private String avgDelay;
+	private String avgJitter;
 	private String hostIp;
-	private int lossPercent;
+	private String lossPercent;
 	private List<TestingResultTraceSub> resultSubData;
 	
 	public String getResultPingId() {
@@ -16,28 +16,30 @@ public class TestingResultPing {
 	public void setResultPingId(String resultPingId) {
 		this.resultPingId = resultPingId;
 	}
-	public int getAvgDelay() {
-		return avgDelay;
-	}
-	public void setAvgDelay(int avgDelay) {
-		this.avgDelay = avgDelay;
-	}
-	public int getAvgJitter() {
-		return avgJitter;
-	}
-	public void setAvgJitter(int avgJitter) {
-		this.avgJitter = avgJitter;
-	}
+	
 	public String getHostIp() {
 		return hostIp;
 	}
 	public void setHostIp(String hostIp) {
 		this.hostIp = hostIp;
 	}
-	public int getLossPercent() {
+
+	public String getAvgDelay() {
+		return avgDelay;
+	}
+	public void setAvgDelay(String avgDelay) {
+		this.avgDelay = avgDelay;
+	}
+	public String getAvgJitter() {
+		return avgJitter;
+	}
+	public void setAvgJitter(String avgJitter) {
+		this.avgJitter = avgJitter;
+	}
+	public String getLossPercent() {
 		return lossPercent;
 	}
-	public void setLossPercent(int lossPercent) {
+	public void setLossPercent(String lossPercent) {
 		this.lossPercent = lossPercent;
 	}
 	public List<TestingResultTraceSub> getResultSubData() {

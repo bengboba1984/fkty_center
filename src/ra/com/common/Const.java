@@ -28,7 +28,7 @@ public class Const {
 	public final static String ADMIN_ROLE_ID = " 1, 8 ";
 	public final static String[][] CONFIG_FUNCTION_TYPE= {{"13","1417.423*pow(((para1-para2)/1000),2.5)"},{"15","11840*pow(((para1-para2)/1000),2.5)"}};
 	public final static int TEMPLATE_ARAMETER_PING = 1;
-	public final static int TEMPLATE_ARAMETER_TRACE = 2;
+	public final static int TEMPLATE_ARAMETER_TRACE = 10;
 	public final static int TEMPLATE_ARAMETER_SPEED = 1000;
 	public final static int TEMPLATE_ARAMETER_DNS = 5;
 	public final static int TEMPLATE_ARAMETER_WEB = 11;
