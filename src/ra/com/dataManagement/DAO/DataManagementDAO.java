@@ -110,4 +110,18 @@ public interface DataManagementDAO {
 	
 	public void updateResultTestTypeId(String column,String typeId,String templateId)throws GenericDAOException;
 	
+	public ListChunk getTestingResultTemplateDataList(String roleId,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public ListChunk getTestingResultDns(String id,int pageNo, int pageSize)throws GenericDAOException;
+	
+	public ListChunk getTestingResultPing(String id,int pageNo, int pageSize)throws GenericDAOException;
+	
+	public ListChunk getTestingResultSpeed(String id,int pageNo, int pageSize)throws GenericDAOException;
+	
+	public ListChunk getTestingResultWeb(String id,int pageNo, int pageSize)throws GenericDAOException;
+	
+	public ListChunk getTestingResultTrace(String id,int pageNo, int pageSize)throws GenericDAOException;
+	
+	public ListChunk getTestingResultTraceSub(String id,int pageNo, int pageSize)throws GenericDAOException;
+	
 }

@@ -671,7 +671,49 @@
 			/dataManagement/testingResultTemplate.jsp
 			</result>
 		</action>
+		<action name="testing_result_template_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultTemplateDataList">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
 		
+		<action name="testing_result_template_ping_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultPing">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_result_template_dns_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultDns">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_result_template_trace_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultTrace">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_result_template_web_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultWeb">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_result_template_speed_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultSpeed">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="testing_result_template_trace_sub_list" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="getTestingResultTraceSub">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
 	</package>
 
 </struts>

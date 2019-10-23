@@ -57,8 +57,6 @@ public class TestingTemplateResultServlet  extends HttpServlet {
 		String result = "";
 		try {
 			json = biz.getItestorTemplateList();
-			String strURL = req.getParameter("url");
-//			String params = req.getParameter("params");
 			String params = reqJson(req);
 			LOGGER.debug("==========TestingTemplateResultServlet doPost");
 			System.out.println("====params="+params);

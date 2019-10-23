@@ -359,4 +359,83 @@ public class DataManagementFacade {
 	public void updateResultTestTypeId(String column,String typeId,String templateId)throws Exception{
 		dao.updateResultTestTypeId(column,typeId,templateId);
 	}
+	
+	public Collection getTestingResultTemplateDataList(String roleId) throws Exception {
+		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,1,1000);
+		return lc.getCollection();
+	}
+	
+	public Map getTestingResultDns(String id) throws Exception {
+		ListChunk lc = dao.getTestingResultDns(id,1,1000);
+		Map map = new HashMap();
+		if(lc!=null&&lc.getCollection()!=null&&lc.getCollection().size()>0){
+			TestingResultDns d = (TestingResultDns)((ArrayList)lc.getCollection()).get(0);
+			map.put("result", d);
+		}else{
+			map.put("null","null");
+		}
+		return map;
+	}
+	
+	public Map getTestingResultPing(String id) throws Exception {
+		ListChunk lc = dao.getTestingResultPing(id,1,1000);
+		Map map = new HashMap();
+		if(lc!=null&&lc.getCollection()!=null&&lc.getCollection().size()>0){
+			TestingResultPing d = (TestingResultPing)((ArrayList)lc.getCollection()).get(0);
+			map.put("result", d);
+		}else{
+			map.put("null","null");
+		}
+		return map;
+	}
+	
+	public Map getTestingResultSpeed(String id) throws Exception {
+		ListChunk lc = dao.getTestingResultSpeed(id,1,1000);
+		Map map = new HashMap();
+		if(lc!=null&&lc.getCollection()!=null&&lc.getCollection().size()>0){
+			TestingResultSpeed d = (TestingResultSpeed)((ArrayList)lc.getCollection()).get(0);
+			map.put("result", d);
+		}else{
+			map.put("null","null");
+		}
+		return map;
+	}
+	
+	public Map getTestingResultWeb(String id) throws Exception {
+		ListChunk lc = dao.getTestingResultWeb(id,1,1000);
+		Map map = new HashMap();
+		if(lc!=null&&lc.getCollection()!=null&&lc.getCollection().size()>0){
+			TestingResultWeb d = (TestingResultWeb)((ArrayList)lc.getCollection()).get(0);
+			map.put("result", d);
+		}else{
+			map.put("null","null");
+		}
+		return map;
+	}
+	
+	public Map getTestingResultTrace(String id) throws Exception {
+		ListChunk lc = dao.getTestingResultTrace(id,1,1000);
+		Map map = new HashMap();
+		if(lc!=null&&lc.getCollection()!=null&&lc.getCollection().size()>0){
+			TestingResultTrace d = (TestingResultTrace)((ArrayList)lc.getCollection()).get(0);
+			map.put("result", d);
+		}else{
+			map.put("null","null");
+		}
+		return map;
+	}
+	
+	public Map getTestingResultTraceSub(String id) throws Exception {
+		ListChunk lc = dao.getTestingResultTraceSub(id,1,1000);
+		Map map = new HashMap();
+		if(lc!=null&&lc.getCollection()!=null&&lc.getCollection().size()>0){
+			TestingResultTraceSub d = (TestingResultTraceSub)((ArrayList)lc.getCollection()).get(0);
+			map.put("result", d);
+		}else{
+			map.put("null","null");
+		}
+		return map;
+	}
+	
+	
 }

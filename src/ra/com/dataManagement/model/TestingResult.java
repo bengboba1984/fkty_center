@@ -1,6 +1,7 @@
 package ra.com.dataManagement.model;
 
 public class TestingResult {
+	
 	private String  testingResultId;
 	private String  resultSeq;
 	private String  testingDate;
