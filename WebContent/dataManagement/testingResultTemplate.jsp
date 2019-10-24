@@ -16,7 +16,9 @@
 		function doSearch(){
 			$('#dg').datagrid('load',{
 				testingDateBegin: $('#testingDateBegin').datebox('getValue'),
-				testingDateEnd: $('#testingDateEnd').datebox('getValue')
+				testingDateEnd: $('#testingDateEnd').datebox('getValue'),
+				testTypeSearch:$('#testTypeSearch').combobox('getValues'),
+				accountSearch:$('#accountSearch').val()
 		    	});
 		} 
 		
@@ -62,13 +64,13 @@
 				<input id="testingDateEnd" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input></td>
 				<td class="panel-header" style="width:10%" align="center">测试类型</td>
 				<td style="width:15%"><input class="easyui-combobox" name="testTypeSearch" id="testTypeSearch" style="width:80%" value="${testTypeSearch}"
-						data-options="url:'test_type_list.action',
+						data-options="url:'test_group_list.action?showAllFlag=1',
 												method:'post',
                     						  	valueField:'key',
 												textField:'value',
                     						  	panelHeight:'auto'"/></td>
 				<td class="panel-header" style="width:10%" align="center">装维单位</td>
-				<td style="width:15%"><input id="userNameSearch" class="easyui-textbox" style="width:80%"></td>
+				<td style="width:15%"><input id="accountSearch" class="easyui-textbox" style="width:80%"></td>
 			</tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">装维人员</td>

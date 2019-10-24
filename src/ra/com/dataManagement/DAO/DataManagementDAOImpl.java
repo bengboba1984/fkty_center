@@ -591,11 +591,27 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		simpleExecute(sql.toString(), param);
 	}
 	
-	public ListChunk getTestingResultTemplateDataList(String roleId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id FROM wasu.testing_result t ");
-		
-		sql.append(" ");
+		sql.append(" WHERE 1=1 ");
+		ArrayList<String> param = new ArrayList<String>();
+		if (testingDateBegin != null && !"".equals(testingDateBegin)) {
+			sql.append(" AND testing_date >= STR_TO_DATE( ?, '%Y-%m-%d')");
+			param.add(testingDateBegin);
+		}
+		if (testingDateEnd != null && !"".equals(testingDateEnd)) {
+			sql.append(" AND testing_date >= STR_TO_DATE( ?, '%Y-%m-%d')");
+			param.add(testingDateEnd);
+		}
+		if (testTypeSearch != null && !"".equals(testTypeSearch)&& !"-1".equals(testTypeSearch)) {
+			sql.append(" AND testing_template_group_id = ?");
+			param.add(testTypeSearch);
+		}
+		if (accountSearch != null && !"".equals(accountSearch)) {
+			sql.append(" AND account like ? ");
+			param.add(accountSearch+"%");
+		}
 		return getListChunkByProperty(sql.toString(), null,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResult");
 	}
 	
