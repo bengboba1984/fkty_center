@@ -1,5 +1,6 @@
 package ra.com.dataManagement.bussiness;
 
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import com.alibaba.fastjson.JSON;
 
 import ra.com.common.Const;
+import ra.com.common.U;
 import ra.com.common.dao.GenericDAOException;
 import ra.com.common.model.ListChunk;
 import ra.com.dataManagement.DAO.DataManagementDAO;
@@ -486,6 +488,7 @@ public class DataManagementFacade {
 			TestingResultTrace d = (TestingResultTrace) ((ArrayList) lc
 					.getCollection()).get(0);
 			map.put("result", d);
+			map.put("success", "success");
 		} else {
 			map.put("null", "null");
 		}
@@ -531,6 +534,15 @@ public class DataManagementFacade {
 		seq = currentDate + seq;
 		System.out.println("++++++++++++++++seq:" + seq);
 		return seq;
+	}
+	
+	public InputStream downloadResultTemplateData(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch)throws Exception{
+		String[] columns = new String[]{"resultSeq","testingDate","tester","account","stbId","testingTemplateGroupId"};
+		String[] titles = new String[]{"测试帐号","时间","工号","宽带帐号","STBID","测试类型"};
+		ListChunk lc = dao.getTestingResultTemplateDataList(null,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,1, 1000);
+		Collection rs = lc.getCollection();
+		return U.downloadSimpleExcel(rs, "ra.com.dataManagement.model.TestingResult", titles,
+				columns);
 	}
 
 }

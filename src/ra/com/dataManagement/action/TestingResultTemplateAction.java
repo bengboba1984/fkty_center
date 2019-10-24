@@ -1,6 +1,7 @@
 package ra.com.dataManagement.action;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -26,6 +27,8 @@ public class TestingResultTemplateAction  extends BaseAction {
 	private String accountSearch;
 	private String testerSearch;
 	private JSONObject message;
+	private InputStream excelStream;
+	private String excelFileName;
 	public String show() {
 		testTypeSearch = "-1";
 		return "show";
@@ -153,6 +156,13 @@ public class TestingResultTemplateAction  extends BaseAction {
 		System.out.println("SUCCESS");
 		return SUCCESS;
 	}
+	
+	public String downloadResultTemplateData() throws Exception {
+		biz = DataManagementFacade.getInstance();
+		excelStream = biz.downloadResultTemplateData(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch);
+		excelFileName = "ResultTemplateReport.xls";
+		return SUCCESS;
+	}
 
 	public JSONObject getDataList() {
 		return dataList;
@@ -240,6 +250,22 @@ public class TestingResultTemplateAction  extends BaseAction {
 
 	public void setTesterSearch(String testerSearch) {
 		this.testerSearch = testerSearch;
+	}
+
+	public InputStream getExcelStream() {
+		return excelStream;
+	}
+
+	public void setExcelStream(InputStream excelStream) {
+		this.excelStream = excelStream;
+	}
+
+	public String getExcelFileName() {
+		return excelFileName;
+	}
+
+	public void setExcelFileName(String excelFileName) {
+		this.excelFileName = excelFileName;
 	}
 	
 	

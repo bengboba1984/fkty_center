@@ -17,7 +17,7 @@
 			$('#dg').datagrid('load',{
 				testingDateBegin: $('#testingDateBegin').datebox('getValue'),
 				testingDateEnd: $('#testingDateEnd').datebox('getValue'),
-				testTypeSearch:$('#testTypeSearch').combobox('getValues'),
+				testTypeSearch:$('#testTypeSearch').combobox('getValue'),
 				accountSearch:$('#accountSearch').val(),
 				testerSearch:$('#testerSearch').val()
 		    	});
@@ -44,10 +44,14 @@
 		}
 		
 		function onClickRow(index,rowValue) {
-			
+		
+		}
+		function doDownload(){
+			var url="testing_result_template_download.action?testingDateBegin="+$('#testingDateBegin').datebox('getValue')+'&testingDateEnd='+$('#testingDateEnd').datebox('getValue')
+			+'&testTypeSearch='+$('#testTypeSearch').combobox('getValue')+'&accountSearch='+$('#accountSearch').val()+'&testerSearch='+$('#testerSearch').val();
+			window.open(url);
 			
 		}
-		
 		
 		
 	</script>
@@ -64,7 +68,7 @@
 				<td style="width:25%"><input id="testingDateBegin" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input>--
 				<input id="testingDateEnd" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input></td>
 				<td class="panel-header" style="width:10%" align="center">测试类型</td>
-				<td style="width:15%"><input class="easyui-combobox" name="testTypeSearch" id="testTypeSearch" style="width:80%" value="${testTypeSearch}"
+				<td style="width:15%"><input class="easyui-combobox"  id="testTypeSearch" style="width:80%" value="${testTypeSearch}"
 						data-options="url:'test_group_list.action?showAllFlag=1',
 												method:'post',
                     						  	valueField:'key',
@@ -87,7 +91,7 @@
 				<td colspan="4" align="right">
 					<a href="#" class="easyui-linkbutton" id="search" data-options="iconCls:'icon-search',disabled:true" onClick="doSearch()"><s:text name="common.search"></s:text></a>
 				
-					<a href="#" class="easyui-linkbutton" id="download" data-options="iconCls:'icon-download',disabled:true" onClick="doSearch()">导出</a>
+					<a href="#" class="easyui-linkbutton" id="download" data-options="iconCls:'icon-download',disabled:true" onClick="doDownload()">导出</a>
 				</td>
 			</tr>
 		</table>
@@ -106,7 +110,7 @@
 				<th data-options="field:'hireDate',sortable:'true',align:'center'">单位</th>
 				<th data-options="field:'account',sortable:'true',align:'center',width:'10%'">宽带帐号</th>	
 				<th data-options="field:'stbId',sortable:'true',align:'center',width:'20%'">STBID</th>
-				<th data-options="field:'position',sortable:'true',align:'center'">测试类型</th>
+				<th data-options="field:'testingTemplateGroupId',sortable:'true',align:'center'">测试类型</th>
 				<th data-options="field:'resultPingId',sortable:'true',align:'center',formatter:formatPingValue">PING</th>
 				<th data-options="field:'resultTraceId',sortable:'true',align:'center',formatter:formatTraceValue">TRACE</th>
 				<th data-options="field:'resultSpeedId',sortable:'true',align:'center',formatter:formatSpeedValue">测速</th>
@@ -348,6 +352,27 @@
 		
 	}
 	function openTraceDiv(id){
+		/* var url= 'testing_result_template_trace_list.action?targetId='+id;
+		var effectRow = new Object();
+		$.post(url,
+				effectRow,function(response) {
+			if (response.success=='success') {
+				var result = response.result;
+				$('#avgDelay1').text(result.avgDelay+' ms');
+	        	$('#avgJitter11').text(result.avgJitter+' ms');
+	        	$('#hopCount1').text(result.hopCount);
+	        	$('#hostIp1').text(result.hostIp);
+	        	$('#lossPercent1').text(result.lossPercent+'  %');
+	        	//$('#subItemCount1').text(result.subItemCount);
+	        	$('#subItemCount1').html('<a href="#" class="easyui-linkbutton" onClick="openTraceSubDiv('+result.resultTraceId+')" ><span id="subItemCount1" > '+result.subItemCount+'</span></a>');
+	        	
+				$('#dlg-trace').dialog('open').dialog('center').dialog('setTitle','详情下钻');
+			} else{
+			$.messager.alert('详情失败');
+		}
+	}, "JSON").error(function() {
+		$.messager.alert("详情失败","详情失败！");
+	}); */
 		$.ajax({
 	        url: 'testing_result_template_trace_list.action',
 	        type: 'post',
@@ -363,13 +388,12 @@
 	        	$('#hopCount1').text(result.hopCount);
 	        	$('#hostIp1').text(result.hostIp);
 	        	$('#lossPercent1').text(result.lossPercent+'  %');
-	        	//$('#subItemCount1').text(result.subItemCount);
 	        	$('#subItemCount1').html('<a href="#" class="easyui-linkbutton" onClick="openTraceSubDiv('+result.resultTraceId+')" ><span id="subItemCount1" > '+result.subItemCount+'</span></a>');
 	        	
 				$('#dlg-trace').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 		
 	        }
-	    }); 
+	    });  
 		
 	}
 	function openDnsDiv(id){

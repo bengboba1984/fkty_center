@@ -593,7 +593,9 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	
 	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
-				"SELECT testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id FROM wasu.testing_result t ");
+				"SELECT testing_result_id,CONCAT(result_seq,'') result_seq,testing_date,tester,account,stb_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,"
+				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.testing_template_group_id and d.type='template_type') testing_template_group_id"
+				+ " FROM wasu.testing_result t ");
 		sql.append(" WHERE 1=1 ");
 		ArrayList<String> param = new ArrayList<String>();
 		if (testingDateBegin != null && !"".equals(testingDateBegin)) {
