@@ -482,12 +482,12 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	
 	public void insertTestingResult(TestingResult item)throws GenericDAOException{
 		String sql = "insert into wasu.testing_result (testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id) "
-					+ " values (?,?, ?,?, ?,?, ?,?, ?,?, ?,?) ";
+					+ " values (?,?, sysdate(),?, ?,?, ?,?, ?,?, ?,?) ";
 		ArrayList<String> param = new ArrayList<String>();
 		//result_trace_id,result_web_id
 		param.add(item.getTestingResultId());
 		param.add(item.getResultSeq());
-		param.add(item.getTestingDate());
+		//param.add(item.getTestingDate());
 		param.add(item.getTester());
 		param.add(item.getAccount());
 		param.add(item.getStbId());
@@ -601,7 +601,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	
 	
 	public ListChunk getTestingResultDns(String id,int pageNo, int pageSize)throws GenericDAOException{
-		String sql = "select number_of_answers,resolve_time,success_percent  from  wasu.testing_result_dns where result_dns_id = ?) ";
+		String sql = "select number_of_answers,resolve_time,success_percent  from  wasu.testing_result_dns where result_dns_id = ? ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(id);
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResultDns");
@@ -622,23 +622,33 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	}
 	
 	public ListChunk getTestingResultWeb(String id,int pageNo, int pageSize)throws GenericDAOException{
-		String sql = "select host_ip,request_url,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time from  wasu.testing_result_web  where result_web_id = ? ";
+		String sql = "select host_ip,request_url,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time  "
+				+ "  from  wasu.testing_result_web "
+				+ "where result_web_id = ? ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(id);
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResultWeb");
 	}
 	
 	public ListChunk getTestingResultTrace(String id,int pageNo, int pageSize)throws GenericDAOException{
-		String sql = "select avg_delay,avg_jitter,hop_count,host_ip,loss_percent from  wasu.testing_result_trace where result_trace_id = ? ";
+		String sql = "select result_trace_id,avg_delay,avg_jitter,hop_count,host_ip,loss_percent, "
+				+ " (select sum(1) from  wasu.testing_result_trace_sub sub where t.result_trace_id = sub.result_trace_id) subItemCount "
+				+ "from  wasu.testing_result_trace t where result_trace_id = ? ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(id);
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResultTrace");
 	}
 	public ListChunk getTestingResultTraceSub(String id,int pageNo, int pageSize)throws GenericDAOException{
-		String sql = "select  result_trace_id,load_index,host_ip,avg_delay,loss_percent from  wasu.testing_result_trace_sub where result_trace_sub_id = ? ";
+		String sql = "select result_trace_id,load_index,host_ip,CONCAT(avg_delay,'  ms') avg_delay,CONCAT(loss_percent,'  %') loss_percent from  wasu.testing_result_trace_sub where result_trace_id = ? ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(id);
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResultTraceSub");
+	}
+	
+	public String getMaxResult(String date) throws GenericDAOException {
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(date+"%");
+		 return (String) queryOne("SELECT max(result_seq) result_seq  FROM wasu.testing_result where result_seq like ? ", param);
 	}
 	
 }

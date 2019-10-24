@@ -9,6 +9,7 @@ public class TestingResultTrace {
 	private String hopCount;
 	private String hostIp;
 	private String lossPercent;
+	private String subItemCount;
 	private List<TestingResultTraceSub> resultSubData;
 	
 	public String getResultTraceId() {
@@ -52,6 +53,12 @@ public class TestingResultTrace {
 	}
 	public void setResultSubData(List<TestingResultTraceSub> resultSubData) {
 		this.resultSubData = resultSubData;
+	}
+	public String getSubItemCount() {
+		return subItemCount;
+	}
+	public void setSubItemCount(String subItemCount) {
+		this.subItemCount = subItemCount;
 	}
 	
 	

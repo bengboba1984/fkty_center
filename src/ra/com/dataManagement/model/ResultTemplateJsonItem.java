@@ -3,6 +3,7 @@ package ra.com.dataManagement.model;
 public class ResultTemplateJsonItem {
 	private int testType;
 	private int errorCode;
+	private String resultSeq;
 	private int applicationType;
 	private String destName;
 	private String destIp;
@@ -49,6 +50,12 @@ public class ResultTemplateJsonItem {
 	}
 	public void setResult(Object result) {
 		this.result = result;
+	}
+	public String getResultSeq() {
+		return resultSeq;
+	}
+	public void setResultSeq(String resultSeq) {
+		this.resultSeq = resultSeq;
 	}
 	
 }

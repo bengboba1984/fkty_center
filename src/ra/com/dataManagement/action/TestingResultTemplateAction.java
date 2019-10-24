@@ -139,9 +139,10 @@ public class TestingResultTemplateAction  extends BaseAction {
 		
 		try {
 			
-			ra.com.system_mgt.model.User user=(ra.com.system_mgt.model.User)request.getSession().getAttribute("loginUser");
-			String roleId = user.getDepartmentID().toString();
-			Map map = biz.getTestingResultTraceSub(targetId);
+			Collection lc = biz.getTestingResultTraceSubList(targetId);
+			Map map = new HashMap();
+			map.put("rows", U.changeListToJSON(lc));
+			System.out.println("====lc.getTotalCount():"+lc.size());
 			dataList = JSONObject.fromObject(map);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

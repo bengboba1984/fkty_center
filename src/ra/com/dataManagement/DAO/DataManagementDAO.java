@@ -124,4 +124,6 @@ public interface DataManagementDAO {
 	
 	public ListChunk getTestingResultTraceSub(String id,int pageNo, int pageSize)throws GenericDAOException;
 	
+	public String getMaxResult(String date) throws GenericDAOException;
+	
 }

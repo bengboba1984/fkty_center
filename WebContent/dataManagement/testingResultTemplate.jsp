@@ -252,7 +252,20 @@
        		</tr>
     	</table>
      </div>
-</div>   
+</div> 
+<div id="dlg-trace-sub" class="easyui-dialog" style="width:600px;height:400px" closed="true" >
+		<table id="dg-sub" class="easyui-datagrid" style="width: 100%; height: 100%" remoteSort="false"
+		data-options="iconCls: 'icon-edit',singleSelect: true,rownumbers:true,url: 'testing_result_template_trace_sub_list.action',method: 'post'">
+		<thead>
+			<tr>
+				<th data-options="field:'loadIndex',sortable:'true',align:'center',width:'25%'">序号</th>
+				<th data-options="field:'hostIp',sortable:'true',align:'center',width:'25%'">节点</th>		
+				<th data-options="field:'avgDelay',sortable:'true',align:'center',width:'25%'">平均时延</th>
+				<th data-options="field:'lossPercent',sortable:'true',align:'center',width:'25%'">丢包率</th>
+			</tr>
+		</thead>
+	</table>
+	</div>  
 <script type="text/javascript">
 	$.ajax({
         url: 'action_button_flag.action?moduleId='+$('#moduleId').val(),
@@ -305,6 +318,12 @@
         }
 		
 	}
+	function openTraceSubDiv(traceId){
+		$('#dg-sub').datagrid('load',{
+			targetId: traceId
+	    	});
+		$('#dlg-trace-sub').dialog('open').dialog('center').dialog('setTitle','详情Sub下钻');
+	}
 	function openPingDiv(id){
 		$.ajax({
 	        url: 'testing_result_template_ping_list.action',
@@ -316,10 +335,10 @@
 		 error: function(){alert('加载失败');},
 	        success: function (result) {
 	        	result = result.result;
-		$('#avgDelay').text(result.avgDelay);
-		$('#avgJitter').text(result.avgJitter);
+		$('#avgDelay').text(result.avgDelay+' ms');
+		$('#avgJitter').text(result.avgJitter+' ms');
 		$('#hostIp').text(result.hostIp);
-		$('#lossPercent').text(result.lossPercent);
+		$('#lossPercent').text(result.lossPercent+'  %');
 		$('#dlg-ping').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 	        }
 	    }); 
@@ -336,12 +355,14 @@
 		 error: function(){alert('加载失败');},
 	        success: function (result) {
 	        	result = result.result;
-	        	$('#avgDelay1').text(result.avgDelay);
-	        	$('#avgJitter11').text(result.avgJitter);
+	        	$('#avgDelay1').text(result.avgDelay+' ms');
+	        	$('#avgJitter11').text(result.avgJitter+' ms');
 	        	$('#hopCount1').text(result.hopCount);
 	        	$('#hostIp1').text(result.hostIp);
-	        	$('#lossPercent1').text(result.lossPercent);
-	        	$('#subItemCount1').text(result.subItemCount);
+	        	$('#lossPercent1').text(result.lossPercent+'  %');
+	        	//$('#subItemCount1').text(result.subItemCount);
+	        	$('#subItemCount1').html('<a href="#" class="easyui-linkbutton" onClick="openTraceSubDiv('+result.resultTraceId+')" ><span id="subItemCount1" > '+result.subItemCount+'</span></a>');
+	        	
 				$('#dlg-trace').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 		
 	        }
@@ -360,8 +381,8 @@
 	        success: function (result) {
 	        	result = result.result;
 	        	$('#numberOfAnswers4').text(result.numberOfAnswers);
-	        	$('#resolveTime4').text(result.resolveTime);
-	        	$('#successPercent4').text(result.successPercent);
+	        	$('#resolveTime4').text(result.resolveTime+' ms');
+	        	$('#successPercent4').text(result.successPercent+'  %');
 		$('#dlg-dns').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 	        }
 	    }); 
@@ -380,14 +401,14 @@
 	        	result = result.result;
 	        	$('#hostIp5').text(result.hostIp);
 	        	$('#requestUrl5').text(result.requestUrl);
-	        	$('#resolveTime5').text(result.resolveTime);
-	        	$('#connectTime5').text(result.connectTime);
-	        	$('#firstByteTime5').text(result.firstByteTime);
-	        	$('#firstPageTime5').text(result.firstPageTime);
+	        	$('#resolveTime5').text(result.resolveTime+' ms');
+	        	$('#connectTime5').text(result.connectTime+' ms');
+	        	$('#firstByteTime5').text(result.firstByteTime+' ms');
+	        	$('#firstPageTime5').text(result.firstPageTime+' ms');
 	        	$('#meanQuality5').text(result.meanQuality);
 	        	$('#responseCode5').text(result.responseCode);
-	        	$('#throughput5').text(result.throughput);
-	        	$('#totalTime5').text(result.totalTime+'ms');
+	        	$('#throughput5').text(result.throughput+' KB/S');
+	        	$('#totalTime5').text(result.totalTime+' ms');
 		$('#dlg-web').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 	        }
 	    }); 
@@ -405,15 +426,16 @@
 		 error: function(){alert('加载失败');},
 	        success: function (result) {
 	        	result = result.result;
-	        	$('#downloadMaxThroughput3').text(result.downloadMaxThroughput);
-	        	$('#downloadThroughput3').text(result.downloadThroughput);
-	        	$('#uploadMaxThroughput3').text(result.uploadMaxThroughput);
-	        	$('#uploadThroughput3').text(result.uploadThroughput);
+	        	$('#downloadMaxThroughput3').text(result.downloadMaxThroughput+' KB/S');
+	        	$('#downloadThroughput3').text(result.downloadThroughput+' KB/S');
+	        	$('#uploadMaxThroughput3').text(result.uploadMaxThroughput+' KB/S');
+	        	$('#uploadThroughput3').text(result.uploadThroughput+' KB/S');
 	    		$('#dlg-speed').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 	        }
 	    }); 
 		
 	}
+	
 		
 </script>
 </body>

@@ -5,7 +5,7 @@ import java.util.List;
 public class TestingResultWeb {
 	private String resultWebId;
 	private String hostIp;
-	private String nodeIp;
+	private String requestUrl;
 	private int resolveTime;
 	private int connectTime;
 	private int firstByteTime;
@@ -14,6 +14,7 @@ public class TestingResultWeb {
 	private int responseCode;
 	private String throughput;
 	private String totalTime;
+	
 	//private List<TestingResultTraceSub> resultSubData;
 	public String getResultWebId() {
 		return resultWebId;
@@ -28,11 +29,11 @@ public class TestingResultWeb {
 		this.hostIp = hostIp;
 	}
 
-	public String getNodeIp() {
-		return nodeIp;
+	public String getRequestUrl() {
+		return requestUrl;
 	}
-	public void setNodeIp(String nodeIp) {
-		this.nodeIp = nodeIp;
+	public void setRequestUrl(String requestUrl) {
+		this.requestUrl = requestUrl;
 	}
 	public int getResolveTime() {
 		return resolveTime;
