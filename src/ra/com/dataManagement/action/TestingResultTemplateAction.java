@@ -24,7 +24,7 @@ public class TestingResultTemplateAction  extends BaseAction {
 	private String testingDateEnd;
 	private String targetId;
 	private String accountSearch;
-	
+	private String testerSearch;
 	private JSONObject message;
 	public String show() {
 		testTypeSearch = "-1";
@@ -38,7 +38,7 @@ public class TestingResultTemplateAction  extends BaseAction {
 			
 			ra.com.system_mgt.model.User user=(ra.com.system_mgt.model.User)request.getSession().getAttribute("loginUser");
 			String roleId = user.getDepartmentID().toString();
-			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch);
+			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch);
 			Map map = new HashMap();
 			map.put("rows", U.changeListToJSON(lc));
 			System.out.println("====lc.getTotalCount():"+lc.size());
@@ -232,6 +232,14 @@ public class TestingResultTemplateAction  extends BaseAction {
 
 	public void setAccountSearch(String accountSearch) {
 		this.accountSearch = accountSearch;
+	}
+
+	public String getTesterSearch() {
+		return testerSearch;
+	}
+
+	public void setTesterSearch(String testerSearch) {
+		this.testerSearch = testerSearch;
 	}
 	
 	

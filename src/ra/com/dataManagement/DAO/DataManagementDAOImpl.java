@@ -591,7 +591,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		simpleExecute(sql.toString(), param);
 	}
 	
-	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id FROM wasu.testing_result t ");
 		sql.append(" WHERE 1=1 ");
@@ -611,6 +611,10 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		if (accountSearch != null && !"".equals(accountSearch)) {
 			sql.append(" AND account like ? ");
 			param.add(accountSearch+"%");
+		}
+		if (testerSearch != null && !"".equals(testerSearch)) {
+			sql.append(" AND tester like ? ");
+			param.add(testerSearch+"%");
 		}
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResult");
 	}

@@ -416,9 +416,9 @@ public class DataManagementFacade {
 		dao.updateResultTestTypeId(column, typeId, templateId);
 	}
 
-	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch)
+	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch)
 			throws Exception {
-		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,1, 1000);
+		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,1, 1000);
 		return lc.getCollection();
 	}
 
