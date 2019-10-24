@@ -217,7 +217,7 @@ public class TestingTemplateResultServlet extends HttpServlet {
 						d.setThroughput(throughput);
 						d.setTotalTime(totalTime);
 						d.setHostIp(hostIp);
-						d.setRequestUrl(nodeIp);
+						d.setNodeIp(nodeIp);
 						String typeId = biz.insertTestingResultWeb(d);
 						biz.updateResultTestTypeId("result_web_id", typeId, id);
 

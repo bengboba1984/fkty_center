@@ -218,7 +218,7 @@
        		</tr>
        		<tr>
 				<td class="panel-header" style="width: 30%" align="center">请求URL</td>
-	           	<td style="width: 50%"><span id="requestUrl5"></span></td>
+	           	<td style="width: 50%"><span id="nodeIp5"></span></td>
        		</tr>
        		<tr>
 				<td class="panel-header" style="width: 30%" align="center">解析时间</td>
@@ -402,7 +402,7 @@
 	        success: function (result) {
 	        	result = result.result;
 	        	$('#hostIp5').text(result.hostIp);
-	        	$('#requestUrl5').text(result.requestUrl);
+	        	$('#nodeIp5').text(result.nodeIp);
 	        	$('#resolveTime5').text(result.resolveTime+' ms');
 	        	$('#connectTime5').text(result.connectTime+' ms');
 	        	$('#firstByteTime5').text(result.firstByteTime+' ms');

@@ -536,12 +536,12 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	}
 	
 	public void insertTestingResultWeb(TestingResultWeb item)throws GenericDAOException{
-		String sql = "insert into wasu.testing_result_web (result_web_id,host_ip,request_url,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time ) "
+		String sql = "insert into wasu.testing_result_web (result_web_id,host_ip,node_ip,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time ) "
 				+ " values (?,?, ?,?,?,?, ?,?,?,?, ?) ";
 		ArrayList<String> param = new ArrayList<String>();
 		param.add(item.getResultWebId());
 		param.add(item.getHostIp());
-		param.add(item.getRequestUrl());
+		param.add(item.getNodeIp());
 		param.add(item.getResolveTime()+"");
 		param.add(item.getConnectTime()+"");
 		param.add(item.getFirstByteTime()+"");
@@ -601,7 +601,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			param.add(testingDateBegin);
 		}
 		if (testingDateEnd != null && !"".equals(testingDateEnd)) {
-			sql.append(" AND testing_date >= STR_TO_DATE( ?, '%Y-%m-%d')");
+			sql.append(" AND testing_date <= STR_TO_DATE( ?, '%Y-%m-%d')");
 			param.add(testingDateEnd);
 		}
 		if (testTypeSearch != null && !"".equals(testTypeSearch)&& !"-1".equals(testTypeSearch)) {
@@ -612,7 +612,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			sql.append(" AND account like ? ");
 			param.add(accountSearch+"%");
 		}
-		return getListChunkByProperty(sql.toString(), null,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResult");
+		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResult");
 	}
 	
 	
@@ -638,7 +638,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	}
 	
 	public ListChunk getTestingResultWeb(String id,int pageNo, int pageSize)throws GenericDAOException{
-		String sql = "select host_ip,request_url,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time  "
+		String sql = "select host_ip,node_ip,resolve_time,connect_time,first_byte_time,first_page_time,mean_quality,response_code,throughput,total_time  "
 				+ "  from  wasu.testing_result_web "
 				+ "where result_web_id = ? ";
 		ArrayList<String> param = new ArrayList<String>();
