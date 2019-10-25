@@ -673,7 +673,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		 return (String) queryOne("SELECT max(result_seq) result_seq  FROM wasu.testing_result where result_seq like ? ", param);
 	}
 	
-	public ListChunk getFtpFileDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getFtpFileDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String fileId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT file_id,account,stbid,tester,file_name,created_date,uuguid,"
 				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.type and d.type='ftp_type') type"
@@ -700,9 +700,20 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			sql.append(" AND tester like ? ");
 			param.add(testerSearch+"%");
 		}
+		if (fileId != null && !"".equals(fileId)) {
+			sql.append(" AND file_id = ? ");
+			param.add(fileId);
+		}
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.FtpFile");
 	}
 	public Collection getFileType()throws GenericDAOException {
 		return simpleKVQuery("SELECT function_value,value FROM wasu.bs_common_def where type='ftp_type' order by value", null);
+	}
+	
+	public void deleteFtpFile(String id)throws GenericDAOException {
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(id);
+		String sql = "delete FROM wasu.ftp_file_list  where file_id = ? ";
+		simpleExecute(sql,param);
 	}
 }

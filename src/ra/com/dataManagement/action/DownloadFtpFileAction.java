@@ -12,6 +12,7 @@ import net.sf.json.JSONObject;
 import ra.com.common.U;
 import ra.com.common.action.BaseAction;
 import ra.com.common.model.KeyValueImpl;
+import ra.com.common.model.ListChunk;
 import ra.com.dataManagement.bussiness.DataManagementFacade;
 
 public class DownloadFtpFileAction  extends BaseAction {
@@ -28,6 +29,7 @@ public class DownloadFtpFileAction  extends BaseAction {
 	private String accountSearch;
 	private String testerSearch;//工号
 	private String stbidSearch;
+	private String fileId;
 	private int page;
 	private int rows;
 	
@@ -44,10 +46,10 @@ public class DownloadFtpFileAction  extends BaseAction {
 		
 		try {
 			
-			Collection lc = biz.getFtpFileDataList(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,stbidSearch,page,rows);
+			ListChunk lc = biz.getFtpFileDataList(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,stbidSearch,page,rows);
 			Map map = new HashMap();
-			map.put("rows", U.changeListToJSON(lc));
-			System.out.println("====lc.getTotalCount():"+lc.size());
+			map.put("total", lc.getTotalCount());
+			map.put("rows", U.changeListToJSON(lc.getCollection()));
 			dataList = JSONObject.fromObject(map);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -82,6 +84,26 @@ public class DownloadFtpFileAction  extends BaseAction {
 		}
 
 		return SUCCESS;
+	}
+	
+	public String deleteFtpFile() throws Exception {
+		biz = DataManagementFacade.getInstance();
+		request.setCharacterEncoding("UTF-8");
+		boolean flag = true;
+		try {
+			Map temp = biz.deleteFtpFile(fileId);
+			if ("success".equals((String)temp.get("success"))||"warning".equals((String)temp.get("warning"))) {
+				message = JSONObject.fromObject(temp);
+				return SUCCESS;
+			} else {
+				message = JSONObject.fromObject(temp);
+				return ERROR;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new Exception("JSON parseArray error",e);
+		}
 	}
 	
 	public JSONObject getDataList() {
@@ -171,6 +193,14 @@ public class DownloadFtpFileAction  extends BaseAction {
 
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
 	}
 	
 	

@@ -1,5 +1,8 @@
 package ra.com.dataManagement.bussiness;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -19,6 +23,7 @@ import ra.com.common.dao.GenericDAOException;
 import ra.com.common.model.ListChunk;
 import ra.com.dataManagement.DAO.DataManagementDAO;
 import ra.com.dataManagement.model.DnsJsonItem;
+import ra.com.dataManagement.model.FtpFile;
 import ra.com.dataManagement.model.PingJsonItem;
 import ra.com.dataManagement.model.ResultTemplateJsonItem;
 import ra.com.dataManagement.model.SpeedJsonItem;
@@ -547,12 +552,55 @@ public class DataManagementFacade {
 				columns);
 	}
 	
-	public Collection getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbidSearch,int pageNo, int pageSize)
+	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbidSearch,int pageNo, int pageSize)
 			throws Exception {
-		ListChunk lc = dao.getFtpFileDataList(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,stbidSearch,pageNo,pageSize);
-		return lc.getCollection();
+		return dao.getFtpFileDataList(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,stbidSearch,null,pageNo,pageSize);
+		
 	}
 	public Collection getFileType() throws Exception {
 		return dao.getFileType();
+	}
+	
+	public Map deleteFtpFile(String fileIds) throws Exception {
+		Map temp = new HashMap();
+		String[] fileIdList = fileIds.split(",");
+		StringBuffer mess = new StringBuffer("");
+		for(String id:fileIdList){
+			ArrayList<FtpFile> col = (ArrayList)dao.getFtpFileDataList(null,null,null,null,null,null,fileIds,1,10).getCollection();
+			if(col!=null){
+				for(FtpFile f:col){
+					String path = Const.CLIENT_COLLECTOR_CONFIG+File.separator+f.getType()+File.separator+f.getTester()+File.separator;
+					File file=new File(path+f.getUuguid());
+					if(file.exists()){ file.delete();}else{ mess.append(f.getFileName() +"不存在该文件\n"); }
+					dao.deleteFtpFile(f.getFileId());
+				}
+			}
+		}
+		if(mess.length()<1){
+		  temp.put("success","success");
+		}else{
+			temp.put("mess",mess.toString());
+			temp.put("warning","warning");
+		}
+		
+		 return temp;  
+	}
+	public void downloadFtpFile(String fileIds) throws Exception {
+		String[] fileIdList = fileIds.split(",");
+		StringBuffer mess = new StringBuffer("");
+		 ZipOutputStream zipStream = null;
+	     FileInputStream zipSource = null;
+	     BufferedInputStream bufferStream = null;
+		for(String id:fileIdList){
+			ArrayList<FtpFile> col = (ArrayList)dao.getFtpFileDataList(null,null,null,null,null,null,fileIds,1,10).getCollection();
+			if(col!=null){
+				for(FtpFile f:col){
+					String path = Const.CLIENT_COLLECTOR_CONFIG+File.separator+f.getType()+File.separator+f.getTester()+File.separator;
+					File file=new File(path+f.getUuguid());
+					
+				}
+			}
+		}
+		 
 	}
 }

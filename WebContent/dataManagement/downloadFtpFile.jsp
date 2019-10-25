@@ -47,10 +47,36 @@
 		
 		}
 		function doDownload(){
-			var url="testing_result_template_download.action?testingDateBegin="+$('#testingDateBegin').datebox('getValue')+'&testingDateEnd='+$('#testingDateEnd').datebox('getValue')
-			+'&testTypeSearch='+$('#testTypeSearch').combobox('getValue')+'&accountSearch='+$('#accountSearch').val()+'&testerSearch='+$('#testerSearch').val();
-			window.open(url);
 			
+			
+		}
+		function removeit(){
+			var checkedItems = $('#dg').datagrid('getChecked');
+			var ids=' ';
+			$.each(checkedItems, function(index, item){
+				ids +=item.fileId+",";
+			}); 
+			if(ids.length==1){
+				alert("请选择需要删除的文件");
+				return false;
+			}
+			ids = ids.substr(0,ids.length-1);
+			$.ajax({
+		        url: 'ftp_file_delete.action',
+		        type: 'post',
+		        data:{
+		        	fileId: ids
+			 },
+			 dataType: 'json',
+			 error: function(){alert('删除文件失败');},
+		        success: function (result) {
+		        	if(result.success=="success"){
+		        	$.messager.alert("提示", "删除成功！");
+		        	}else if(result.warning=="warning"){
+		        	$.messager.alert("提示", result.mess);
+		        	}
+		        }
+		    }); 
 		}
 		
 		
@@ -68,6 +94,8 @@
 				<a href="#" class="easyui-linkbutton" id="search" data-options="iconCls:'icon-search',disabled:true" onClick="doSearch()"><s:text name="common.search"></s:text></a>
 				
 					<a href="#" class="easyui-linkbutton" id="download" data-options="iconCls:'icon-download'" onClick="doDownload()">下载选中的文件</a>
+					
+					<a href="javascript:void(0)" class="easyui-linkbutton" id="delete" data-options="iconCls:'icon-remove'" onclick="removeit()"><s:text name="common.remove" /></a>
 				</td></tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">时间</td>
@@ -98,10 +126,10 @@
 	<div data-options="region:'center'" style="height:79%">
 		<table id="dg" class="easyui-datagrid" title="文件列表"
 		style="width: 100%; height: 100%" remoteSort="false"
-		data-options="iconCls:'icon-edit',singleSelect:true,pagination:true,rownumbers:true,url:'download_ftp_file_data_list.action',method:'post',onClickRow:onClickRow">
+		data-options="iconCls:'icon-edit',singleSelect:false,pagination:true,rownumbers:true,url:'download_ftp_file_data_list.action',method:'post',onClickRow:onClickRow">
 		<thead>
 			<tr>
-				<th data-options="field:'fileId',checkbox:true"></th>
+				<th data-options="field:'fileId'"  checkbox="true"></th>
 				<th data-options="field:'type',sortable:'true',align:'center'">抓包类型</th>
 				<th data-options="field:'account',sortable:'true',align:'center'">宽带帐号</th>
 				<th data-options="field:'testingDate',sortable:'true',align:'center'">时间</th>		

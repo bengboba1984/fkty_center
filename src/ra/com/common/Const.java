@@ -32,4 +32,5 @@ public class Const {
 	public final static int TEMPLATE_ARAMETER_SPEED = 1000;
 	public final static int TEMPLATE_ARAMETER_DNS = 5;
 	public final static int TEMPLATE_ARAMETER_WEB = 11;
+	
 }
