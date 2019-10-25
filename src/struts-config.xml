@@ -725,6 +725,24 @@
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>
+		<action name="download_ftp_file_show" class="ra.com.dataManagement.action.DownloadFtpFileAction"
+			method="show">
+			<result name="show">
+			/dataManagement/downloadFtpFile.jsp
+			</result>
+		</action>
+		<action name="download_ftp_file_data_list" class="ra.com.dataManagement.action.DownloadFtpFileAction"
+			method="getFtpFileDataList">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
+		<action name="file_group_list" class="ra.com.dataManagement.action.DownloadFtpFileAction"
+			method="getFileType">
+				<result type="json">
+					<param name="root">selectList</param>
+				</result>
+		</action>
 	</package>
 
 </struts>

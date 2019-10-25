@@ -4,11 +4,14 @@ public class ResultTemplateJsonItem {
 	private int testType;
 	private int errorCode;
 	private String resultSeq;
-	private int applicationType;
+	private int testTemplateType;
 	private String destName;
 	private String destIp;
 	private String account;
 	private Object result;
+	private String stb_id;
+	private String tester;
+	
 	public int getTestType() {
 		return testType;
 	}
@@ -21,11 +24,12 @@ public class ResultTemplateJsonItem {
 	public void setErrorCode(int errorCode) {
 		this.errorCode = errorCode;
 	}
-	public int getApplicationType() {
-		return applicationType;
+	
+	public int getTestTemplateType() {
+		return testTemplateType;
 	}
-	public void setApplicationType(int applicationType) {
-		this.applicationType = applicationType;
+	public void setTestTemplateType(int testTemplateType) {
+		this.testTemplateType = testTemplateType;
 	}
 	public String getDestName() {
 		return destName;
@@ -56,6 +60,19 @@ public class ResultTemplateJsonItem {
 	}
 	public void setResultSeq(String resultSeq) {
 		this.resultSeq = resultSeq;
+	}
+	
+	public String getStb_id() {
+		return stb_id;
+	}
+	public void setStb_id(String stb_id) {
+		this.stb_id = stb_id;
+	}
+	public String getTester() {
+		return tester;
+	}
+	public void setTester(String tester) {
+		this.tester = tester;
 	}
 	
 }

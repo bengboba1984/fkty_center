@@ -673,4 +673,36 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		 return (String) queryOne("SELECT max(result_seq) result_seq  FROM wasu.testing_result where result_seq like ? ", param);
 	}
 	
+	public ListChunk getFtpFileDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,int pageNo, int pageSize) throws GenericDAOException{
+		StringBuffer sql = new StringBuffer(
+				"SELECT file_id,account,stbid,tester,file_name,created_date,uuguid,"
+				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.type and d.type='ftp_type') type"
+				+ " FROM wasu.ftp_file_list t ");
+		sql.append(" WHERE 1=1 ");
+		ArrayList<String> param = new ArrayList<String>();
+		if (testingDateBegin != null && !"".equals(testingDateBegin)) {
+			sql.append(" AND created_date >= STR_TO_DATE( ?, '%Y-%m-%d')");
+			param.add(testingDateBegin);
+		}
+		if (testingDateEnd != null && !"".equals(testingDateEnd)) {
+			sql.append(" AND created_date <= STR_TO_DATE( ?, '%Y-%m-%d')");
+			param.add(testingDateEnd);
+		}
+		if (testTypeSearch != null && !"".equals(testTypeSearch)&& !"-1".equals(testTypeSearch)) {
+			sql.append(" AND type = ?");
+			param.add(testTypeSearch);
+		}
+		if (accountSearch != null && !"".equals(accountSearch)) {
+			sql.append(" AND account like ? ");
+			param.add(accountSearch+"%");
+		}
+		if (testerSearch != null && !"".equals(testerSearch)) {
+			sql.append(" AND tester like ? ");
+			param.add(testerSearch+"%");
+		}
+		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.FtpFile");
+	}
+	public Collection getFileType()throws GenericDAOException {
+		return simpleKVQuery("SELECT function_value,value FROM wasu.bs_common_def where type='ftp_type' order by value", null);
+	}
 }

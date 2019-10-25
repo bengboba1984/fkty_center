@@ -352,9 +352,11 @@ public class DataManagementFacade {
 		Long templateId = dao.getResultTestTemplateTableId("testing_result_id",
 				"testing_result");
 		res.setTestingResultId(templateId.toString());
-		res.setTestingTemplateGroupId(item.getApplicationType() + "");
+		res.setTestingTemplateGroupId(item.getTestTemplateType() + "");
 		res.setAccount(item.getAccount());
 		res.setResultSeq(item.getResultSeq());
+		res.setStbId(item.getStb_id());
+		res.setTester(item.getTester());
 		dao.insertTestingResult(res);
 		return templateId.toString();
 	}
@@ -544,5 +546,13 @@ public class DataManagementFacade {
 		return U.downloadSimpleExcel(rs, "ra.com.dataManagement.model.TestingResult", titles,
 				columns);
 	}
-
+	
+	public Collection getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbidSearch,int pageNo, int pageSize)
+			throws Exception {
+		ListChunk lc = dao.getFtpFileDataList(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,stbidSearch,pageNo,pageSize);
+		return lc.getCollection();
+	}
+	public Collection getFileType() throws Exception {
+		return dao.getFileType();
+	}
 }

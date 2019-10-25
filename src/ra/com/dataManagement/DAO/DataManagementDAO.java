@@ -126,4 +126,8 @@ public interface DataManagementDAO {
 	
 	public String getMaxResult(String date) throws GenericDAOException;
 	
+	public ListChunk getFtpFileDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,int pageNo, int pageSize) throws GenericDAOException;
+	
+	public Collection getFileType()throws GenericDAOException;
+	
 }
