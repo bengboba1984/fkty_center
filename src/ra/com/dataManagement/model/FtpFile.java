@@ -5,7 +5,7 @@ public class FtpFile {
 	private String  fileName;
 	private String  tester;
 	private String  account;
-	private String  stbid;
+	private String  stbId;
 	private String  createdDate;
 	private String   uuguid;
 	private String type;
@@ -34,11 +34,12 @@ public class FtpFile {
 		this.account = account;
 	}
 	
-	public String getStbid() {
-		return stbid;
+	
+	public String getStbId() {
+		return stbId;
 	}
-	public void setStbid(String stbid) {
-		this.stbid = stbid;
+	public void setStbId(String stbId) {
+		this.stbId = stbId;
 	}
 	public String getCreatedDate() {
 		return createdDate;

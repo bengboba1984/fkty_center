@@ -425,9 +425,9 @@ public class DataManagementFacade {
 		dao.updateResultTestTypeId(column, typeId, templateId);
 	}
 
-	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch)
+	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch)
 			throws Exception {
-		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,1, 1000);
+		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,resultSeqSearch,1, 1000);
 		return lc.getCollection();
 	}
 
@@ -543,10 +543,10 @@ public class DataManagementFacade {
 		return seq;
 	}
 	
-	public InputStream downloadResultTemplateData(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch)throws Exception{
+	public InputStream downloadResultTemplateData(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch)throws Exception{
 		String[] columns = new String[]{"resultSeq","testingDate","tester","account","stbId","testingTemplateGroupId"};
 		String[] titles = new String[]{"测试帐号","时间","工号","宽带帐号","STBID","测试类型"};
-		ListChunk lc = dao.getTestingResultTemplateDataList(null,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,1, 1000);
+		ListChunk lc = dao.getTestingResultTemplateDataList(null,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,resultSeqSearch,1, 1000);
 		Collection rs = lc.getCollection();
 		return U.downloadSimpleExcel(rs, "ra.com.dataManagement.model.TestingResult", titles,
 				columns);

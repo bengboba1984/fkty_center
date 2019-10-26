@@ -13,13 +13,14 @@
 
 <script type="text/javascript">
 	var editIndex = undefined;
-		function doSearch(){alert(1);
+		function doSearch(){
 			$('#dg').datagrid('load',{
 				testingDateBegin: $('#testingDateBegin').datebox('getValue'),
 				testingDateEnd: $('#testingDateEnd').datebox('getValue'),
 				testTypeSearch:$('#testTypeSearch').combobox('getValue'),
 				accountSearch:$('#accountSearch').val(),
-				testerSearch:$('#testerSearch').val()
+				testerSearch:$('#testerSearch').val(),
+				stbIDSearch:$('#stbIDSearch').val()
 		    	});
 		} 
 		
@@ -112,10 +113,10 @@
 				<td style="width:15%"><input id="111" class="easyui-textbox" style="width:80%"></td>
 			</tr>
 			<tr>
-				<td class="panel-header" style="width:10%" align="center">装维人员</td>
+				<td class="panel-header" style="width:10%" align="center">装维人员工号</td>
 				<td style="width:25%"><input id="testerSearch" class="easyui-textbox" style="width:80%"></td>
 				<td class="panel-header" style="width:10%" align="center">STBID</td>
-				<td style="width:15%"><input id="userIDSearch" class="easyui-textbox" style="width:80%"></td>
+				<td style="width:15%"><input id="stbIDSearch" class="easyui-textbox" style="width:80%"></td>
 			<td class="panel-header" style="width:10%" align="center">宽带帐号</td>
 				<td style="width:25%"><input id="accountSearch" class="easyui-textbox" style="width:80%"></td>
 			</tr>
@@ -134,7 +135,7 @@
 				<th data-options="field:'account',sortable:'true',align:'center'">宽带帐号</th>
 				<th data-options="field:'testingDate',sortable:'true',align:'center'">时间</th>		
 				<th data-options="field:'tester',sortable:'true',align:'center'">工号</th>
-				<th data-options="field:'stbid',sortable:'true',align:'center',width:'20%'">STBID</th>
+				<th data-options="field:'stbId',sortable:'true',align:'center',width:'20%'">STBID</th>
 				<th data-options="field:'fileName',sortable:'true',align:'center'">文件名</th>
 			</tr>
 		</thead>
