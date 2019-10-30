@@ -360,7 +360,7 @@ public class DataManagementFacade {
 		res.setTestingTemplateGroupId(item.getTestTemplateType() + "");
 		res.setAccount(item.getAccount());
 		res.setResultSeq(item.getResultSeq());
-		res.setStbId(item.getStb_id());
+		res.setStbId(item.getStbId());
 		res.setTester(item.getTester());
 		dao.insertTestingResult(res);
 		return templateId.toString();

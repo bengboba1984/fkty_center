@@ -9,7 +9,7 @@ public class ResultTemplateJsonItem {
 	private String destIp;
 	private String account;
 	private Object result;
-	private String stb_id;
+	private String stbId;
 	private String tester;
 	
 	public int getTestType() {
@@ -62,11 +62,12 @@ public class ResultTemplateJsonItem {
 		this.resultSeq = resultSeq;
 	}
 	
-	public String getStb_id() {
-		return stb_id;
+	
+	public String getStbId() {
+		return stbId;
 	}
-	public void setStb_id(String stb_id) {
-		this.stb_id = stb_id;
+	public void setStbId(String stbId) {
+		this.stbId = stbId;
 	}
 	public String getTester() {
 		return tester;
