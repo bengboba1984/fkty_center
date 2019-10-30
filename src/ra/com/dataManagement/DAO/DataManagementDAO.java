@@ -132,4 +132,9 @@ public interface DataManagementDAO {
 	
 	public void deleteFtpFile(String id)throws GenericDAOException;
 	
+	public void updateWOByResultSeq(String resultSeq,String woNumber)throws GenericDAOException;
+
+	public Object getTestResultIDByWONumber(String woNumber)throws GenericDAOException;
+
+	
 }

@@ -603,4 +603,18 @@ public class DataManagementFacade {
 		}
 		 
 	}
+	
+	public void updateWOByResultSeq(String resultSeq, String woNumber) throws Exception {
+		dao.updateWOByResultSeq(resultSeq, woNumber);
+	}
+	
+	public boolean checkWONumber(String woNumber) throws Exception{
+		boolean isExists=false;
+		Object testResultID = dao.getTestResultIDByWONumber(woNumber);
+		
+		if (testResultID != null ) {
+			isExists=true; 
+		} 
+		return isExists;
+	}
 }

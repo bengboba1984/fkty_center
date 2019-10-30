@@ -230,7 +230,7 @@ public class TestingTemplateResultServlet extends HttpServlet {
 
 			}
 
-			result = "{\"errorCode\"：0，\"resultSeq\",\""+resultSeq+"\"}";
+			result = "{\"errorCode\":0,\"resultSeq\":\""+resultSeq+"\"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;

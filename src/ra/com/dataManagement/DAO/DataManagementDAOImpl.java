@@ -726,4 +726,24 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		String sql = "delete FROM wasu.ftp_file_list  where file_id = ? ";
 		simpleExecute(sql,param);
 	}
+	@Override
+	public void updateWOByResultSeq(String resultSeq, String woNumber)
+			throws GenericDAOException {
+		StringBuffer sql = new StringBuffer("UPDATE wasu.testing_result SET wo_number = ? WHERE result_seq = ? ");
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(woNumber);
+		param.add(resultSeq);
+		simpleExecute(sql.toString(), param);
+	}
+	@Override
+	public Object getTestResultIDByWONumber(String woNumber)
+			throws GenericDAOException {
+		// TODO Auto-generated method stub
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(woNumber);
+		StringBuffer sql = new StringBuffer("SELECT testing_result_id FROM wasu.testing_result WHERE wo_number = ? ");
+		
+		
+		return queryOne(sql.toString(), param);
+	}
 }
