@@ -57,6 +57,7 @@ public class TestingTemplateResultServlet extends HttpServlet {
 		// String json = "";
 		BufferedReader reader = null;
 		String result = "";
+		String resultSeq="";
 		try {
 			// json = biz.getItestorTemplateList();
 			 String params = reqJson(req);
@@ -93,6 +94,7 @@ public class TestingTemplateResultServlet extends HttpServlet {
 				if(i.getResultSeq()==null || i.getResultSeq().length()<1){
 					i.setResultSeq(biz.getResultSeq());
 				}
+				resultSeq=i.getResultSeq();
 				id = biz.insertTestingResult(i);
 				JSONArray jsonArray = (JSONArray) jsonStu.getJSONArray("items");
 				// 获取jsonArray数组数据
@@ -228,7 +230,7 @@ public class TestingTemplateResultServlet extends HttpServlet {
 
 			}
 
-			result = "success";
+			result = "{\"errorCode\"：0，\"resultSeq\",\""+resultSeq+"\"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
