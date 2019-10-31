@@ -1,4 +1,4 @@
-package ra.com.scheduler;
+package ra.com.dataManagement.sevlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,8 +77,6 @@ public class SubmitWOServlet extends HttpServlet {
 			returnMessage.put("errorCode", 2);
 			returnMessage.put("message", "resultSeq & woNumber are required!");
 		}
-		
-		
 		response.getOutputStream().write(returnMessage.toString().getBytes());
 	}
 

@@ -13,6 +13,38 @@ public class ResultTemplateJsonItem {
 	private String tester;
 	private String woNumber;
 	
+	//*******盒子信息**********//
+	private String deviceSeq;
+	private String ottConnectType;
+	private String androidVersion;
+	private String boxIP;
+	
+	public String getDeviceSeq() {
+		return deviceSeq;
+	}
+	public void setDeviceSeq(String deviceSeq) {
+		this.deviceSeq = deviceSeq;
+	}
+	public String getOttConnectType() {
+		return ottConnectType;
+	}
+	public void setOttConnectType(String ottConnectType) {
+		this.ottConnectType = ottConnectType;
+	}
+	public String getAndroidVersion() {
+		return androidVersion;
+	}
+	public void setAndroidVersion(String androidVersion) {
+		this.androidVersion = androidVersion;
+	}
+	public String getBoxIP() {
+		return boxIP;
+	}
+	public void setBoxIP(String boxIP) {
+		this.boxIP = boxIP;
+	}
+	
+	
 	public int getTestType() {
 		return testType;
 	}

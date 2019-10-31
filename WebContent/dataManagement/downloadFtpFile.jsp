@@ -133,7 +133,7 @@
 				<th data-options="field:'fileId'"  checkbox="true"></th>
 				<th data-options="field:'type',sortable:'true',align:'center'">抓包类型</th>
 				<th data-options="field:'account',sortable:'true',align:'center'">宽带帐号</th>
-				<th data-options="field:'testingDate',sortable:'true',align:'center'">时间</th>		
+				<th data-options="field:'createdDate',sortable:'true',align:'center'">时间</th>		
 				<th data-options="field:'tester',sortable:'true',align:'center'">工号</th>
 				<th data-options="field:'stbId',sortable:'true',align:'center',width:'20%'">STBID</th>
 				<th data-options="field:'fileName',sortable:'true',align:'center'">文件名</th>

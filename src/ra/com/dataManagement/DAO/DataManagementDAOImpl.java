@@ -481,8 +481,10 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	}
 	
 	public void insertTestingResult(TestingResult item)throws GenericDAOException{
-		String sql = "insert into wasu.testing_result (testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,wo_number) "
-					+ " values (?,?, sysdate(),?, ?,?, ?,?, ?,?, ?, ?, ?) ";
+		String sql = "insert into wasu.testing_result (testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,"
+				+ "result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,"
+				+ "wo_number,device_seq,ott_connect_type,android_version,box_ip) "
+					+ " values (?,?, sysdate(),?, ?,?, ?,?, ?,?, ?, ?, ?,?,?,?,?) ";
 		ArrayList<String> param = new ArrayList<String>();
 		//result_trace_id,result_web_id
 		param.add(item.getTestingResultId());
@@ -498,6 +500,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getResultTraceId());
 		param.add(item.getResultWebId());
 		param.add(item.getWoNumber());
+		//*****盒子信息*********//
+		param.add(item.getDeviceSeq());
+		param.add(item.getOttConnectType());
+		param.add(item.getAndroidVersion());
+		param.add(item.getBoxIP());
 		simpleExecute(sql, param);
 	}
 	
@@ -687,7 +694,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	
 	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbID,String fileId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
-				"SELECT file_id,account,stb_id,tester,file_name,created_date,uuguid,"
+				"SELECT file_id,account,stb_id,tester,file_name,date_format(created_date,'%Y-%m-%d %H:%m:%s') as created_date,uuguid,"
 				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.type and d.type='ftp_type') type"
 				+ " FROM wasu.ftp_file_list t ");
 		sql.append(" WHERE 1=1 ");
@@ -751,5 +758,23 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		
 		
 		return queryOne(sql.toString(), param);
+	}
+	@Override
+	public void insertCaptureFile(int type, String account, String stbId,
+			String tester, String fileName, Long fileId)
+			throws GenericDAOException {
+		// TODO Auto-generated method stub
+		ArrayList<String> param = new ArrayList<String>();
+		param.add(fileId.toString());
+		param.add(String.valueOf(type));
+		param.add(account);
+		param.add(stbId);
+		param.add(tester);
+		param.add(fileName);
+		StringBuffer sql = new StringBuffer("insert into wasu.ftp_file_list (file_id,type,account,stb_id,tester,file_name) ")
+											.append(" values( ?, ?, ?, ?, ?, ?)  ");
+		
+		
+		simpleExecute(sql.toString(), param);
 	}
 }

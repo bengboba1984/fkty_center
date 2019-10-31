@@ -365,6 +365,10 @@ public class DataManagementFacade {
 		res.setStbId(item.getStbId());
 		res.setTester(item.getTester());
 		res.setWoNumber(item.getWoNumber());
+		res.setDeviceSeq(item.getDeviceSeq());
+		res.setOttConnectType(item.getOttConnectType());
+		res.setAndroidVersion(item.getDeviceSeq());
+		res.setBoxIP(item.getBoxIP());
 		dao.insertTestingResult(res);
 		return templateId.toString();
 	}
@@ -697,5 +701,14 @@ public class DataManagementFacade {
 		}
 		
 		return map;
+	}
+	
+	public String insertCaptureFile(int type,String account,String stbId,String tester,String fileName)
+			throws Exception {
+		
+		Long fileId = dao.getResultTestTemplateTableId("file_id",
+				"ftp_file_list");
+		dao.insertCaptureFile(type,account,stbId,tester,fileName,fileId);
+		return fileId.toString();
 	}
 }
