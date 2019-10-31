@@ -103,7 +103,7 @@
 		data-options="iconCls: 'icon-edit',singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_result_template_list.action',method: 'post',onClickRow: onClickRow">
 		<thead>
 			<tr>
-				<th data-options="field:'userID',hidden:'true',width:10">result ID</th>
+				<th data-options="field:'testingResultId',hidden:'true',width:10">result ID</th>
 				<th data-options="field:'resultSeq',sortable:'true',align:'center'">测试帐号</th>
 				<th data-options="field:'testingDate',sortable:'true',align:'center'">时间</th>		
 				<th data-options="field:'tester',sortable:'true',align:'center'">工号</th>
@@ -111,6 +111,7 @@
 				<th data-options="field:'account',sortable:'true',align:'center',width:'10%'">宽带帐号</th>	
 				<th data-options="field:'stbId',sortable:'true',align:'center',width:'20%'">STBID</th>
 				<th data-options="field:'testingTemplateGroupId',sortable:'true',align:'center'">测试类型</th>
+				<th data-options="field:'woNumber',sortable:'true',align:'center',formatter:formatWoNumber">工单号</th>
 				<th data-options="field:'resultPingId',sortable:'true',align:'center',formatter:formatPingValue">PING</th>
 				<th data-options="field:'resultTraceId',sortable:'true',align:'center',formatter:formatTraceValue">TRACE</th>
 				<th data-options="field:'resultSpeedId',sortable:'true',align:'center',formatter:formatSpeedValue">测速</th>
@@ -272,7 +273,169 @@
 			</tr>
 		</thead>
 	</table>
-	</div>  
+</div>  
+<div id="dlg-woNumber" class="easyui-dialog" style="width:1200px;height:700px" closed="true" >
+<div class="easyui-layout" style="width:99.9%;height:99%">
+    <div id="p" data-options="region:'west'" title="" style="width:80%;padding:0px;height:700px">
+       <div id="woNumberTab" class="easyui-tabs" data-options="tabWidth:150,tabHeight:640,tabPosition:'left',headerWidth:160" style="width:100%;height:100%">
+        <div id="templatType3" title="手动测试报告" style="padding:10px">
+	        <div class="easyui-panel" id="dnsPanel"  title ="DNS测试" colsed="true" style="width: 99%;height:100px;">
+		     <table style="width: 100%">
+		     <tr>
+		     	<td class="panel-header" style="width: 30%" align="center">记录数</td>
+		     	<td class="panel-header" style="width: 30%" align="center">解析时间ms</td>
+		     	<td class="panel-header" style="width: 30%" align="center">成功率%</td>
+		     </tr>
+		     <tr>
+		     <td style="width: 30%" align="center"><span id="numberOfAnswersDns"></span></td>
+		     <td style="width: 30%"  align="center"><span id="resolveTimeDns"></span></td>
+		     <td style="width: 30%"  align="center"><span id="successPercentDns"></span></td>
+		     </tr>
+		     </table>
+	     </div>
+	     <div style="margin-bottom:10px"></div>
+	     <div class="easyui-panel" id="speedPanel" title="宽带测试"  colsed="true" style="width: 99%;height:100px">
+		     <table style="width: 100%">
+		     <tr>
+		     	<td class="panel-header" style="width: 45%" align="center">上行速率Mbps</td>
+		     	<td class="panel-header" style="width: 45%" align="center">下行速率Mbps</td>
+		     </tr>
+		     <tr>
+		     <td style="width: 45%" align="center"><span id="uploadMaxThroughputSpeed"></span></td>
+		     <td style="width: 45%" align="center"><span id="downloadMaxThroughputSpeed"></span></td>
+		     </tr>
+		     </table>
+	     </div>
+	     <div style="margin-bottom:10px"></div>
+	     <div class="easyui-panel" id="webPanel" title="网页测试" colsed="true" style="width: 99%;height:100px">
+		     <table style="width: 100%">
+		     <tr>
+		     	<td class="panel-header" style="width: 25%" align="center">解析时延ms</td>
+		     	<td class="panel-header" style="width: 25%" align="center">连接时延ms</td>
+		     	<td class="panel-header" style="width: 25%" align="center">首包时延ms</td>
+		     	<td class="panel-header" style="width: 25%" align="center">首页时间ms</td>
+		     </tr>
+		     <tr>
+		     <td style="width: 25%" align="center"><span id="resolveTimeWeb"></span></td>
+		     <td style="width: 25%" align="center"><span id="connectTimeWeb"></span></td>
+		     <td style="width: 25%" align="center"><span id="firstByteTimeWeb"></span></td>
+		     <td style="width: 25%" align="center"><span id="firstPageTimeWeb"></span></td>
+		     </tr>
+		     </table>
+	     </div>
+	     <div style="margin-bottom:10px"></div>
+	     <div class="easyui-panel" id="tracePanel" title="TRACE测试" colsed="true" style="width: 99%;height:100px">
+		     <table style="width: 100%">
+		     <tr>
+		     	<td class="panel-header" style="width: 30%" align="center">时延ms</td>
+		     	<td class="panel-header" style="width: 30%" align="center">丢包率%</td>
+		     	<td class="panel-header" style="width: 30%" align="center">抖动ms</td>
+		     </tr>
+		     <tr>
+		     <td style="width: 30%" align="center"><span id="avgDelayTrace"></span></td>
+		     <td style="width: 30%" align="center"><span id="lossPercentTrace"></span></td>
+		     <td style="width: 30%" align="center"><span id="avgJitterTrace"></span></td>
+		     </tr>
+		     </table>
+	     </div>
+	      <div style="margin-bottom:10px"></div>
+	     <div class="easyui-panel" id="pingPanel"  title ="PING测试" colsed="true" style="width: 99%;height:100px">
+		     <table style="width: 100%">
+		     <tr>
+		     	<td class="panel-header" style="width: 30%" align="center">时延ms</td>
+		     	<td class="panel-header" style="width: 30%" align="center">丢包率%</td>
+		     	<td class="panel-header" style="width: 30%" align="center">抖动ms</td>
+		     </tr>
+		     <tr>
+		     <td style="width: 30%" align="center"><span id="avgDelayPing"></span></td>
+		     <td style="width: 30%" align="center"><span id="lossPercentPing"></span></td>
+		     <td style="width: 30%" align="center"><span id="avgJitterPing"></span></td>
+		     </tr>
+		     </table>
+	     </div>
+           
+        </div>
+       
+    </div>
+ </div>
+ <div data-options="region:'center'" title="" style="padding:10px">
+     <div class="easyui-panel" title="用户信息"   style="width: 99%">
+     <table style="width: 100%">
+	       <tr>
+				<td class="panel-header" style="width: 30%" align="center">用户名称</td>
+	           	<td style="width: 50%"><span id="userName"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">用户地址</td>
+	           	<td style="width: 50%"><span id="userAdress"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">联系电话</td>
+	           	<td style="width: 50%"><span id="userTel"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">签约带宽</td>
+	           	<td style="width: 50%"><span id="userAccount2"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">宽带帐号</td>
+	           	<td style="width: 50%"><span id="userAccount"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">接入方式</td>
+	           	<td style="width: 50%"><span id="userFun"></span></td>
+       		</tr>
+       </table>
+    </div>
+    <div style="margin-bottom:10px"></div>
+    <div class="easyui-panel" title="装维人员信息" style="width: 99%">
+    <table style="width: 100%">
+	       <tr>
+				<td class="panel-header" style="width: 30%" align="center">姓名</td>
+	           	<td style="width: 50%"><span id="testerName"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">工号</td>
+	           	<td style="width: 50%"><span id="testerAccount"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">联系电话</td>
+	           	<td style="width: 50%"><span id="testerTel"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">所属公司</td>
+	           	<td style="width: 50%"><span id="testerCompany"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">所属部门</td>
+	           	<td style="width: 50%"><span id="testerDepartment"></span></td>
+       		</tr>
+       </table>
+    </div>
+    <div style="margin-bottom:10px"></div>
+    <div class="easyui-panel" title="设备信息" style="width: 99%">
+    <table style="width: 100%">
+	       <tr>
+				<td class="panel-header" style="width: 30%" align="center">盒子ID</td>
+	           	<td style="width: 50%"><span id="stdBoxId"> </span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">联网方式</td>
+	           	<td style="width: 50%"><span id="stdNode"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">WAN IP</td>
+	           	<td style="width: 50%"><span id="stdIp"></span></td>
+       		</tr>
+       		<tr>
+				<td class="panel-header" style="width: 30%" align="center">手机版本</td>
+	           	<td style="width: 50%"><span id="stdVersion"></span></td>
+       		</tr>
+       </table>
+    </div>  
+  </div>
+</div>
+</div>
 <script type="text/javascript">
 	$.ajax({
         url: 'action_button_flag.action?moduleId='+$('#moduleId').val(),
@@ -324,6 +487,13 @@
             return val;
         }
 		
+	}
+	function formatWoNumber(val,row){
+		if (val!=null&&val!=''){
+            return '<a href="#" class="easyui-linkbutton"  onClick="openWoNumberDiv('+row.testingResultId+')" style="color:red;">详情</a>';
+        } else {
+            return val;
+        }
 	}
 	function openTraceSubDiv(traceId){
 		$('#dg-sub').datagrid('load',{
@@ -462,7 +632,74 @@
 	    }); 
 		
 	}
-	
+	function openWoNumberDiv(id){
+		$.ajax({
+	        url: 'testing_result_template_detail.action',
+	        type: 'post',
+	        data:{
+	        	targetId: id
+		 },
+		 dataType: 'json',
+		 error: function(){alert('加载失败');},
+	        success: function (result) {
+	        	//templatType3
+	        	
+	        	$('#userAccount').text(result.result.account);
+	        	
+	        	var titles = $('#woNumberTab').find('.tabs-header:first').find('.tabs-title');
+	        	titles.eq(0).text(result.result.testingTemplateGroupId+'报告');
+	        	// $('#templatType3').text(result.result.testingTemplateGroupId);
+	        	if(result.traceNull=='null'){
+	        		//隐藏trace
+	        		$('#tracePanel').panel('close');
+	        	}else{
+	        		$('#tracePanel').panel('open');
+	        		$('#avgDelayTrace').text(result.trace.avgDelay);
+	        		$('#avgJitterTrace').text(result.trace.avgJitter);
+	        		$('#lossPercentTrace').text(result.trace.lossPercent);
+	        	}
+	        	if(result.webNull=='null'){
+	        		//隐藏web 
+	        		$('#webPanel').panel('close');
+	        	}else{
+	        		$('#webPanel').panel('open');
+	        		$('#resolveTimeWeb').text(result.web.resolveTime);
+	        		$('#connectTimeWeb').text(result.web.connectTime);
+	        		$('#firstByteTimeWeb').text(result.web.firstByteTime);
+	        		$('#firstPageTimeWeb').text(result.web.firstPageTime);
+	        	}
+	        	if(result.dnsNull=='null'){
+	        		//隐藏ping 
+	        		$('#dnsPanel').panel('close');
+	        	}else{
+	        		$('#dnsPanel').panel('open');
+	        		$('#numberOfAnswersDns').text(result.dns.numberOfAnswers);
+	        		$('#resolveTimeDns').text(result.dns.resolveTime);
+	        		$('#successPercentDns').text(result.dns.successPercent);
+	        	}
+	        	if(result.speedNull=='null'){
+	        		//隐藏ping 
+	        		$('#speedPanel').panel('close');
+	        	}else{
+	        		$('#speedPanel').panel('open');
+	        		$('#uploadMaxThroughputSpeed').text(result.speed.uploadMaxThroughput);
+	        		$('#downloadMaxThroughputSpeed').text(result.speed.downloadMaxThroughput);
+	        	}
+	        	if(result.pingNull=='null'){
+	        		//隐藏ping 
+	        		$('#pingPanel').panel('close');
+	        	}else{
+	        		$('#pingPanel').panel('open');
+	        		$('#avgDelayPing').text(result.ping.avgDelay);
+	        		$('#avgJitterPing').text(result.ping.avgJitter);
+	        		$('#lossPercentPing').text(result.ping.lossPercent);
+	        	}
+	        	
+	        	$('#dlg-woNumber').dialog('open').dialog('center').dialog('setTitle','工单信息');
+	        }
+	    }); 
+		
+}
 		
 </script>
 </body>

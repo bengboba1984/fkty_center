@@ -14,6 +14,9 @@ public class TestingResult {
 	private String  resultSpeedId;
 	private String  resultTraceId;
 	private String  resultWebId;
+	private String department; 
+	private String woNumber;
+	
 	public String getTestingResultId() {
 		return testingResultId;
 	}
@@ -85,6 +88,18 @@ public class TestingResult {
 	}
 	public void setResultWebId(String resultWebId) {
 		this.resultWebId = resultWebId;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getWoNumber() {
+		return woNumber;
+	}
+	public void setWoNumber(String woNumber) {
+		this.woNumber = woNumber;
 	}
 	
 	

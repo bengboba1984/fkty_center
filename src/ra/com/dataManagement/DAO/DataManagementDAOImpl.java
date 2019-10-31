@@ -481,8 +481,8 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	}
 	
 	public void insertTestingResult(TestingResult item)throws GenericDAOException{
-		String sql = "insert into wasu.testing_result (testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id) "
-					+ " values (?,?, sysdate(),?, ?,?, ?,?, ?,?, ?,?) ";
+		String sql = "insert into wasu.testing_result (testing_result_id,result_seq,testing_date,tester,account,stb_id,testing_template_group_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,wo_number) "
+					+ " values (?,?, sysdate(),?, ?,?, ?,?, ?,?, ?, ?, ?) ";
 		ArrayList<String> param = new ArrayList<String>();
 		//result_trace_id,result_web_id
 		param.add(item.getTestingResultId());
@@ -497,6 +497,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		param.add(item.getResultSpeedId());
 		param.add(item.getResultTraceId());
 		param.add(item.getResultWebId());
+		param.add(item.getWoNumber());
 		simpleExecute(sql, param);
 	}
 	
@@ -591,11 +592,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		simpleExecute(sql.toString(), param);
 	}
 	
-	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch,String resultId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT testing_result_id,CONCAT(result_seq,'') result_seq,testing_date,tester,"
 				+ "(SELECT value FROM wasu.bs_common_def d,wasu.bs_user e WHERE d.def_id = e.department_id and e.work_id=t.tester AND d.type = 'department') as department,"
-				+ "account,stb_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,"
+				+ "account,stb_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,wo_number,"
 				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.testing_template_group_id and d.type='template_type') testing_template_group_id"
 				+ " FROM wasu.testing_result t ");
 		sql.append(" WHERE 1=1 ");
@@ -624,6 +625,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			sql.append(" AND result_seq like ? ");
 			param.add(resultSeqSearch+"%");
 		}
+		if (resultId != null && !"".equals(resultId)) {
+			sql.append(" AND testing_result_id = ? ");
+			param.add(resultId);
+		}
+		
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.TestingResult");
 	}
 	

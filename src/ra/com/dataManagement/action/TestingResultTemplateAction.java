@@ -41,10 +41,24 @@ public class TestingResultTemplateAction  extends BaseAction {
 			
 			ra.com.system_mgt.model.User user=(ra.com.system_mgt.model.User)request.getSession().getAttribute("loginUser");
 			String roleId = user.getDepartmentID().toString();
-			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch);
+			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,null,null);
 			Map map = new HashMap();
 			map.put("rows", U.changeListToJSON(lc));
 			System.out.println("====lc.getTotalCount():"+lc.size());
+			dataList = JSONObject.fromObject(map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("SUCCESS");
+		return SUCCESS;
+	}
+	
+	public String testingResultTemplateDetail() throws IOException {
+		biz = DataManagementFacade.getInstance();
+		
+		try {
+			Map map = biz.getTestingResultTemplateDetail(targetId);
 			dataList = JSONObject.fromObject(map);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -159,7 +173,7 @@ public class TestingResultTemplateAction  extends BaseAction {
 	
 	public String downloadResultTemplateData() throws Exception {
 		biz = DataManagementFacade.getInstance();
-		excelStream = biz.downloadResultTemplateData(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch);
+		excelStream = biz.downloadResultTemplateData(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,null);
 		excelFileName = "ResultTemplateReport.xls";
 		return SUCCESS;
 	}

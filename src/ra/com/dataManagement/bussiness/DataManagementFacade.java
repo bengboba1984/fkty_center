@@ -362,6 +362,7 @@ public class DataManagementFacade {
 		res.setResultSeq(item.getResultSeq());
 		res.setStbId(item.getStbId());
 		res.setTester(item.getTester());
+		res.setWoNumber(item.getWoNumber());
 		dao.insertTestingResult(res);
 		return templateId.toString();
 	}
@@ -425,9 +426,9 @@ public class DataManagementFacade {
 		dao.updateResultTestTypeId(column, typeId, templateId);
 	}
 
-	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch)
+	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch,String resultId)
 			throws Exception {
-		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,resultSeqSearch,1, 1000);
+		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,resultSeqSearch,resultId,1, 1000);
 		return lc.getCollection();
 	}
 
@@ -546,7 +547,7 @@ public class DataManagementFacade {
 	public InputStream downloadResultTemplateData(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch)throws Exception{
 		String[] columns = new String[]{"resultSeq","testingDate","tester","account","stbId","testingTemplateGroupId"};
 		String[] titles = new String[]{"测试帐号","时间","工号","宽带帐号","STBID","测试类型"};
-		ListChunk lc = dao.getTestingResultTemplateDataList(null,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,resultSeqSearch,1, 1000);
+		ListChunk lc = dao.getTestingResultTemplateDataList(null,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,resultSeqSearch,null,1, 1000);
 		Collection rs = lc.getCollection();
 		return U.downloadSimpleExcel(rs, "ra.com.dataManagement.model.TestingResult", titles,
 				columns);
@@ -616,5 +617,72 @@ public class DataManagementFacade {
 			isExists=true; 
 		} 
 		return isExists;
+	}
+	
+	public Map getTestingResultTemplateDetail(String id) throws Exception {
+		Collection lc = getTestingResultTemplateDataList(null,null,null,null,null,null,null,id);
+		TestingResult item = new TestingResult();
+		Map map = new HashMap();
+		if(lc==null||lc.size()<1){
+			map.put("detailNull", "null");
+		}else{
+			item = (TestingResult)((ArrayList)lc).get(0);  
+			map.put("result",item);
+			if(item.getResultDnsId()!=null&&Integer.parseInt(item.getResultDnsId())>0){
+				Map m = getTestingResultDns(item.getResultDnsId());
+				if("null".equals(m.get("null"))){
+					map.put("dnsNull", "null");
+				}else{
+					map.put("dns",m.get("result"));
+				}
+			}else{
+				map.put("dnsNull", "null");
+			}
+			if(item.getResultPingId()!=null&&Integer.parseInt(item.getResultPingId())>0){
+				Map m = getTestingResultPing(item.getResultPingId());
+				if("null".equals(m.get("null"))){
+					map.put("pingNull", "null");
+				}else{
+					map.put("ping",m.get("result"));
+				}
+			}else{
+				map.put("pingNull", "null");
+			}
+			if(item.getResultSpeedId()!=null&&Integer.parseInt(item.getResultSpeedId())>0){
+				Map m = getTestingResultSpeed(item.getResultSpeedId());
+				if("null".equals((String)m.get("null"))){
+					map.put("speedNull", "null");
+				}else{
+					map.put("speed",m.get("result"));
+				}
+			}else{
+				map.put("speedNull", "null");
+			}
+			if(item.getResultTraceId()!=null&&Integer.parseInt(item.getResultTraceId())>0){
+				Map m = getTestingResultTrace(item.getResultTraceId());
+				if("null".equals(m.get("null"))){
+					map.put("traceNull", "null");
+				}else{
+					map.put("trace",m.get("result"));
+				}
+			}else{
+				map.put("traceNull", "null");
+			}
+			if(item.getResultWebId()!=null&&Integer.parseInt(item.getResultWebId())>0){
+				Map m = getTestingResultWeb(item.getResultWebId());
+				if("null".equals(m.get("null"))){
+					map.put("webNull", "null");
+				}else{
+					map.put("web",m.get("result"));
+				}
+			}else{
+				map.put("webNull", "null");
+			}
+			
+			
+			
+		}
+		
+		return map;
 	}
 }

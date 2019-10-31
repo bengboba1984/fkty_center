@@ -11,6 +11,7 @@ public class ResultTemplateJsonItem {
 	private Object result;
 	private String stbId;
 	private String tester;
+	private String woNumber;
 	
 	public int getTestType() {
 		return testType;
@@ -62,7 +63,6 @@ public class ResultTemplateJsonItem {
 		this.resultSeq = resultSeq;
 	}
 	
-	
 	public String getStbId() {
 		return stbId;
 	}
@@ -74,6 +74,12 @@ public class ResultTemplateJsonItem {
 	}
 	public void setTester(String tester) {
 		this.tester = tester;
+	}
+	public String getWoNumber() {
+		return woNumber;
+	}
+	public void setWoNumber(String woNumber) {
+		this.woNumber = woNumber;
 	}
 	
 }

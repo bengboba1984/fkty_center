@@ -762,6 +762,12 @@
                 </param>
             </result>
 		</action>
+		<action name="testing_result_template_detail" class="ra.com.dataManagement.action.TestingResultTemplateAction"
+			method="testingResultTemplateDetail">
+			<result type="json">
+				<param name="root">dataList</param>
+			</result>
+		</action>
 	</package>
 
 </struts>
