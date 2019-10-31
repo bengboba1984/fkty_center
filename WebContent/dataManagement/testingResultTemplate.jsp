@@ -694,6 +694,14 @@
 	        		$('#avgJitterPing').text(result.ping.avgJitter);
 	        		$('#lossPercentPing').text(result.ping.lossPercent);
 	        	}
+	        	if(result.testerInfoNull=='null'){
+	        		
+	        	}else{
+	        		$('#testerName').text(result.testerInfo.userName);
+	        		$('#testerAccount').text(result.testerInfo.workId);
+	        		$('#testerTel').text(result.testerInfo.telephoneNumber);
+	        		$('#testerDepartment').text(result.testerInfo.departmentName);
+	        	}
 	        	
 	        	$('#dlg-woNumber').dialog('open').dialog('center').dialog('setTitle','工单信息');
 	        }

@@ -45,7 +45,9 @@ import ra.com.dataManagement.model.TestingTemplateParameterWeb;
 import ra.com.dataManagement.model.TestingTemplateTarget;
 import ra.com.dataManagement.model.TraceJsonItem;
 import ra.com.dataManagement.model.WebJsonItem;
+import ra.com.system_mgt.DAO.SystemMGTDAO;
 import ra.com.system_mgt.model.User;
+import ra.com.system_mgt.model.UserManagement;
 
 public class DataManagementFacade {
 	private DataManagementDAO dao;
@@ -678,7 +680,18 @@ public class DataManagementFacade {
 			}else{
 				map.put("webNull", "null");
 			}
-			
+			//tester info
+			if(item.getTester()!=null&&!"".equals(item.getTester())){
+				SystemMGTDAO userDao = (SystemMGTDAO) ra.com.common.dao.DAOFactory
+						.getDAO("ra.com.system_mgt.DAO.SystemMGTDAOImpl");
+				Collection testerCol =userDao.getUserList(null,item.getTester(),null,null,null).getCollection();
+				if(testerCol!=null&&testerCol.size()>0){
+				UserManagement testerInfo = (UserManagement)((ArrayList)testerCol).get(0);  
+				map.put("testerInfo",testerInfo);
+				}else{
+					map.put("testerInfoNull","null");
+				}
+			}
 			
 			
 		}
