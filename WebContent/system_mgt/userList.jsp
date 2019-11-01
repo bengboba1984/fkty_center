@@ -24,7 +24,7 @@
 			$('#dg').datagrid('load',{
 				userIDSearch: $('#userIDSearch').val(),
 				userNameSearch: $('#userNameSearch').val(),
-				hireDateSearch: $('#hireDateSearch').datebox('getValue'),
+				
 				visibleSearch:$('#visibleSearch').combobox('getValue')
 		    	});
 		} 
@@ -226,8 +226,6 @@
 				<td style="width:25%"><input id="userNameSearch" class="easyui-textbox" style="width:90%"></td>
 			</tr>
 			<tr>
-				<td class="panel-header" style="width:25%" align="center"><s:text name="system.user.hireDate" /></td>
-				<td style="width:25%"><input id="hireDateSearch" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:30%"></input></td>
 				<td class="panel-header" style="width:25%" align="center"><s:text name="system.user.visible" /></td>
 				<td style="width:25%"><input class="easyui-combobox" name="visibleSearch" id="visibleSearch" style="width:60%" value="${visibleSearch}"
 						data-options="valueField:'key',
@@ -257,35 +255,7 @@
 				<th
 					data-options="field:'fullName',sortable:'true',align:'center',
 						editor:{type:'validatebox'}">姓名</th>		
-				<th
-					data-options="field:'gender',sortable:'true',align:'center',
-						editor:{
-							type:'combobox',
-							
-							options:{
-								panelHeight: 'auto',
-								required:true,
-								editable:false,
-								data:[
-									{'key':'F','value':'Female'},
-									{'key':'M','value':'Male'}
-								],
-								valueField:'key',
-								textField:'value'
-							}
-						}"><s:text name="system.user.gender" />
-				</th>
-				<!-- <th 
-					data-options="field:'birthday',sortable:'true',align:'center',
-						editor:{type:'datebox',options:{editable:false,parser:myparser,formatter:myformatter}}">
-						<s:text name="system.user.birthday" />
-				</th> -->
-				<th
-					data-options="field:'hireDate',sortable:'true',align:'center',
-						editor:{type:'datebox',options:{editable:false,parser:myparser,formatter:myformatter}}">
-						<s:text name="system.user.hireDate" />
-				</th>
-				
+								
 				<th
 					data-options="field:'hiddenPositionID', hidden:'true'">
 					hidden</th>
@@ -307,9 +277,7 @@
                             }
                         }">部门
 				</th>
-				<th data-options="field:'position',sortable:'true',align:'center',editor:'text'">职务</th>
-				<th data-options="field:'jobTitle',sortable:'true',align:'center',editor:'text'">职称</th>
-				<th data-options="field:'phoneNumber',sortable:'true',align:'center',editor:{type:'numberbox'}">手机</th>
+				
 				<th
 					data-options="field:'positionID',sortable:'true',align:'center',width:'20%',
                          formatter:function(value,row){

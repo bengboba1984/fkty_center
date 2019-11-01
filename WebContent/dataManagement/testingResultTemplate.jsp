@@ -107,7 +107,7 @@
 				<th data-options="field:'resultSeq',sortable:'true',align:'center'">测试帐号</th>
 				<th data-options="field:'testingDate',sortable:'true',align:'center'">时间</th>		
 				<th data-options="field:'tester',sortable:'true',align:'center'">工号</th>
-				<th data-options="field:'hireDate',sortable:'true',align:'center'">单位</th>
+				<!-- <th data-options="field:'hireDate',sortable:'true',align:'center'">单位</th> -->
 				<th data-options="field:'account',sortable:'true',align:'center',width:'10%'">宽带帐号</th>	
 				<th data-options="field:'stbId',sortable:'true',align:'center',width:'20%'">STBID</th>
 				<th data-options="field:'testingTemplateGroupId',sortable:'true',align:'center'">测试类型</th>
@@ -279,6 +279,8 @@
     <div id="p" data-options="region:'west'" title="" style="width:80%;padding:0px;height:700px">
        <div id="woNumberTab" class="easyui-tabs" data-options="tabWidth:150,tabHeight:640,tabPosition:'left',headerWidth:160" style="width:100%;height:100%">
         <div id="templatType3" title="手动测试报告" style="padding:10px">
+        	工单号: <span id="woNumber1"></span>
+	     <div style="margin-bottom:10px"></div>
 	        <div class="easyui-panel" id="dnsPanel"  title ="DNS测试" colsed="true" style="width: 99%;height:100px;">
 		     <table style="width: 100%">
 		     <tr>
@@ -417,19 +419,19 @@
     <table style="width: 100%">
 	       <tr>
 				<td class="panel-header" style="width: 30%" align="center">盒子ID</td>
-	           	<td style="width: 50%"><span id="stdBoxId"> </span></td>
+	           	<td style="width: 50%"><span id="deviceSeq1"> </span></td>
        		</tr>
        		<tr>
 				<td class="panel-header" style="width: 30%" align="center">联网方式</td>
-	           	<td style="width: 50%"><span id="stdNode"></span></td>
+	           	<td style="width: 50%"><span id="ottConnectType1"></span></td>
        		</tr>
        		<tr>
 				<td class="panel-header" style="width: 30%" align="center">WAN IP</td>
-	           	<td style="width: 50%"><span id="stdIp"></span></td>
+	           	<td style="width: 50%"><span id="boxIP1"></span></td>
        		</tr>
        		<tr>
 				<td class="panel-header" style="width: 30%" align="center">手机版本</td>
-	           	<td style="width: 50%"><span id="stdVersion"></span></td>
+	           	<td style="width: 50%"><span id="androidVersion1"></span></td>
        		</tr>
        </table>
     </div>  
@@ -490,7 +492,7 @@
 	}
 	function formatWoNumber(val,row){
 		if (val!=null&&val!=''){
-            return '<a href="#" class="easyui-linkbutton"  onClick="openWoNumberDiv('+row.testingResultId+')" style="color:red;">详情</a>';
+            return '<a href="#" class="easyui-linkbutton"  onClick="openWoNumberDiv('+row.testingResultId+')" style="color:red;">'+val+'</a>';
         } else {
             return val;
         }
@@ -702,6 +704,11 @@
 	        		$('#testerTel').text(result.testerInfo.telephoneNumber);
 	        		$('#testerDepartment').text(result.testerInfo.departmentName);
 	        	}
+	        	$('#deviceSeq1').text(result.result.deviceSeq);
+	        	$('#ottConnectType1').text(result.result.ottConnectType);
+	        	$('#androidVersion1').text(result.result.androidVersion);
+	        	$('#boxIP1').text(result.result.boxIP);
+	        	$('#woNumber1').text(result.result.woNumber);
 	        	
 	        	$('#dlg-woNumber').dialog('open').dialog('center').dialog('setTitle','工单信息');
 	        }

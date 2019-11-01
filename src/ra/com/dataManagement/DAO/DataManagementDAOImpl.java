@@ -603,7 +603,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		StringBuffer sql = new StringBuffer(
 				"SELECT testing_result_id,CONCAT(result_seq,'') result_seq,testing_date,tester,"
 				+ "(SELECT value FROM wasu.bs_common_def d,wasu.bs_user e WHERE d.def_id = e.department_id and e.work_id=t.tester AND d.type = 'department') as department,"
-				+ "account,stb_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,wo_number,"
+				+ "account,stb_id,result_dns_id,result_ping_id,result_speed_id,result_trace_id,result_web_id,wo_number,device_seq,ott_connect_type,android_version,box_ip boxIP, "
 				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.testing_template_group_id and d.type='template_type') testing_template_group_id"
 				+ " FROM wasu.testing_result t ");
 		sql.append(" WHERE 1=1 ");
