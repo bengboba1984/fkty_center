@@ -69,6 +69,8 @@ public class SubmitWOServlet extends HttpServlet {
 					returnMessage.put("message", "WO Number exists!");
 				}
 			} catch (Exception e) {
+				returnMessage.put("errorCode", 3);
+				returnMessage.put("message", "System error!");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

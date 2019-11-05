@@ -367,7 +367,7 @@ public class DataManagementFacade {
 		res.setWoNumber(item.getWoNumber());
 		res.setDeviceSeq(item.getDeviceSeq());
 		res.setOttConnectType(item.getOttConnectType());
-		res.setAndroidVersion(item.getDeviceSeq());
+		res.setAndroidVersion(item.getAndroidVersion());
 		res.setBoxIP(item.getBoxIP());
 		dao.insertTestingResult(res);
 		return templateId.toString();
