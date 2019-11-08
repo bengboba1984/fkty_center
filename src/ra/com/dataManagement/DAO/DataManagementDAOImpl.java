@@ -724,8 +724,8 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			param.add(stbID+"%");
 		}
 		if (fileId != null && !"".equals(fileId)) {
-			sql.append(" AND file_id = ? ");
-			param.add(fileId);
+			sql.append(" AND file_id  in ( ").append(fileId).append(" ) " );
+			//param.add();
 		}
 		return getListChunkByProperty(sql.toString(), param,pageNo,pageSize,true, "ra.com.dataManagement.model.FtpFile");
 	}
@@ -776,5 +776,9 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		
 		
 		simpleExecute(sql.toString(), param);
+	}
+	
+	public String getDownloadBasePath() throws GenericDAOException{
+		 return (String) queryOne("SELECT value FROM wasu.bs_common_def where type='file_base_path'", null);
 	}
 }

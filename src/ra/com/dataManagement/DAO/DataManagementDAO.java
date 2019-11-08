@@ -137,4 +137,6 @@ public interface DataManagementDAO {
 	public Object getTestResultIDByWONumber(String woNumber)throws GenericDAOException;
 
 	public void insertCaptureFile(int type,String account,String stbId,String tester,String fileName,Long fileId) throws GenericDAOException;
+	
+	public String getDownloadBasePath() throws GenericDAOException;
 }

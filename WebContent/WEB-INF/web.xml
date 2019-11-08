@@ -54,4 +54,14 @@
     <servlet-name>SubmitWOServlet</servlet-name>
     <url-pattern>/SubmitWOServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>downloadFtpServlet</display-name>
+    <servlet-name>downloadFtpServlet</servlet-name>
+    <servlet-class>ra.com.server.DownloadFileServer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>downloadFtpServlet</servlet-name>
+    <url-pattern>/downloadFtpServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

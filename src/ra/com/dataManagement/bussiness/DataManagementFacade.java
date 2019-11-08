@@ -570,18 +570,18 @@ public class DataManagementFacade {
 	
 	public Map deleteFtpFile(String fileIds) throws Exception {
 		Map temp = new HashMap();
-		String[] fileIdList = fileIds.split(",");
+		String basePath = getDownloadBasePath();
+		if (basePath == null || "".equals(basePath)) {
+			temp.put("mess","下载文件路径不正确");
+			temp.put("warning","warning");
+		}
+		Collection<FtpFile> fileList = downloadFtpFile(fileIds);
 		StringBuffer mess = new StringBuffer("");
-		for(String id:fileIdList){
-			ArrayList<FtpFile> col = (ArrayList)dao.getFtpFileDataList(null,null,null,null,null,null,fileIds,1,10).getCollection();
-			if(col!=null){
-				for(FtpFile f:col){
-					String path = Const.CLIENT_COLLECTOR_CONFIG+File.separator+f.getType()+File.separator+f.getTester()+File.separator;
-					File file=new File(path+f.getUuguid());
-					if(file.exists()){ file.delete();}else{ mess.append(f.getFileName() +"不存在该文件\n"); }
-					dao.deleteFtpFile(f.getFileId());
-				}
-			}
+		for(FtpFile f:fileList){
+			String path = basePath + File.separator + ("1".equals(f.getType()) ? f.getAccount():f .getTester()) + File.separator;
+			File file = new File(path + f.getFileName());
+			if(file.exists()){ file.delete();}else{ mess.append(f.getFileName() +"不存在该文件\n"); }
+			dao.deleteFtpFile(f.getFileId());
 		}
 		if(mess.length()<1){
 		  temp.put("success","success");
@@ -592,23 +592,13 @@ public class DataManagementFacade {
 		
 		 return temp;  
 	}
-	public void downloadFtpFile(String fileIds) throws Exception {
-		String[] fileIdList = fileIds.split(",");
-		StringBuffer mess = new StringBuffer("");
-		 ZipOutputStream zipStream = null;
-	     FileInputStream zipSource = null;
-	     BufferedInputStream bufferStream = null;
-		for(String id:fileIdList){
-			ArrayList<FtpFile> col = (ArrayList)dao.getFtpFileDataList(null,null,null,null,null,null,fileIds,1,10).getCollection();
-			if(col!=null){
-				for(FtpFile f:col){
-					String path = Const.CLIENT_COLLECTOR_CONFIG+File.separator+f.getType()+File.separator+f.getTester()+File.separator;
-					File file=new File(path+f.getUuguid());
-					
-				}
-			}
-		}
-		 
+	
+	public String getDownloadBasePath() throws Exception {
+		return dao.getDownloadBasePath();
+	}
+	
+	public Collection downloadFtpFile(String fileIds) throws Exception {
+		return dao.getFtpFileDataList(null,null,null,null,null,null,fileIds,1,10).getCollection();
 	}
 	
 	public void updateWOByResultSeq(String resultSeq, String woNumber) throws Exception {

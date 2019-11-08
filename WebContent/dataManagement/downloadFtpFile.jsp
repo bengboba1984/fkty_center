@@ -48,8 +48,18 @@
 		
 		}
 		function doDownload(){
-			
-			
+			//downloadFtpServlet
+			var rows = $('#dg').datagrid('getChecked');//获取已勾选的行
+			if(rows.length<1){
+				alert("请选择需要下载的文件！");
+				return false;
+			}
+			var fileId = '0';
+			$.each(rows, function(index, item){
+				fileId +=","+item.fileId;
+			})
+			var url="downloadFtpServlet?fileId="+fileId;
+			window.open(url);
 		}
 		function removeit(){
 			var checkedItems = $('#dg').datagrid('getChecked');
@@ -73,6 +83,7 @@
 		        success: function (result) {
 		        	if(result.success=="success"){
 		        	$.messager.alert("提示", "删除成功！");
+		        	$('#dg').datagrid('reload');
 		        	}else if(result.warning=="warning"){
 		        	$.messager.alert("提示", result.mess);
 		        	}
