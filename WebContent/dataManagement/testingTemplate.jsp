@@ -273,6 +273,7 @@
 			if(node.id>0){
 				$('#testType').combobox('setValue', node.id);
 				$("#testType").combobox('readonly',true);
+				$("#testGroupId").combobox('readonly',false);
 				var url ='';
 				if(node.id=='1'){
 					url='testing_template_arameter_ping_show.action';
@@ -559,9 +560,7 @@
 		return url;
 	}
 	function refresh(){
-		
 		$('#dg').datagrid('load');
-		
 	}
 	
 	function removeit() {
@@ -609,6 +608,8 @@
     		$('#testingTemplateId').val(row.testingTemplateId);
     		$('#testGroupId').combobox('setValue',row.testingTemplateGroupId);
     		$('#testType').combobox('setValue',row.testType);
+    		$("#testType").combobox('readonly',true);
+    		$("#testGroupId").combobox('readonly',true);
     		if(row.testType=='1'){
 				url='testing_template_arameter_ping_edit_show.action?testingTemplateId='+row.testingTemplateId;
 			}else if(row.testType=='2'){
