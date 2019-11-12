@@ -524,7 +524,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 		if(!"8".equals(roleId)){
 			sql.append(" AND p.role_id not in (8) "); 
 		}
-		sql.append(" GROUP BY a.user_id ORDER BY A.user_name ");
+		sql.append(" GROUP BY a.user_id ORDER BY a.user_name ");
 		return getListChunkByProperty(sql.toString(), pl, 1,1000,
 				true, "ra.com.system_mgt.model.UserManagement");
 	}
@@ -584,7 +584,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 	                    "        and u.user_id = ap.user_id\n" +
 	                    "        and ap.role_id = c.def_id order by u.user_name" );//	LEFT JOIN jxc.bs_department c ON a.department_id = c.department_id
 		pl.add(roleId);
-		sql.append(" ORDER BY A.user_name ");
+		sql.append(" ORDER BY a.user_name ");
 		return getListChunkByProperty(sql.toString(), pl, 1,1000,
 				true, "ra.com.system_mgt.model.UserManagement");
 	}
@@ -786,7 +786,7 @@ public class SystemMGTDAOImpl extends GenericDAO implements SystemMGTDAO {
 		if(!"8".equals(roleId)){
 			sql.append(" AND p.role_id not in (8) "); 
 		}
-		sql.append("  ORDER BY A.user_name ");
+		sql.append("  ORDER BY a.user_name ");
 		return getListChunkByProperty(sql.toString(), pl, 1,1000,
 				true, "ra.com.system_mgt.model.UserManagement");
 	}
