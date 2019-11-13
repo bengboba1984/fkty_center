@@ -274,10 +274,10 @@
 		</thead>
 	</table>
 </div>  
-<div id="dlg-woNumber" class="easyui-dialog" style="width:1200px;height:700px" closed="true" >
+<div id="dlg-woNumber" class="easyui-dialog" style="width:850px;height:550px" closed="true" >
 <div class="easyui-layout" style="width:99.9%;height:99%">
-    <div id="p" data-options="region:'west'" title="" style="width:80%;padding:0px;height:700px">
-       <div id="woNumberTab" class="easyui-tabs" data-options="tabWidth:150,tabHeight:640,tabPosition:'left',headerWidth:160" style="width:100%;height:100%">
+    <div id="p" data-options="region:'west'" title="" style="width:70%;padding:0px;height:550px">
+       <div id="woNumberTab" class="easyui-tabs" data-options="tabWidth:95,tabHeight:500,tabPosition:'left',headerWidth:100" style="width:100%;height:100%">
         <div id="templatType3" title="手动测试报告" style="padding:10px">
         	工单号: <span id="woNumber1"></span>
 	     <div style="margin-bottom:10px"></div>
