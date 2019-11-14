@@ -20,10 +20,10 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * Servlet implementation class receiveCaptureVideoServlet
  */
-public class receiveCaptureVideoServlet extends HttpServlet {
+public class ReceiveCaptureVideoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final Log LOGGER = LogFactory
-			.getLog(receiveCaptureVideoServlet.class);   
+			.getLog(ReceiveCaptureVideoServlet.class);   
        
 	/**
 	 * @see Servlet#init(ServletConfig)

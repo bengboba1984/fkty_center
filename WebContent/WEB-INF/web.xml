@@ -74,4 +74,14 @@
     <servlet-name>AppLoginServlet</servlet-name>
     <url-pattern>/doLogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReceiveCaptureVideoServlet</display-name>
+    <servlet-name>ReceiveCaptureVideoServlet</servlet-name>
+    <servlet-class>ra.com.dataManagement.sevlet.ReceiveCaptureVideoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReceiveCaptureVideoServlet</servlet-name>
+    <url-pattern>/receiveCaptureVideoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
