@@ -30,11 +30,11 @@
   </session-config>
   <servlet>
     <servlet-name>testingTemplateServlet</servlet-name>
-    <servlet-class>ra.com.scheduler.TestingTemplateServlet</servlet-class>
+    <servlet-class>ra.com.dataManagement.sevlet.TestingTemplateServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>testingTemplateResultServlet</servlet-name>
-    <servlet-class>ra.com.scheduler.TestingTemplateResultServlet</servlet-class>
+    <servlet-class>ra.com.dataManagement.sevlet.TestingTemplateResultServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>testingTemplateServlet</servlet-name>
@@ -48,7 +48,7 @@
     <description></description>
     <display-name>SubmitWOServlet</display-name>
     <servlet-name>SubmitWOServlet</servlet-name>
-    <servlet-class>ra.com.scheduler.SubmitWOServlet</servlet-class>
+    <servlet-class>ra.com.dataManagement.sevlet.SubmitWOServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SubmitWOServlet</servlet-name>
