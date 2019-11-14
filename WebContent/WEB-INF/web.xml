@@ -64,4 +64,14 @@
     <servlet-name>downloadFtpServlet</servlet-name>
     <url-pattern>/downloadFtpServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AppLoginServlet</display-name>
+    <servlet-name>AppLoginServlet</servlet-name>
+    <servlet-class>ra.com.dataManagement.sevlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AppLoginServlet</servlet-name>
+    <url-pattern>/doLogin</url-pattern>
+  </servlet-mapping>
 </web-app>
