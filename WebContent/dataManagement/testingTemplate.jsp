@@ -12,8 +12,12 @@
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/datagrid-groupview.js"></script>
 <title></title>
+
 </head>
 <body>
+<script type="text/javascript">
+
+</script>
 <input type="hidden" name = "moduleId" id = "moduleId" value="${moduleId}"/>
 <input type="hidden" id = "action" value=""/>
 	<div class="easyui-layout" style="height:750px;" data-options="border:false">
@@ -83,7 +87,7 @@
             closed="true" buttons="#dlg-warning-buttons">
         <form id="fm-warning" method="post" novalidate style="margin:0;padding:20px 50px"> 
         <input type="hidden" name="testingTemplateId" id="testingTemplateId" value="${testingTemplateId}" />
-        <div class="easyui-tabs" style="width:700px;height:500px" fit="true">
+        <div class="easyui-tabs" style="width:700px;height:400px" fit="true" id="tabsDiv">
         <div title="基础信息" style="padding:0px">
             <table style="width: 100%">
        		<tr>
@@ -255,7 +259,7 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancelTarget('dlg-testing-target-add')" style="width:90px">取消</a>
     </div>
 	<script type="text/javascript">
-		
+	
 	$.ajax({
         url: 'action_button_flag.action?moduleId='+$('#moduleId').val(),
         type: 'post',
