@@ -607,7 +607,7 @@
 	        	$('#meanQuality5').text(result.meanQuality);
 	        	$('#responseCode5').text(result.responseCode);
 	        	$('#throughput5').text(result.throughput+' KB/S');
-	        	$('#totalTime5').text(result.totalTime+' ms');
+	        	$('#totalTime5').text(result.totalTime+' s');
 		$('#dlg-web').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 	        }
 	    }); 
@@ -625,10 +625,10 @@
 		 error: function(){alert('加载失败');},
 	        success: function (result) {
 	        	result = result.result;
-	        	$('#downloadMaxThroughput3').text(result.downloadMaxThroughput+' KB/S');
-	        	$('#downloadThroughput3').text(result.downloadThroughput+' KB/S');
-	        	$('#uploadMaxThroughput3').text(result.uploadMaxThroughput+' KB/S');
-	        	$('#uploadThroughput3').text(result.uploadThroughput+' KB/S');
+	        	$('#downloadMaxThroughput3').text(result.downloadMaxThroughput+' Mbps');
+	        	$('#downloadThroughput3').text(result.downloadThroughput+' Mbps');
+	        	$('#uploadMaxThroughput3').text(result.uploadMaxThroughput+' Mbps');
+	        	$('#uploadThroughput3').text(result.uploadThroughput+' Mbps');
 	    		$('#dlg-speed').dialog('open').dialog('center').dialog('setTitle','详情下钻');
 	        }
 	    }); 

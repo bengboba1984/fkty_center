@@ -159,19 +159,18 @@ public class TestingTemplateResultServlet extends HttpServlet {
 
 					} else if (Const.TEMPLATE_ARAMETER_SPEED == jsonObject1
 							.getIntValue("testType")) {
-						TestingResultSpeed d = (TestingResultSpeed) i
-								.getResult();
+						TestingResultSpeed d = new TestingResultSpeed();
 
 						// 将数组转换成字符串
 						JSONObject obj = jsonObject1.getJSONObject("result");
 						int downloadMaxThroughput = obj
 								.getIntValue("downloadMaxThroughput");
-						int downloadThroughput = obj
-								.getIntValue("downloadThroughput");
+						String downloadThroughput = obj
+								.getString("downloadThroughput");
 						int uploadMaxThroughput = obj
 								.getIntValue("uploadMaxThroughput");
-						int uploadThroughput = obj
-								.getIntValue("uploadThroughput");
+						String uploadThroughput = obj
+								.getString("uploadThroughput");
 						d.setDownloadMaxThroughput(downloadMaxThroughput);
 						d.setDownloadThroughput(downloadThroughput);
 						d.setUploadMaxThroughput(uploadMaxThroughput);
@@ -250,6 +249,7 @@ public class TestingTemplateResultServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("===========request:"+sb.toString());
 		return sb.toString();
 	}
 }

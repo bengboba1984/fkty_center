@@ -5,9 +5,9 @@ import java.util.List;
 public class TestingResultSpeed {
 	private String resultSpeedId;
 	private int downloadMaxThroughput;
-	private int downloadThroughput;
+	private String downloadThroughput;
 	private int uploadMaxThroughput;
-	private int uploadThroughput;
+	private String uploadThroughput;
 	private List<TestingResultTraceSub> resultSubData;
 	
 	public String getResultSpeedId() {
@@ -22,22 +22,18 @@ public class TestingResultSpeed {
 	public void setDownloadMaxThroughput(int downloadMaxThroughput) {
 		this.downloadMaxThroughput = downloadMaxThroughput;
 	}
-	public int getDownloadThroughput() {
-		return downloadThroughput;
-	}
-	public void setDownloadThroughput(int downloadThroughput) {
-		this.downloadThroughput = downloadThroughput;
-	}
+
 	public int getUploadMaxThroughput() {
 		return uploadMaxThroughput;
 	}
 	public void setUploadMaxThroughput(int uploadMaxThroughput) {
 		this.uploadMaxThroughput = uploadMaxThroughput;
 	}
-	public int getUploadThroughput() {
+
+	public String getUploadThroughput() {
 		return uploadThroughput;
 	}
-	public void setUploadThroughput(int uploadThroughput) {
+	public void setUploadThroughput(String uploadThroughput) {
 		this.uploadThroughput = uploadThroughput;
 	}
 	public List<TestingResultTraceSub> getResultSubData() {
@@ -45,6 +41,12 @@ public class TestingResultSpeed {
 	}
 	public void setResultSubData(List<TestingResultTraceSub> resultSubData) {
 		this.resultSubData = resultSubData;
+	}
+	public String getDownloadThroughput() {
+		return downloadThroughput;
+	}
+	public void setDownloadThroughput(String downloadThroughput) {
+		this.downloadThroughput = downloadThroughput;
 	}
 	
 	
