@@ -598,7 +598,7 @@ public class DataManagementFacade {
 	}
 	
 	public Collection downloadFtpFile(String fileIds) throws Exception {
-		return dao.getFtpFileDataList(null,null,null,null,null,null,fileIds,1,10).getCollection();
+		return dao.getFtpFileDataListByIDs(fileIds,1,10).getCollection();
 	}
 	
 	public void updateWOByResultSeq(String resultSeq, String woNumber) throws Exception {

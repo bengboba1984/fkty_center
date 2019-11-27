@@ -128,6 +128,8 @@ public interface DataManagementDAO {
 	
 	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbID,String fileId,int pageNo, int pageSize) throws GenericDAOException;
 	
+	public ListChunk getFtpFileDataListByIDs(String fileId,int pageNo, int pageSize) throws GenericDAOException;
+	
 	public Collection getFileType()throws GenericDAOException;
 	
 	public void deleteFtpFile(String id)throws GenericDAOException;

@@ -9,6 +9,7 @@ static{
 	
 	try {
 		prop.load(MSSqlConnectionConfig.class.getResourceAsStream("MSSqlConnectionConfig.properties"));
+	//	prop.load(MSSqlConnectionConfig.class.getResourceAsStream("MSSqlConnectionConfig4Test.properties"));
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

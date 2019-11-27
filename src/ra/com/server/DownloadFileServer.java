@@ -54,7 +54,8 @@ public class DownloadFileServer extends HttpServlet {
 			Collection<FtpFile> fileList = biz.downloadFtpFile(fileId);
 			DataOutputStream os = null;
 			for (FtpFile f : fileList) {
-				String path = basePath + File.separator + ("1".equals(f.getType()) ? f.getAccount():f .getTester()) + File.separator;
+				System.out.println("@@@@@f="+f.toString()+"|"+(("1".equals(f.getType()))?f.getAccount():f.getStbId()));
+				String path = basePath + File.separator + (("1".equals(f.getType()))?f.getAccount():f.getStbId()) + File.separator+ (("1".equals(f.getType()))?"capture":"video")+ File.separator;
 				File file = new File(path + f.getFileName());
 				try {
 					// 添加ZipEntry，并ZipEntry中写入文件流

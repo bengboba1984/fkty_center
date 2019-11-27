@@ -781,4 +781,20 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 	public String getDownloadBasePath() throws GenericDAOException{
 		 return (String) queryOne("SELECT value FROM wasu.bs_common_def where type='file_base_path'", null);
 	}
+	@Override
+	public ListChunk getFtpFileDataListByIDs(String fileId, int pageNo,
+			int pageSize) throws GenericDAOException {
+		// TODO Auto-generated method stub
+		StringBuffer sql = new StringBuffer(
+				"SELECT file_id,account,stb_id,tester,file_name,date_format(created_date,'%Y-%m-%d %H:%m:%s') as created_date,uuguid,"
+				+ "type"
+				+ " FROM wasu.ftp_file_list t ");
+		sql.append(" WHERE 1=1 ");
+	
+		if (fileId != null && !"".equals(fileId)) {
+			sql.append(" AND file_id  in ( ").append(fileId).append(" ) " );
+			//param.add();
+		}
+		return getListChunkByProperty(sql.toString(), null,pageNo,pageSize,true, "ra.com.dataManagement.model.FtpFile");
+	}
 }

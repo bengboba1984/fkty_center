@@ -1,6 +1,13 @@
 package ra.com.dataManagement.model;
 
 public class FtpFile {
+	@Override
+	public String toString() {
+		return "FtpFile [fileId=" + fileId + ", fileName=" + fileName
+				+ ", tester=" + tester + ", account=" + account + ", stbId="
+				+ stbId + ", createdDate=" + createdDate + ", uuguid=" + uuguid
+				+ ", type=" + type + "]";
+	}
 	private String  fileId;
 	private String  fileName;
 	private String  tester;
