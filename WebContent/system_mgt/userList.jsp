@@ -275,7 +275,7 @@
                                 url:'show_department_list.action',
                                 required:true                     
                             }
-                        }">部门
+                        }">单位
 				</th>
 				
 				<th
