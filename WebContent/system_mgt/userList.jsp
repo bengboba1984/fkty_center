@@ -75,13 +75,13 @@
 		}
 		function onClickRow(index,rowValue) {
 			if(rowValue.visible=='Y'){
-				$("#restore").linkbutton("disable");
-				$('#delete').linkbutton('enable');
+				$("#restore").hide();
+				$('#delete').show();//.linkbutton('enable');
 				$('#save').linkbutton('enable');
 			}else{
-				$("#delete").linkbutton("disable");
+				$("#delete").hide();
 				$("#save").linkbutton("disable");
-				$('#restore').linkbutton('enable');
+				$('#restore').show();//.linkbutton('enable');
 				$('#dg').datagrid('rejectChanges');
 				editIndex = undefined;
 			}
@@ -200,6 +200,8 @@
 	      }
 		
 		$(function(){
+			$('#restore').hide();
+			$('#delete').hide();
 			if($('#visibleSearch').combobox('getValue')=='Y'){
 			$("#dg").datagrid('hideColumn', 'departureDate');
 			}
@@ -345,8 +347,8 @@
 		<a href="javascript:void(0)" class="easyui-linkbutton" id="save" 
 			data-options="iconCls:'icon-save',plain:true,disabled:true" onclick="accept()"><s:text name="common.accept" /></a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" id="delete"
-			data-options="iconCls:'icon-remove',plain:true,disabled:true" onclick="removeit()">禁用</a>	
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,disabled:true" id="restore"  onclick="restoreUser()">还原</a>	
+			data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">禁用</a>	
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true" id="restore"  onclick="restoreUser()">还原</a>	
 	</div>
 
 	<script type="text/javascript">

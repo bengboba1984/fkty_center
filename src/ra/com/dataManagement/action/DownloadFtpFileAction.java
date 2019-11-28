@@ -41,6 +41,7 @@ public class DownloadFtpFileAction extends BaseAction {
 	private String testerSearch;// 工号
 	private String stbIDSearch;
 	private String fileId;
+	private String departmentSearch;
 	private int page;
 	private int rows;
 
@@ -60,7 +61,7 @@ public class DownloadFtpFileAction extends BaseAction {
 
 			ListChunk lc = biz.getFtpFileDataList(testingDateBegin,
 					testingDateEnd, testTypeSearch, accountSearch,
-					testerSearch, stbIDSearch, page, rows);
+					testerSearch, stbIDSearch,departmentSearch, page, rows);
 			Map map = new HashMap();
 			map.put("total", lc.getTotalCount());
 			map.put("rows", U.changeListToJSON(lc.getCollection()));
@@ -243,6 +244,14 @@ public class DownloadFtpFileAction extends BaseAction {
 
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
+	}
+
+	public String getDepartmentSearch() {
+		return departmentSearch;
+	}
+
+	public void setDepartmentSearch(String departmentSearch) {
+		this.departmentSearch = departmentSearch;
 	}
 
 }

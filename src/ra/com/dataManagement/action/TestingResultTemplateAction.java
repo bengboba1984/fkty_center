@@ -26,11 +26,17 @@ public class TestingResultTemplateAction  extends BaseAction {
 	private String targetId;
 	private String accountSearch;
 	private String testerSearch;
+	private String departmentSearch;
+	private String stbidSearch;
+	private int page;
+	private int rows;
 	private JSONObject message;
 	private InputStream excelStream;
 	private String excelFileName;
 	public String show() {
 		testTypeSearch = "-1";
+		page = 1;
+		rows = 25;
 		return "show";
 	}
 
@@ -38,10 +44,10 @@ public class TestingResultTemplateAction  extends BaseAction {
 		biz = DataManagementFacade.getInstance();
 		
 		try {
-			
+			System.out.println("====testerSearch:"+testerSearch);
 			ra.com.system_mgt.model.User user=(ra.com.system_mgt.model.User)request.getSession().getAttribute("loginUser");
 			String roleId = user.getDepartmentID().toString();
-			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,null,null);
+			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,departmentSearch,stbidSearch,null,null,page,rows);
 			Map map = new HashMap();
 			map.put("rows", U.changeListToJSON(lc));
 			System.out.println("====lc.getTotalCount():"+lc.size());
@@ -173,7 +179,7 @@ public class TestingResultTemplateAction  extends BaseAction {
 	
 	public String downloadResultTemplateData() throws Exception {
 		biz = DataManagementFacade.getInstance();
-		excelStream = biz.downloadResultTemplateData(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,null);
+		excelStream = biz.downloadResultTemplateData(testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,departmentSearch,stbidSearch,null);
 		excelFileName = "ResultTemplateReport.xls";
 		return SUCCESS;
 	}
@@ -280,6 +286,38 @@ public class TestingResultTemplateAction  extends BaseAction {
 
 	public void setExcelFileName(String excelFileName) {
 		this.excelFileName = excelFileName;
+	}
+
+	public String getDepartmentSearch() {
+		return departmentSearch;
+	}
+
+	public void setDepartmentSearch(String departmentSearch) {
+		this.departmentSearch = departmentSearch;
+	}
+
+	public String getStbidSearch() {
+		return stbidSearch;
+	}
+
+	public void setStbidSearch(String stbidSearch) {
+		this.stbidSearch = stbidSearch;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 	
 	

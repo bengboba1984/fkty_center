@@ -19,7 +19,9 @@
 				testingDateEnd: $('#testingDateEnd').datebox('getValue'),
 				testTypeSearch:$('#testTypeSearch').combobox('getValue'),
 				accountSearch:$('#accountSearch').val(),
-				testerSearch:$('#testerSearch').val()
+				testerSearch:$('#testerSearch').val(),
+				departmentSearch:$('#departmentSearch').val(),
+				stbidSearch:$('#stbidSearch').val()
 		    	});
 		} 
 		
@@ -48,7 +50,8 @@
 		}
 		function doDownload(){
 			var url="testing_result_template_download.action?testingDateBegin="+$('#testingDateBegin').datebox('getValue')+'&testingDateEnd='+$('#testingDateEnd').datebox('getValue')
-			+'&testTypeSearch='+$('#testTypeSearch').combobox('getValue')+'&accountSearch='+$('#accountSearch').val()+'&testerSearch='+$('#testerSearch').val();
+			+'&testTypeSearch='+$('#testTypeSearch').combobox('getValue')+'&accountSearch='+$('#accountSearch').val()+'&testerSearch='+$('#testerSearch').val()
+			+'&departmentSearch='+$('#departmentSearch').val()+'&stbidSearch='+$('#stbidSearch').val();
 			window.open(url);
 			
 		}
@@ -75,7 +78,7 @@
 												textField:'value',
                     						  	panelHeight:'auto'"/></td>
 				<td class="panel-header" style="width:10%" align="center">装维单位</td>
-				<td style="width:15%"><input id="111" class="easyui-textbox" style="width:80%"></td>
+				<td style="width:15%"><input id="departmentSearch" class="easyui-textbox" style="width:80%"></td>
 			</tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">装维人员</td>
@@ -87,7 +90,7 @@
 			</tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">STBID</td>
-				<td style="width:15%"><input id="userIDSearch" class="easyui-textbox" style="width:80%"></td>
+				<td style="width:15%"><input id="stbidSearch" class="easyui-textbox" style="width:80%"></td>
 				<td colspan="4" align="right">
 					<a href="#" class="easyui-linkbutton" id="search" data-options="iconCls:'icon-search',disabled:true" onClick="doSearch()"><s:text name="common.search"></s:text></a>
 				
@@ -100,7 +103,7 @@
 	<div data-options="region:'center'" style="height:79%">
 		<table id="dg" class="easyui-datagrid" title="详单列表"
 		style="width: 100%; height: 100%" remoteSort="false"
-		data-options="iconCls: 'icon-edit',singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_result_template_list.action',method: 'post',onClickRow: onClickRow">
+		data-options="iconCls: 'icon-edit',pagination:true,singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_result_template_list.action',method: 'post',onClickRow: onClickRow">
 		<thead>
 			<tr>
 				<th data-options="field:'testingResultId',hidden:'true',width:10">result ID</th>
@@ -439,6 +442,10 @@
 </div>
 </div>
 <script type="text/javascript">
+	if ($.fn.datagrid){
+	    $.fn.datagrid.defaults.pageSize = 25;//这里一定要用datagrid.defaults.pageSize，用pagination.defaults.pageSize一直不行
+	    $.fn.datagrid.defaults.pageList = [15,25,35,45,55];//这里一定要有，不然上面的也不起效
+	}
 	$.ajax({
         url: 'action_button_flag.action?moduleId='+$('#moduleId').val(),
         type: 'post',

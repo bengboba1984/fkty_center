@@ -599,7 +599,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		simpleExecute(sql.toString(), param);
 	}
 	
-	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch,String resultId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String departmentSearch,String stbidSearch,String resultSeqSearch,String resultId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT testing_result_id,CONCAT(result_seq,'') result_seq,testing_date,tester,"
 				+ "(SELECT value FROM wasu.bs_common_def d,wasu.bs_user e WHERE d.def_id = e.department_id and e.work_id=t.tester AND d.type = 'department') as department,"
@@ -627,6 +627,15 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		if (testerSearch != null && !"".equals(testerSearch)) {
 			sql.append(" AND tester like ? ");
 			param.add(testerSearch+"%");
+		}
+		if (departmentSearch != null && !"".equals(departmentSearch)) {
+			sql.append(" and exists (select 1 from wasu.bs_user u, wasu.bs_common_def d where u.work_id = t.tester");
+			sql.append(" and d.def_id = u.department_id and d.type = 'department' and d. value like ? ) ");
+			param.add(departmentSearch+"%");
+		}
+		if (stbidSearch != null && !"".equals(stbidSearch)) {
+			sql.append(" AND stb_id like ? ");
+			param.add(stbidSearch+"%");
 		}
 		if (resultSeqSearch != null && !"".equals(resultSeqSearch)) {
 			sql.append(" AND result_seq like ? ");
@@ -692,7 +701,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		 return (String) queryOne("SELECT max(result_seq) result_seq  FROM wasu.testing_result where result_seq like ? ", param);
 	}
 	
-	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbID,String fileId,int pageNo, int pageSize) throws GenericDAOException{
+	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbID,String departmentSearch,String fileId,int pageNo, int pageSize) throws GenericDAOException{
 		StringBuffer sql = new StringBuffer(
 				"SELECT file_id,account,stb_id,tester,file_name,date_format(created_date,'%Y-%m-%d %H:%m:%s') as created_date,uuguid,"
 				+ "(select value  FROM wasu.bs_common_def d where d.function_value = t.type and d.type='ftp_type') type"
@@ -718,6 +727,11 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		if (testerSearch != null && !"".equals(testerSearch)) {
 			sql.append(" AND tester like ? ");
 			param.add(testerSearch+"%");
+		}
+		if (departmentSearch != null && !"".equals(departmentSearch)) {
+			sql.append(" and exists (select 1 from wasu.bs_user u, wasu.bs_common_def d where u.work_id = t.tester");
+			sql.append(" and d.def_id = u.department_id and d.type = 'department' and d. value like ? ) ");
+			param.add(departmentSearch+"%");
 		}
 		if (stbID != null && !"".equals(stbID)) {
 			sql.append(" AND stb_id like ? ");

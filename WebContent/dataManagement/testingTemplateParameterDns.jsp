@@ -42,6 +42,10 @@
       
        </table>
      <script type="text/javascript">
+     function checkValue(obj){
+    	 var reg = /^\d+$/g;
+         return reg.test(value);
+     }
     function makeDnsUrl(){
 		var url = "";
 		var packetCount = $('#packetCount').val();

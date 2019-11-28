@@ -83,9 +83,10 @@
             </div>
         </section>
         <footer class="foot">
-            <div>
-                <p>技术支持：飞思达技术（北京）有限公司</p>
+            <div><img src="./image/chart.png" width="80" height="90" style="margin-bottom: -50px;margin-left: 60px">
+            	<p>技术支持：飞思达技术（北京）有限公司</p>
                 <p>浙江华数 版权所有 WASU.COM  Copyright © 2018-2020 All Rights Reserved</p>
+                
             </div>
         </footer>
     </section>

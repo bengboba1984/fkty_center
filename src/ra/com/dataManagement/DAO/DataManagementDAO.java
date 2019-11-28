@@ -110,7 +110,7 @@ public interface DataManagementDAO {
 	
 	public void updateResultTestTypeId(String column,String typeId,String templateId)throws GenericDAOException;
 	
-	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String resultSeqSearch,String resultId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String departmentSearch,String stbidSearch,String resultSeqSearch,String resultId,int pageNo, int pageSize) throws GenericDAOException;
 	
 	public ListChunk getTestingResultDns(String id,int pageNo, int pageSize)throws GenericDAOException;
 	
@@ -126,7 +126,7 @@ public interface DataManagementDAO {
 	
 	public String getMaxResult(String date) throws GenericDAOException;
 	
-	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbID,String fileId,int pageNo, int pageSize) throws GenericDAOException;
+	public ListChunk getFtpFileDataList(String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String stbID,String departmentSearch,String fileId,int pageNo, int pageSize) throws GenericDAOException;
 	
 	public ListChunk getFtpFileDataListByIDs(String fileId,int pageNo, int pageSize) throws GenericDAOException;
 	

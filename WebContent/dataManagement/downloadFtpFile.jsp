@@ -20,7 +20,8 @@
 				testTypeSearch:$('#testTypeSearch').combobox('getValue'),
 				accountSearch:$('#accountSearch').val(),
 				testerSearch:$('#testerSearch').val(),
-				stbIDSearch:$('#stbIDSearch').val()
+				stbIDSearch:$('#stbIDSearch').val(),
+				departmentSearch:$('#departmentSearch').val()
 		    	});
 		} 
 		
@@ -121,7 +122,7 @@
 												textField:'value',
                     						  	panelHeight:'auto'"/></td>
 				<td class="panel-header" style="width:10%" align="center">装维单位</td>
-				<td style="width:15%"><input id="111" class="easyui-textbox" style="width:80%"></td>
+				<td style="width:15%"><input id="departmentSearch" class="easyui-textbox" style="width:80%"></td>
 			</tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">装维人员工号</td>
