@@ -57,7 +57,7 @@
                         <img src="./image/lfpic3.png">
                     </li>
                 </ul>
-                <div class="loginBox">
+                <div class="loginBox" id="loginDiv">
                     <h4>用户登录</h4>
                     <form class="formBox"  id="loginForm" method="post" action="login_menu.action">
                     
@@ -75,20 +75,26 @@
                                 <input id="password"  type="password" name="password" ></input>
                             </p>
                         </div>
+                        <p ><a onclick='$("#loginDiv").hide();$("#appDiv").show();' ><font color="red" >下载APP二维码</font></a></p>
+                       <input class="btn" type="button" value="登 录" onclick="submitForm()">
                        
-                        <p class="tip"><span></span></p>
                         </form>
-                    <input class="btn" type="button" value="登 录" onclick="submitForm()">
+                    
+                     
+                </div>
+                <div class="loginBox" id="appDiv" style="display:none;">
+                    <img src="./image/chart.png"  style="width:384px;height:364px" onClick='$("#loginDiv").show();$("#appDiv").hide();'>
                 </div>
             </div>
         </section>
         <footer class="foot">
-            <div><img src="./image/chart.png" width="80" height="90" style="margin-bottom: -50px;margin-left: 60px">
+            <div>
             	<p>技术支持：飞思达技术（北京）有限公司</p>
                 <p>浙江华数 版权所有 WASU.COM  Copyright © 2018-2020 All Rights Reserved</p>
                 
             </div>
         </footer>
+        
     </section>
     </body>
 </html>
