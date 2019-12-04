@@ -578,7 +578,8 @@ public class DataManagementFacade {
 		Collection<FtpFile> fileList = downloadFtpFile(fileIds);
 		StringBuffer mess = new StringBuffer("");
 		for(FtpFile f:fileList){
-			String path = basePath + File.separator + ("1".equals(f.getType()) ? f.getAccount():f .getTester()) + File.separator;
+			String path = basePath + File.separator + (("1".equals(f.getType()))?f.getAccount():f.getStbId()) + File.separator+ (("1".equals(f.getType()))?"capture":"video")+ File.separator;
+//			String path = basePath + File.separator + ("1".equals(f.getType()) ? f.getAccount():f .getTester()) + File.separator;
 			File file = new File(path + f.getFileName());
 			if(file.exists()){ file.delete();}else{ mess.append(f.getFileName() +"不存在该文件\n"); }
 			dao.deleteFtpFile(f.getFileId());
@@ -698,6 +699,15 @@ public class DataManagementFacade {
 		
 		Long fileId = dao.getResultTestTemplateTableId("file_id",
 				"ftp_file_list");
+		if(type==1 ){
+			//宽带抓包 且 stb id置为空
+			account=fileName.substring(0, fileName.length()-23);//filename:account_20191202235548718.pcap
+			stbId=null;
+		}else if(type==2){
+			//互动抓包 且 account置为空
+			stbId=fileName.substring(0, fileName.length()-23);
+			account=null;
+		}
 		dao.insertCaptureFile(type,account,stbId,tester,fileName,fileId);
 		return fileId.toString();
 	}

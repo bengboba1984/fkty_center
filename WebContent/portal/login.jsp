@@ -89,7 +89,7 @@
         </section>
         <footer class="foot">
             <div>
-            	<p>技术支持：飞思达技术（北京）有限公司</p>
+            	
                 <p>浙江华数 版权所有 WASU.COM  Copyright © 2018-2020 All Rights Reserved</p>
                 
             </div>
