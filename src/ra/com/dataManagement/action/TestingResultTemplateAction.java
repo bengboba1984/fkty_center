@@ -11,6 +11,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import ra.com.common.U;
 import ra.com.common.action.BaseAction;
+import ra.com.common.model.ListChunk;
 import ra.com.dataManagement.bussiness.DataManagementFacade;
 
 public class TestingResultTemplateAction  extends BaseAction {
@@ -47,10 +48,11 @@ public class TestingResultTemplateAction  extends BaseAction {
 			System.out.println("====testerSearch:"+testerSearch);
 			ra.com.system_mgt.model.User user=(ra.com.system_mgt.model.User)request.getSession().getAttribute("loginUser");
 			String roleId = user.getDepartmentID().toString();
-			Collection lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,departmentSearch,stbidSearch,null,null,page,rows);
+			ListChunk lc = biz.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,departmentSearch,stbidSearch,null,null,page,rows);
 			Map map = new HashMap();
-			map.put("rows", U.changeListToJSON(lc));
-			System.out.println("====lc.getTotalCount():"+lc.size());
+			map.put("rows", U.changeListToJSON(lc.getCollection()));
+			map.put("total", lc.getTotalCount());
+			System.out.println("====lc.getTotalCount():"+lc.getCollection().size());
 			dataList = JSONObject.fromObject(map);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

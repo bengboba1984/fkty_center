@@ -432,10 +432,10 @@ public class DataManagementFacade {
 		dao.updateResultTestTypeId(column, typeId, templateId);
 	}
 
-	public Collection getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String departmentSearch,String stbidSearch,String resultSeqSearch,String resultId,int page,int rows)
+	public ListChunk getTestingResultTemplateDataList(String roleId,String testingDateBegin,String testingDateEnd,String testTypeSearch,String accountSearch,String testerSearch,String departmentSearch,String stbidSearch,String resultSeqSearch,String resultId,int page,int rows)
 			throws Exception {
 		ListChunk lc = dao.getTestingResultTemplateDataList(roleId,testingDateBegin,testingDateEnd,testTypeSearch,accountSearch,testerSearch,departmentSearch,stbidSearch,resultSeqSearch,resultId,page, rows);
-		return lc.getCollection();
+		return lc;
 	}
 
 	public Map getTestingResultDns(String id) throws Exception {
@@ -617,7 +617,7 @@ public class DataManagementFacade {
 	}
 	
 	public Map getTestingResultTemplateDetail(String id) throws Exception {
-		Collection lc = getTestingResultTemplateDataList(null,null,null,null,null,null,null,null,null,id,1,100);
+		Collection lc = getTestingResultTemplateDataList(null,null,null,null,null,null,null,null,null,id,1,100).getCollection();
 		TestingResult item = new TestingResult();
 		Map map = new HashMap();
 		if(lc==null||lc.size()<1){
