@@ -68,8 +68,8 @@
 			<tr><td colspan="4"></td></tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">时间</td>
-				<td style="width:25%"><input id="testingDateBegin" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input>--
-				<input id="testingDateEnd" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input></td>
+				<td style="width:25%"><input id="testingDateBegin" class="easyui-datebox" value="${testingDateBegin}"  data-options="formatter:myformatter,parser:myparser" style="width:40%"></input>--
+				<input id="testingDateEnd" class="easyui-datebox" value="${testingDateEnd}" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input></td>
 				<td class="panel-header" style="width:10%" align="center">测试类型</td>
 				<td style="width:15%"><input class="easyui-combobox"  id="testTypeSearch" style="width:80%" value="${testTypeSearch}"
 						data-options="url:'test_group_list.action?showAllFlag=1',
@@ -103,7 +103,7 @@
 	<div data-options="region:'center'" style="height:79%">
 		<table id="dg" class="easyui-datagrid" title="详单列表"
 		style="width: 100%; height: 100%" remoteSort="false"
-		data-options="iconCls: 'icon-edit',pagination:true,singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_result_template_list.action',method: 'post',onClickRow: onClickRow">
+		data-options="iconCls: 'icon-edit',pagination:true,singleSelect: true,rownumbers:true,toolbar: '#tb',url: 'testing_result_template_list.action',method: 'post',onClickRow: onClickRow,onBeforeLoad: function (param) {param.testingDateBegin = $('#testingDateBegin').datebox('getValue');param.testingDateEnd=$('#testingDateEnd').datebox('getValue');}">
 		<thead>
 			<tr>
 				<th data-options="field:'testingResultId',hidden:'true',width:10">result ID</th>

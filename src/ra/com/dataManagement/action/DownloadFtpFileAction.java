@@ -8,8 +8,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -51,6 +53,14 @@ public class DownloadFtpFileAction extends BaseAction {
 		page = 1;
 		rows = 25;
 		testTypeSearch = "-1";
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//�������ڸ�ʽ
+		Date d=new Date();  
+		if(testingDateEnd==null||"".equals(testingDateEnd)){
+			testingDateEnd = df.format(d);// 
+		}
+		if(testingDateBegin==null||"".equals(testingDateBegin)){
+			testingDateBegin = df.format(new Date(d.getTime() - 15* 24 * 60 * 60 * 1000));
+		}
 		return "show";
 	}
 

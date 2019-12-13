@@ -112,8 +112,8 @@
 				</td></tr>
 			<tr>
 				<td class="panel-header" style="width:10%" align="center">时间</td>
-				<td style="width:25%"><input id="testingDateBegin" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input>--
-				<input id="testingDateEnd" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input></td>
+				<td style="width:25%"><input id="testingDateBegin" class="easyui-datebox" value="${testingDateBegin}" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input>--
+				<input id="testingDateEnd" class="easyui-datebox" value="${testingDateEnd}" data-options="formatter:myformatter,parser:myparser" style="width:40%"></input></td>
 				<td class="panel-header" style="width:10%" align="center">抓包类型</td>
 				<td style="width:15%"><input class="easyui-combobox"  id="testTypeSearch" style="width:80%" value="${testTypeSearch}"
 						data-options="url:'file_group_list.action?showAllFlag=1',
@@ -139,7 +139,7 @@
 	<div data-options="region:'center'" style="height:79%">
 		<table id="dg" class="easyui-datagrid" title="文件列表"
 		style="width: 100%; height: 100%" remoteSort="false"
-		data-options="iconCls:'icon-edit',singleSelect:false,pagination:true,rownumbers:true,url:'download_ftp_file_data_list.action',method:'post',onClickRow:onClickRow">
+		data-options="iconCls:'icon-edit',singleSelect:false,pagination:true,url:'download_ftp_file_data_list.action',rownumbers:true,method:'post',onClickRow:onClickRow,onBeforeLoad: function (param) {param.testingDateBegin = $('#testingDateBegin').datebox('getValue');param.testingDateEnd=$('#testingDateEnd').datebox('getValue');}">
 		<thead>
 			<tr>
 				<th data-options="field:'fileId'"  checkbox="true"></th>
@@ -171,6 +171,7 @@ if ($.fn.datagrid){
         	});
 			}
     });	
+	
 </script>
 </body>
 </html>
