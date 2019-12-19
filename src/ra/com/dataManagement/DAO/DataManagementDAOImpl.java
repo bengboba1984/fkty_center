@@ -713,7 +713,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			param.add(testingDateBegin);
 		}
 		if (testingDateEnd != null && !"".equals(testingDateEnd)) {
-			sql.append(" AND created_date <= STR_TO_DATE( ?, '%Y-%m-%d')");
+			sql.append(" AND created_date < STR_TO_DATE( ?, '%Y-%m-%d')+1");
 			param.add(testingDateEnd);
 		}
 		if (testTypeSearch != null && !"".equals(testTypeSearch)&& !"-1".equals(testTypeSearch)) {
