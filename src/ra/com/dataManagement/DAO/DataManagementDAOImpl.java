@@ -613,7 +613,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			param.add(testingDateBegin);
 		}
 		if (testingDateEnd != null && !"".equals(testingDateEnd)) {
-			sql.append(" AND testing_date < STR_TO_DATE( ?, '%Y-%m-%d') + 1 ");
+			sql.append(" AND testing_date < DATE_ADD(STR_TO_DATE( ?, '%Y-%m-%d'),interval 1 day) ");
 			param.add(testingDateEnd);
 		}
 		if (testTypeSearch != null && !"".equals(testTypeSearch)&& !"-1".equals(testTypeSearch)) {
@@ -713,7 +713,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 			param.add(testingDateBegin);
 		}
 		if (testingDateEnd != null && !"".equals(testingDateEnd)) {
-			sql.append(" AND created_date < STR_TO_DATE( ?, '%Y-%m-%d')+1");
+			sql.append(" AND created_date < DATE_ADD(STR_TO_DATE( ?, '%Y-%m-%d'),interval 1 day) ");
 			param.add(testingDateEnd);
 		}
 		if (testTypeSearch != null && !"".equals(testTypeSearch)&& !"-1".equals(testTypeSearch)) {
