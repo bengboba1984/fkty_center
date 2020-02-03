@@ -616,7 +616,7 @@
     		$("#testGroupId").combobox('readonly',true);
     		if(row.testType=='1'){
 				url='testing_template_arameter_ping_edit_show.action?testingTemplateId='+row.testingTemplateId;
-			}else if(row.testType=='2'){
+			}else if(row.testType=='10'){
 				url='testing_template_arameter_trace_edit_show.action?testingTemplateId='+row.testingTemplateId;
 			}else if(row.testType=='1000'){
 				url='testing_template_arameter_speed_edit_show.action?testingTemplateId='+row.testingTemplateId;
