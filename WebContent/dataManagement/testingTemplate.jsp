@@ -281,7 +281,7 @@
 				var url ='';
 				if(node.id=='1'){
 					url='testing_template_arameter_ping_show.action';
-				}else if(node.id=='2'){
+				}else if(node.id=='10'){
 					url='testing_template_arameter_trace_show.action';
 				}else if(node.id=='1000'){
 					url='testing_template_arameter_speed_show.action';
@@ -463,7 +463,7 @@
 								if(response.testType=='1'){
 									table='ping';
 									subUrl = window.frames["iframe_test"].window.makePingUrl('');
-								}else if(response.testType=='2'){
+								}else if(response.testType=='10'){
 									table='trace';
 									subUrl = window.frames["iframe_test"].window.makeTraceUrl('');
 								}else if(response.testType=='1000'){
