@@ -630,7 +630,7 @@ public class DataManagementDAOImpl extends GenericDAO implements DataManagementD
 		}
 		if (departmentSearch != null && !"".equals(departmentSearch)) {
 			sql.append(" and exists (select 1 from wasu.bs_user u, wasu.bs_common_def d where u.work_id = t.tester");
-			sql.append(" and d.def_id = u.department_id and d.type = 'department' and d. value like ? ) ");
+			sql.append(" and d.def_id = u.department_id and d.type = 'department' and d.value like ? ) ");
 			param.add(departmentSearch+"%");
 		}
 		if (stbidSearch != null && !"".equals(stbidSearch)) {

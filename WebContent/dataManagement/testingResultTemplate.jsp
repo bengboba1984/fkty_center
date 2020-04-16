@@ -78,10 +78,21 @@
 												textField:'value',
                     						  	panelHeight:'auto'"/></td>
 				<td class="panel-header" style="width:10%" align="center">装维单位</td>
-				<td style="width:15%"><input id="departmentSearch" class="easyui-textbox" style="width:80%"></td>
+				<td style="width:15%">
+				
+				<input class="easyui-combobox" name="departmentSearch" id="departmentSearch" style="width:80%" value="${departmentSearch}"
+			data-options="method:'post',
+                    	valueField:'value',
+						textField:'value',
+                    	url:'show_department_list.action'"/>
+				
+				<!-- <input id="departmentSearch" class="easyui-textbox" style="width:80%"> -->
+				
+				
+				</td>
 			</tr>
 			<tr>
-				<td class="panel-header" style="width:10%" align="center">装维人员</td>
+				<td class="panel-header" style="width:10%" align="center">装维人员工号</td>
 				<td style="width:25%"><input id="testerSearch" class="easyui-textbox" style="width:80%"></td>
 				<td class="panel-header" style="width:10%" align="center">测试序列号</td>
 				<td style="width:15%"><input id="userNameSearch" class="easyui-textbox" style="width:80%"></td>
@@ -110,8 +121,8 @@
 				<th data-options="field:'resultSeq',sortable:'true',align:'center'">测试帐号</th>
 				<th data-options="field:'testingDate',sortable:'true',align:'center'">时间</th>		
 				<th data-options="field:'tester',sortable:'true',align:'center'">工号</th>
-				<!-- <th data-options="field:'hireDate',sortable:'true',align:'center'">单位</th> -->
 				<th data-options="field:'account',sortable:'true',align:'center',width:'10%'">宽带帐号</th>	
+				<th data-options="field:'department',sortable:'true',align:'center'">装维单位</th>
 				<th data-options="field:'stbId',sortable:'true',align:'center',width:'20%'">STBID</th>
 				<th data-options="field:'testingTemplateGroupId',sortable:'true',align:'center'">测试类型</th>
 				<th data-options="field:'woNumber',sortable:'true',align:'center',formatter:formatWoNumber">工单号</th>
